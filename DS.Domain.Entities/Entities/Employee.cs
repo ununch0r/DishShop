@@ -1,9 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+
+#nullable disable
 
 namespace DS.Domain.Entities.Entities
 {
-    public class Employee
+    public partial class Employee
     {
+        public Employee()
+        {
+            Supplies = new HashSet<Supply>();
+        }
+
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -13,8 +21,8 @@ namespace DS.Domain.Entities.Entities
         public int PositionId { get; set; }
         public int ShopId { get; set; }
 
-        public Position Position { get; set; }
-        public Shop Shop { get; set; }
-        public IEnumerable<Supply> Supplies { get; set; }
+        public virtual Position Position { get; set; }
+        public virtual Shop Shop { get; set; }
+        public virtual ICollection<Supply> Supplies { get; set; }
     }
 }

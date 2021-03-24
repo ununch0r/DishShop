@@ -1,12 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+
+#nullable disable
 
 namespace DS.Domain.Entities.Entities
 {
-    public class SupplyStatus
+    public partial class SupplyStatus
     {
-        public int Id { get; set; }
-        public int Name { get; set; }
+        public SupplyStatus()
+        {
+            Supplies = new HashSet<Supply>();
+        }
 
-        public IEnumerable<Supply> Supplies { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        public virtual ICollection<Supply> Supplies { get; set; }
     }
 }

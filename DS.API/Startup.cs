@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
 using System.Reflection;
+using DS.API.IoC.Extensions;
 
 namespace DS.API
 {
@@ -21,6 +22,8 @@ namespace DS.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddDatabaseContext();
 
             services.AddSwaggerGen(options =>
             {

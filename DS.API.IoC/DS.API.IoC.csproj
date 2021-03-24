@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -8,6 +8,15 @@
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DS.API.ViewModels\DS.API.ViewModels.csproj" />
+    <ProjectReference Include="..\DS.Domain.Entities\DS.Domain.Entities.csproj" />
+    <ProjectReference Include="..\DS.Infrastructure\DS.Infrastructure.csproj" />
+    <ProjectReference Include="..\DS.Services.DTO\DS.Services.DTO.csproj" />
+    <ProjectReference Include="..\DS.Services.Interfaces\DS.Services.Interfaces.csproj" />
+    <ProjectReference Include="..\DS.Services\DS.Services.csproj" />
   </ItemGroup>
 
 </Project>

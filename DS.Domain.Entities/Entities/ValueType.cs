@@ -1,12 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+
+#nullable disable
 
 namespace DS.Domain.Entities.Entities
 {
-    public class ValueType
+    public partial class ValueType
     {
+        public ValueType()
+        {
+            Characteristics = new HashSet<Characteristic>();
+        }
+
         public int Id { get; set; }
         public string Type { get; set; }
 
-        public IEnumerable<Characteristic> Characteristics { get; set; }
+        public virtual ICollection<Characteristic> Characteristics { get; set; }
     }
 }

@@ -3,21 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS.API", "DS.API.csproj", "{0F1B3031-DA98-464F-A9E0-DFCD66578531}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DS.API", "DS.API.csproj", "{0F1B3031-DA98-464F-A9E0-DFCD66578531}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS.Services.Interfaces", "..\DS.Services.Interfaces\DS.Services.Interfaces.csproj", "{38DB91F1-AB63-457E-8800-625EF772FC2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DS.Services.Interfaces", "..\DS.Services.Interfaces\DS.Services.Interfaces.csproj", "{38DB91F1-AB63-457E-8800-625EF772FC2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS.Services.DTO", "..\DS.Services.DTO\DS.Services.DTO.csproj", "{3F5FCC5E-863E-4016-B17F-295170A83F72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DS.Services.DTO", "..\DS.Services.DTO\DS.Services.DTO.csproj", "{3F5FCC5E-863E-4016-B17F-295170A83F72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS.Services", "..\DS.Services\DS.Services.csproj", "{44D981EF-78BB-48C2-B4C9-2DBFBD158CD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DS.Services", "..\DS.Services\DS.Services.csproj", "{44D981EF-78BB-48C2-B4C9-2DBFBD158CD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS.Infrascrtucture", "..\DS.Infrascrtucture\DS.Infrascrtucture.csproj", "{9EBF8990-D1E3-4CB8-96E3-CFE76C26DB01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DS.Domain.Entities", "..\DS.Domain.Entities\DS.Domain.Entities.csproj", "{4DE525F6-FDD0-4B6D-8829-F37EF3F37D02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS.Domain.Entities", "..\DS.Domain.Entities\DS.Domain.Entities.csproj", "{4DE525F6-FDD0-4B6D-8829-F37EF3F37D02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DS.API.ViewModels", "..\DS.API.ViewModels\DS.API.ViewModels.csproj", "{01B3612A-CD17-4AE7-9005-889E1CA272E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS.API.ViewModels", "..\DS.API.ViewModels\DS.API.ViewModels.csproj", "{01B3612A-CD17-4AE7-9005-889E1CA272E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DS.API.IoC", "..\DS.API.IoC\DS.API.IoC.csproj", "{8644C9A2-142B-49EF-9707-12586F72DDC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS.API.IoC", "..\DS.API.IoC\DS.API.IoC.csproj", "{8644C9A2-142B-49EF-9707-12586F72DDC6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS.Infrastructure", "..\DS.Infrastructure\DS.Infrastructure.csproj", "{78276079-D07B-4F23-859F-8FA5F63F376A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,6 @@ Global
 		{44D981EF-78BB-48C2-B4C9-2DBFBD158CD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44D981EF-78BB-48C2-B4C9-2DBFBD158CD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44D981EF-78BB-48C2-B4C9-2DBFBD158CD8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9EBF8990-D1E3-4CB8-96E3-CFE76C26DB01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9EBF8990-D1E3-4CB8-96E3-CFE76C26DB01}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9EBF8990-D1E3-4CB8-96E3-CFE76C26DB01}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9EBF8990-D1E3-4CB8-96E3-CFE76C26DB01}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4DE525F6-FDD0-4B6D-8829-F37EF3F37D02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4DE525F6-FDD0-4B6D-8829-F37EF3F37D02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DE525F6-FDD0-4B6D-8829-F37EF3F37D02}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,6 +53,10 @@ Global
 		{8644C9A2-142B-49EF-9707-12586F72DDC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8644C9A2-142B-49EF-9707-12586F72DDC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8644C9A2-142B-49EF-9707-12586F72DDC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78276079-D07B-4F23-859F-8FA5F63F376A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78276079-D07B-4F23-859F-8FA5F63F376A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78276079-D07B-4F23-859F-8FA5F63F376A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78276079-D07B-4F23-859F-8FA5F63F376A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
