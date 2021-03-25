@@ -3,7 +3,9 @@ using DS.API.ViewModels.ViewModels.ProductViewModels;
 using DS.Services.Interfaces.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using DS.Services.DTO.DTOs.ProductDTOs;
 
 namespace DS.API.Controllers
 {
@@ -39,6 +41,19 @@ namespace DS.API.Controllers
             var catalogProductViewModels = _mapper.Map<IEnumerable<CatalogProductViewModel>>(catalogProductDTOs);
 
             return Ok(catalogProductViewModels);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateProductAsync(
+            [FromBody] [Required] CreateProductViewModel createProductViewModel
+            )
+        {
+            var createProductDTO = _mapper.Map<CreateProductDTO>(createProductViewModel);
+
+            var createdProductDTO = await _productsService.CreateProductAsync(createProductDTO);
+            var createdProductViewModel = _mapper.Map<CatalogProductViewModel>(createdProductDTO);
+
+            return Ok(createdProductViewModel);
         }
     }
 }

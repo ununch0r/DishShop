@@ -8,5 +8,6 @@ namespace DS.Services.Interfaces.Interfaces
     {
         Task<IEnumerable<CatalogProductDTO>> GetCatalogProductsAsync();
         Task<IEnumerable<CatalogProductDTO>> GetCatalogProductsByCategoryIdAsync(int id);
+        Task<CatalogProductDTO> CreateProductAsync(CreateProductDTO createProductDTO);
     }
 }

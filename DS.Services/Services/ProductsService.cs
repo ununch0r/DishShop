@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DS.Domain.Entities.Entities;
 
 namespace DS.Services.Services
 {
@@ -53,6 +54,21 @@ namespace DS.Services.Services
             var productDTOs = _mapper.Map<IEnumerable<CatalogProductDTO>>(productEntities);
 
             return productDTOs;
+        }
+
+        public async Task<CatalogProductDTO> CreateProductAsync(CreateProductDTO createProductDTO)
+        {
+            var productEntity = _mapper.Map<Product>(createProductDTO);
+            foreach (var characteristic in productEntity.ProductsCharacteristics)
+            {
+                characteristic.ProductId = productEntity.Id;
+            }
+
+            await _dishShopContext.AddAsync(productEntity);
+            await _dishShopContext.SaveChangesAsync();
+
+            var createdProductDTO = _mapper.Map<CatalogProductDTO>(productEntity);
+            return createdProductDTO;
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using DS.API.ViewModels.ViewModels.CategoryViewModels;
 using DS.API.ViewModels.ViewModels.CharacteristicViewModels;
+using DS.API.ViewModels.ViewModels.ProductCharacteristicViewModels;
+using DS.API.ViewModels.ViewModels.ProductViewModels;
 using DS.Domain.Entities.Entities;
 using DS.Services.DTO.DTOs.CategoryDTOs;
 using DS.Services.DTO.DTOs.CharacteristicDTOs;
@@ -28,6 +30,9 @@ namespace DS.API.IoC.MapperProfiles
 
             CreateMap<CreateCharacteristicViewModel, CreateCharacteristicDTO>();
             CreateMap<CreateCategoryViewModel, CreateCategoryDTO>();
+
+            CreateMap<CreateProductViewModel, CreateProductDTO>();
+            CreateMap<CreateProductCharacteristicViewModel, CreateProductCharacteristicDTO>();
         }
     }
 }

@@ -2,6 +2,8 @@
 using DS.Domain.Entities.Entities;
 using DS.Services.DTO.DTOs.CategoryDTOs;
 using DS.Services.DTO.DTOs.CharacteristicDTOs;
+using DS.Services.DTO.DTOs.ProductCharacteristicDTOs;
+using DS.Services.DTO.DTOs.ProductDTOs;
 
 namespace DS.API.IoC.MapperProfiles
 {
@@ -13,6 +15,9 @@ namespace DS.API.IoC.MapperProfiles
 
             CreateMap<CreateCharacteristicDTO, Characteristic>();
             CreateMap<CreateCategoryDTO, Category>();
+
+            CreateMap<CreateProductDTO, Product>();
+            CreateMap<CreateProductCharacteristicDTO, ProductsCharacteristic>();
         }
     }
 }
