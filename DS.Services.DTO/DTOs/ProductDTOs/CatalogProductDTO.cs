@@ -15,6 +15,6 @@ namespace DS.Services.DTO.DTOs.ProductDTOs
 
         public ProductNestedCategoryDTO Category { get; set; }
         public ProductNestedProducerDTO Producer { get; set; }
-        public IEnumerable<ProductCharacteristicDTO> ProductCharacteristics { get; set; }
+        public IEnumerable<ProductCharacteristicDTO> ProductsCharacteristics { get; set; }
     }
 }

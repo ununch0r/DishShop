@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using DS.Services.DTO.DTOs.ProductDTOs;
 
 namespace DS.Services.Interfaces.Interfaces
 {
-    public interface IProductsServiceInterface
+    public interface IProductsService
     {
-        IEnumerable<CatalogProductDTO> GetCatalogProducts();
+        Task<IEnumerable<CatalogProductDTO>> GetCatalogProducts();
     }
 }

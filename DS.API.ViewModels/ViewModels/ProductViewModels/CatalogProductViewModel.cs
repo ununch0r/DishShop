@@ -15,6 +15,6 @@ namespace DS.API.ViewModels.ViewModels.ProductViewModels
 
         public ProductNestedCategoryViewModel Category { get; set; }
         public ProductNestedProducerViewModel Producer { get; set; }
-        public IEnumerable<ProductCharacteristicViewModel> ProductCharacteristics { get; set; }
+        public IEnumerable<ProductCharacteristicViewModel> ProductsCharacteristics { get; set; }
     }
 }

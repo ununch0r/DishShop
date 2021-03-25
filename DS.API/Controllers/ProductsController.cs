@@ -1,27 +1,34 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using DS.API.ViewModels.ViewModels.ProductViewModels;
+using DS.Services.Interfaces.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using DS.Infrastructure.Context;
-using Microsoft.EntityFrameworkCore;
 
 namespace DS.API.Controllers
 {
-    [Route("api/orders")]
+    [Route("api/products")]
     [Produces("application/json")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly DishShopContext _dishShopContext;
+        private readonly IProductsService _productsService;
+        private readonly IMapper _mapper;
 
-        public ProductsController(DishShopContext dishShopContext)
+        public ProductsController(IProductsService productsService, IMapper mapper)
         {
-            _dishShopContext = dishShopContext;
+            _productsService = productsService;
+            _mapper = mapper;
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetAsync(int id)
+        [HttpGet]
+        public async Task<IActionResult> GetCatalogProducts()
         {
-            var a = await _dishShopContext.Countries.ToListAsync();
-            return Ok(a);
+            var catalogProductDTOs = await _productsService.GetCatalogProducts();
+
+            var catalogProductViewModels = _mapper.Map<IEnumerable<CatalogProductViewModel>>(catalogProductDTOs);
+
+            return Ok(catalogProductViewModels);
         }
     }
 }
