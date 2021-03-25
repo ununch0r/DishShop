@@ -32,6 +32,10 @@ namespace DS.API
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 options.IncludeXmlComments(xmlPath);
             });
+
+            services.RegisterServices(Configuration);
+
+            services.RegisterMapperProfiles();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
