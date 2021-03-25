@@ -1,6 +1,6 @@
-﻿namespace DS.API.ViewModels.ViewModels.CategoryViewModels
+﻿namespace DS.Services.DTO.DTOs.CategoryDTOs
 {
-    public class ProductNestedCategoryViewModel
+    public class CategoryDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }

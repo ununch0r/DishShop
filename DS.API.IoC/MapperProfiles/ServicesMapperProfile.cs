@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using DS.API.ViewModels.ViewModels.CategoryViewModels;
+using DS.API.ViewModels.ViewModels.CharacteristicViewModels;
 using DS.Domain.Entities.Entities;
 using DS.Services.DTO.DTOs.CategoryDTOs;
 using DS.Services.DTO.DTOs.CharacteristicDTOs;
@@ -17,12 +19,15 @@ namespace DS.API.IoC.MapperProfiles
             AllowNullCollections = true;
 
             CreateMap<Product, CatalogProductDTO>();
-            CreateMap<Category, ProductNestedCategoryDTO>();
+            CreateMap<Category, CategoryDTO>();
             CreateMap<Producer, ProductNestedProducerDTO>();
             CreateMap<Country, CountryDTO>();
             CreateMap<ProductsCharacteristic, ProductCharacteristicDTO>();
             CreateMap<Characteristic, CharacteristicDTO>();
             CreateMap<ValueType, ValueTypeDTO>();
+
+            CreateMap<CreateCharacteristicViewModel, CreateCharacteristicDTO>();
+            CreateMap<CreateCategoryViewModel, CreateCategoryDTO>();
         }
     }
 }

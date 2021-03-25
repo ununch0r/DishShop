@@ -22,9 +22,19 @@ namespace DS.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCatalogProducts()
+        public async Task<IActionResult> GetCatalogProductsAsync()
         {
-            var catalogProductDTOs = await _productsService.GetCatalogProducts();
+            var catalogProductDTOs = await _productsService.GetCatalogProductsAsync();
+
+            var catalogProductViewModels = _mapper.Map<IEnumerable<CatalogProductViewModel>>(catalogProductDTOs);
+
+            return Ok(catalogProductViewModels);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetCatalogProductsByCategoryIdAsync(int id)
+        {
+            var catalogProductDTOs = await _productsService.GetCatalogProductsByCategoryIdAsync(id);
 
             var catalogProductViewModels = _mapper.Map<IEnumerable<CatalogProductViewModel>>(catalogProductDTOs);
 

@@ -6,6 +6,7 @@ namespace DS.Services.Interfaces.Interfaces
 {
     public interface IProductsService
     {
-        Task<IEnumerable<CatalogProductDTO>> GetCatalogProducts();
+        Task<IEnumerable<CatalogProductDTO>> GetCatalogProductsAsync();
+        Task<IEnumerable<CatalogProductDTO>> GetCatalogProductsByCategoryIdAsync(int id);
     }
 }

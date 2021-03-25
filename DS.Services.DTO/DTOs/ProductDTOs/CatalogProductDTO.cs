@@ -13,7 +13,7 @@ namespace DS.Services.DTO.DTOs.ProductDTOs
         public decimal Price { get; set; }
         public string ScanCode { get; set; }
 
-        public ProductNestedCategoryDTO Category { get; set; }
+        public CategoryDTO Category { get; set; }
         public ProductNestedProducerDTO Producer { get; set; }
         public IEnumerable<ProductCharacteristicDTO> ProductsCharacteristics { get; set; }
     }

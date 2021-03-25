@@ -23,7 +23,7 @@ namespace DS.API.IoC.MapperProfiles
             AllowNullCollections = true;
 
             CreateMap<CatalogProductDTO, CatalogProductViewModel>();
-            CreateMap<ProductNestedCategoryDTO, ProductNestedCategoryViewModel>();
+            CreateMap<CategoryDTO, CategoryViewModel>();
             CreateMap<ProductNestedProducerDTO, ProductNestedProducerViewModel>();
             CreateMap<CountryDTO, CountryViewModel>();
             CreateMap<ProductCharacteristicDTO, ProductCharacteristicViewModel>();

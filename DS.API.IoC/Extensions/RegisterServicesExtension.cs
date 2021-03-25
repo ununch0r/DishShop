@@ -9,7 +9,9 @@ namespace DS.API.IoC.Extensions
     {
         public static void RegisterServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddTransient<IProductsService, ProductsServiceService>();
+            services.AddTransient<IProductsService, ProductsService>();
+            services.AddTransient<ICategoriesService, CategoriesService>();
+            services.AddTransient<ICharacteristicService, CharacteristicsService>();
         }
     }
 }
