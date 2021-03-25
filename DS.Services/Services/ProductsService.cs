@@ -59,15 +59,21 @@ namespace DS.Services.Services
         public async Task<CatalogProductDTO> CreateProductAsync(CreateProductDTO createProductDTO)
         {
             var productEntity = _mapper.Map<Product>(createProductDTO);
-            foreach (var characteristic in productEntity.ProductsCharacteristics)
-            {
-                characteristic.ProductId = productEntity.Id;
-            }
 
             await _dishShopContext.AddAsync(productEntity);
             await _dishShopContext.SaveChangesAsync();
 
-            var createdProductDTO = _mapper.Map<CatalogProductDTO>(productEntity);
+            var createdProductEntity = await _dishShopContext.Products
+                .Include(product => product.Category)
+                .Include(product => product.Producer)
+                .ThenInclude(producer => producer.Country)
+                .Include(product => product.ProductsCharacteristics)
+                .ThenInclude(productCharacteristic => productCharacteristic.Characteristic)
+                .ThenInclude(characteristic => characteristic.ValueType)
+                .AsNoTracking()
+                .SingleOrDefaultAsync(product => product.Id == productEntity.Id);
+
+            var createdProductDTO = _mapper.Map<CatalogProductDTO>(createdProductEntity);
             return createdProductDTO;
         }
     }

@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\ContractContentViewModels\" />
     <Folder Include="ViewModels\ShopAvailabilityViewModels\" />
   </ItemGroup>
 

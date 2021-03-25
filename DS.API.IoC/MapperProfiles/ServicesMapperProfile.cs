@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using DS.API.ViewModels.ViewModels.CategoryViewModels;
 using DS.API.ViewModels.ViewModels.CharacteristicViewModels;
+using DS.API.ViewModels.ViewModels.ContractContentViewModels;
+using DS.API.ViewModels.ViewModels.ContractViewModels;
 using DS.API.ViewModels.ViewModels.ProductCharacteristicViewModels;
 using DS.API.ViewModels.ViewModels.ProductViewModels;
 using DS.API.ViewModels.ViewModels.ProviderViewModels;
@@ -8,6 +10,8 @@ using DS.Domain.Entities.Entities;
 using DS.Services.DTO.DTOs.CategoryDTOs;
 using DS.Services.DTO.DTOs.CharacteristicDTOs;
 using DS.Services.DTO.DTOs.CityDTOs;
+using DS.Services.DTO.DTOs.ContractContentDTOs;
+using DS.Services.DTO.DTOs.ContractDTOs;
 using DS.Services.DTO.DTOs.CountryDTOs;
 using DS.Services.DTO.DTOs.ProducerDTOs;
 using DS.Services.DTO.DTOs.ProductCharacteristicDTOs;
@@ -33,6 +37,8 @@ namespace DS.API.IoC.MapperProfiles
 
             CreateMap<City,CityDTO>();
             CreateMap<Provider, ProviderDTO>();
+            CreateMap<Contract, ContractDTO>();
+            CreateMap<ContractsContent, ContractContentDTO>();
 
 
 
@@ -42,7 +48,8 @@ namespace DS.API.IoC.MapperProfiles
             CreateMap<CreateProductCharacteristicViewModel, CreateProductCharacteristicDTO>();
 
             CreateMap<CreateProviderViewModel, CreateProviderDTO>();
-
+            CreateMap<CreateContractContentViewModel, CreateContractContentDTO>();
+            CreateMap<CreateContractViewModel, CreateContractDTO>();
         }
     }
 }

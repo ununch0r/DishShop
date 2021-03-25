@@ -2,6 +2,8 @@
 using DS.API.ViewModels.ViewModels.CategoryViewModels;
 using DS.API.ViewModels.ViewModels.CharacteristicViewModels;
 using DS.API.ViewModels.ViewModels.CityViewModels;
+using DS.API.ViewModels.ViewModels.ContractContentViewModels;
+using DS.API.ViewModels.ViewModels.ContractViewModels;
 using DS.API.ViewModels.ViewModels.CountryViewModels;
 using DS.API.ViewModels.ViewModels.ProducerViewModels;
 using DS.API.ViewModels.ViewModels.ProductCharacteristicViewModels;
@@ -11,6 +13,8 @@ using DS.API.ViewModels.ViewModels.ValueTypeViewModels;
 using DS.Services.DTO.DTOs.CategoryDTOs;
 using DS.Services.DTO.DTOs.CharacteristicDTOs;
 using DS.Services.DTO.DTOs.CityDTOs;
+using DS.Services.DTO.DTOs.ContractContentDTOs;
+using DS.Services.DTO.DTOs.ContractDTOs;
 using DS.Services.DTO.DTOs.CountryDTOs;
 using DS.Services.DTO.DTOs.ProducerDTOs;
 using DS.Services.DTO.DTOs.ProductCharacteristicDTOs;
@@ -36,6 +40,9 @@ namespace DS.API.IoC.MapperProfiles
 
             CreateMap<CityDTO, CityViewModel>();
             CreateMap<ProviderDTO, ProviderViewModel>();
+
+            CreateMap<ContractDTO, ContractViewModel>();
+            CreateMap<ContractContentDTO, ContractContentViewModel>();
         }
     }
 }
