@@ -3,13 +3,16 @@ using DS.API.ViewModels.ViewModels.CategoryViewModels;
 using DS.API.ViewModels.ViewModels.CharacteristicViewModels;
 using DS.API.ViewModels.ViewModels.ProductCharacteristicViewModels;
 using DS.API.ViewModels.ViewModels.ProductViewModels;
+using DS.API.ViewModels.ViewModels.ProviderViewModels;
 using DS.Domain.Entities.Entities;
 using DS.Services.DTO.DTOs.CategoryDTOs;
 using DS.Services.DTO.DTOs.CharacteristicDTOs;
+using DS.Services.DTO.DTOs.CityDTOs;
 using DS.Services.DTO.DTOs.CountryDTOs;
 using DS.Services.DTO.DTOs.ProducerDTOs;
 using DS.Services.DTO.DTOs.ProductCharacteristicDTOs;
 using DS.Services.DTO.DTOs.ProductDTOs;
+using DS.Services.DTO.DTOs.ProviderDTOs;
 using DS.Services.DTO.DTOs.ValueTypeDTOs;
 
 namespace DS.API.IoC.MapperProfiles
@@ -28,11 +31,18 @@ namespace DS.API.IoC.MapperProfiles
             CreateMap<Characteristic, CharacteristicDTO>();
             CreateMap<ValueType, ValueTypeDTO>();
 
+            CreateMap<City,CityDTO>();
+            CreateMap<Provider, ProviderDTO>();
+
+
+
             CreateMap<CreateCharacteristicViewModel, CreateCharacteristicDTO>();
             CreateMap<CreateCategoryViewModel, CreateCategoryDTO>();
-
             CreateMap<CreateProductViewModel, CreateProductDTO>();
             CreateMap<CreateProductCharacteristicViewModel, CreateProductCharacteristicDTO>();
+
+            CreateMap<CreateProviderViewModel, CreateProviderDTO>();
+
         }
     }
 }

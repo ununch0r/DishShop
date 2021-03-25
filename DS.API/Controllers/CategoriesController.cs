@@ -1,12 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using DS.API.ViewModels.ViewModels.CategoryViewModels;
-using DS.API.ViewModels.ViewModels.CharacteristicViewModels;
 using DS.Services.DTO.DTOs.CategoryDTOs;
-using DS.Services.DTO.DTOs.CharacteristicDTOs;
 using DS.Services.Interfaces.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 
 namespace DS.API.Controllers
 {

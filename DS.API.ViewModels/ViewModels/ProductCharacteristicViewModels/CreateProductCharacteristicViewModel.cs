@@ -5,7 +5,7 @@ namespace DS.API.ViewModels.ViewModels.ProductCharacteristicViewModels
 {
     public class CreateProductCharacteristicViewModel
     {
-        [Range(0,int.MaxValue)]
+        [Range(1,int.MaxValue)]
         public int CharacteristicId { get; set; }
         public decimal? Value { get; set; }
     }

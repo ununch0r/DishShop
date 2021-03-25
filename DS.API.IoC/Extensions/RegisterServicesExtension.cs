@@ -12,6 +12,7 @@ namespace DS.API.IoC.Extensions
             services.AddTransient<IProductsService, ProductsService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<ICharacteristicService, CharacteristicsService>();
+            services.AddTransient<IProvidersService, ProvidersService>();
         }
     }
 }
