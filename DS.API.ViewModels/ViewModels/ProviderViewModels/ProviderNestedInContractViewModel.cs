@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using DS.API.ViewModels.ViewModels.CityViewModels;
-using DS.API.ViewModels.ViewModels.ContractViewModels;
+﻿using DS.API.ViewModels.ViewModels.CityViewModels;
 
 namespace DS.API.ViewModels.ViewModels.ProviderViewModels
 {
-    public class ProviderViewModel
+    public class ProviderNestedInContractViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -12,6 +10,5 @@ namespace DS.API.ViewModels.ViewModels.ProviderViewModels
         public string Email { get; set; }
 
         public CityViewModel City { get; set; }
-        public IEnumerable<ContractNestedInProviderViewModel> Contracts { get; set; }
     }
 }

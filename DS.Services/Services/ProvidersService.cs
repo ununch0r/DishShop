@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using DS.Domain.Entities.Entities;
 using DS.Infrastructure.Context;
@@ -34,6 +35,19 @@ namespace DS.Services.Services
 
             var createdProviderDTO = _mapper.Map<ProviderDTO>(createdEntity);
             return createdProviderDTO;
+        }
+
+        public async Task<IEnumerable<ProviderDTO>> GetProvidersAsync()
+        {
+            var providers = await _dishShopContext.Providers
+                .Include(provider => provider.Contracts)
+                .ThenInclude(contract => contract.ContractsContents)
+                .ThenInclude(contractContent => contractContent.Product)
+                .AsNoTracking()
+                .ToListAsync();
+
+            var providerDTOs = _mapper.Map<IEnumerable<ProviderDTO>>(providers);
+            return providerDTOs;
         }
     }
 }

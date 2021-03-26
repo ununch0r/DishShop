@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using DS.API.ViewModels.ViewModels.ProviderViewModels;
 using DS.Services.DTO.DTOs.ProviderDTOs;
 using DS.Services.Interfaces.Interfaces;
@@ -33,6 +34,16 @@ namespace DS.API.Controllers
             var createdProviderViewModel = _mapper.Map<ProviderViewModel>(createdProviderDTO);
 
             return Ok(createdProviderViewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetProvidersAsync()
+        {
+            var catalogProviderDTOs = await _providersService.GetProvidersAsync();
+
+            var catalogProviderViewModels = _mapper.Map<IEnumerable<ProviderViewModel>>(catalogProviderDTOs);
+
+            return Ok(catalogProviderViewModels);
         }
     }
 }

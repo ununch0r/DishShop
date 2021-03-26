@@ -40,8 +40,10 @@ namespace DS.API.IoC.MapperProfiles
 
             CreateMap<CityDTO, CityViewModel>();
             CreateMap<ProviderDTO, ProviderViewModel>();
+            CreateMap<ProviderNestedInContractDTO, ProviderNestedInContractViewModel>();
 
             CreateMap<ContractDTO, ContractViewModel>();
+            CreateMap<ContractNestedInProviderDTO, ContractNestedInProviderViewModel>();
             CreateMap<ContractContentDTO, ContractContentViewModel>();
         }
     }

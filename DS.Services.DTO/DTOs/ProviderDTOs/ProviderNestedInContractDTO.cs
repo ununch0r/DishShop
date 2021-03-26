@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using DS.Services.DTO.DTOs.CityDTOs;
-using DS.Services.DTO.DTOs.ContractDTOs;
+﻿using DS.Services.DTO.DTOs.CityDTOs;
 
 namespace DS.Services.DTO.DTOs.ProviderDTOs
 {
-    public class ProviderDTO
+    public class ProviderNestedInContractDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -12,6 +10,5 @@ namespace DS.Services.DTO.DTOs.ProviderDTOs
         public string Email { get; set; }
 
         public CityDTO City { get; set; }
-        public IEnumerable<ContractNestedInProviderDTO> Contracts { get; set; }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
+using DS.Domain.Entities.Entities;
 using DS.Infrastructure.Context;
 using DS.Services.DTO.DTOs.ContractDTOs;
 using DS.Services.Interfaces.Interfaces;
-using System.Threading.Tasks;
-using DS.Domain.Entities.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DS.Services.Services
 {
@@ -44,6 +45,29 @@ namespace DS.Services.Services
 
             var createdContractDTO = _mapper.Map<ContractDTO>(createdContractEntity);
             return createdContractDTO;
+        }
+
+        public async Task<IEnumerable<ContractDTO>> GetContractsAsync()
+        {
+            var contracts = await _dishShopContext.Contracts
+                .Include(contract => contract.ContractsContents)
+                    .ThenInclude(contractContent => contractContent.Product)
+                        .ThenInclude(product => product.Category)
+                .Include(contract => contract.ContractsContents)
+                    .ThenInclude(contractContent => contractContent.Product)
+                        .ThenInclude(product => product.Producer)
+                            .ThenInclude(producer => producer.Country)
+                .Include(contract => contract.ContractsContents)
+                    .ThenInclude(contractContent => contractContent.Product)
+                        .ThenInclude(product => product.ProductsCharacteristics)
+                            .ThenInclude(productCharacteristic => productCharacteristic.Characteristic)
+                                .ThenInclude(characteristic => characteristic.ValueType)
+                .Include(contract => contract.Provider)
+                .AsNoTracking()
+                .ToListAsync();
+
+            var contractDTOs = _mapper.Map<IEnumerable<ContractDTO>>(contracts);
+            return contractDTOs;
         }
     }
 }

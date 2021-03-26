@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using AutoMapper;
 using DS.API.ViewModels.ViewModels.ContractViewModels;
@@ -33,6 +34,16 @@ namespace DS.API.Controllers
             var createdContractViewModel = _mapper.Map<ContractViewModel>(createdContractDTO);
 
             return Ok(createdContractViewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetContractsAsync()
+        {
+            var catalogContractDTOs = await _contractsService.GetContractsAsync();
+
+            var catalogContractViewModels = _mapper.Map<IEnumerable<ContractViewModel>>(catalogContractDTOs);
+
+            return Ok(catalogContractViewModels);
         }
     }
 }
