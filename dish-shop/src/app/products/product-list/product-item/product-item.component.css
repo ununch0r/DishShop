@@ -1,0 +1,8 @@
+a  {
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.selected {
+    background-color:lightblue;
+}

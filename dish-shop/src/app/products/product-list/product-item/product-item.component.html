@@ -1,0 +1,23 @@
+<a  [routerLink]="[index]"
+    routerLinkActive="selected"
+    class="list-group-item clearfix list-group-item-action rounded">
+    <span class="float-right badge badge-primary badge-pill">{{product.Price | currency}}</span>
+    <div>
+        <h4 class="list-group-item-geading">{{product.Name}}</h4>
+        <p style="margin: 0;" class="list-group-item-text">{{product.Description}}</p>
+        <div class="d-flex justify-content-between">
+            <div>
+                <small class="font-weight-bold">Producer: </small>
+                <small class="text-muted">Lvivdish</small>
+            </div>
+            <div>
+                <small class="font-weight-bold">Country: </small>
+                <small class="text-muted">Ukraine</small>
+            </div>
+            <div>
+                <small class="font-weight-bold">Category: </small>
+                <small class="text-muted">Plates</small>
+            </div>
+        </div>
+    </div>
+</a>

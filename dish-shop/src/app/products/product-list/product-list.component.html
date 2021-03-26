@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-lg-12">
+        <button class="btn btn-success" routerLink="new">New Product</button>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-lg-12">
+        <app-product-item 
+            *ngFor="let product of products; let i = index"
+            [product] = "product"
+            [index] = "i">
+        </app-product-item>
+    </div>
+</div>
