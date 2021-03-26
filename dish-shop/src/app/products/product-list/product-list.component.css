@@ -1,0 +1,16 @@
+.header{
+    background-color: lightslategray;
+    margin-bottom: 5px;
+    border: 1px solid black;
+    height: 50px;
+}
+
+.header-align{
+    margin: 0px 0px 0px 10px;
+}
+
+.btn-align{
+    margin: 0;
+    height: 50px;
+    width: 50px;
+}
