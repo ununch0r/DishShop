@@ -1,7 +1,7 @@
 ﻿using DS.Services.Interfaces.Interfaces;
 using DS.Services.Services;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DS.API.IoC.Extensions
 {
@@ -14,6 +14,7 @@ namespace DS.API.IoC.Extensions
             services.AddTransient<ICharacteristicService, CharacteristicsService>();
             services.AddTransient<IProvidersService, ProvidersService>();
             services.AddTransient<IContractsService, ContractsService>();
+            services.AddTransient<IShopsService, ShopsService>();
         }
     }
 }

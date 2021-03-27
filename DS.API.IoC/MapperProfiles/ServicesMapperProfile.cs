@@ -6,6 +6,7 @@ using DS.API.ViewModels.ViewModels.ContractViewModels;
 using DS.API.ViewModels.ViewModels.ProductCharacteristicViewModels;
 using DS.API.ViewModels.ViewModels.ProductViewModels;
 using DS.API.ViewModels.ViewModels.ProviderViewModels;
+using DS.API.ViewModels.ViewModels.ShopViewModels;
 using DS.Domain.Entities.Entities;
 using DS.Services.DTO.DTOs.CategoryDTOs;
 using DS.Services.DTO.DTOs.CharacteristicDTOs;
@@ -17,6 +18,7 @@ using DS.Services.DTO.DTOs.ProducerDTOs;
 using DS.Services.DTO.DTOs.ProductCharacteristicDTOs;
 using DS.Services.DTO.DTOs.ProductDTOs;
 using DS.Services.DTO.DTOs.ProviderDTOs;
+using DS.Services.DTO.DTOs.ShopDTOs;
 using DS.Services.DTO.DTOs.ValueTypeDTOs;
 
 namespace DS.API.IoC.MapperProfiles
@@ -41,6 +43,7 @@ namespace DS.API.IoC.MapperProfiles
             CreateMap<Contract, ContractDTO>();
             CreateMap<Contract, ContractNestedInProviderDTO>();
             CreateMap<ContractsContent, ContractContentDTO>();
+            CreateMap<Shop, ShopDTO>();
 
 
 
@@ -52,6 +55,7 @@ namespace DS.API.IoC.MapperProfiles
             CreateMap<CreateProviderViewModel, CreateProviderDTO>();
             CreateMap<CreateContractContentViewModel, CreateContractContentDTO>();
             CreateMap<CreateContractViewModel, CreateContractDTO>();
+            CreateMap<CreateShopViewModel, CreateShopDTO>();
         }
     }
 }
