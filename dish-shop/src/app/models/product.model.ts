@@ -9,6 +9,7 @@ export class Product{
     price : number
     category : Category
     producer : Producer
+    scanCode : string
     productsCharacteristics : ProductCharacteristic []
 
     constructor(id:number, name:string, description:string, price:number){

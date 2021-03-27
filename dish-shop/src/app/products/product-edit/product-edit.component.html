@@ -1,1 +1,80 @@
-<p>product-edit works!</p>
+<div class="row">
+    <div class="col-lg-12">
+        <form [formGroup] = "productForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-lg-12">
+                    <button type="submit" class="btn btn-success" [disabled]="!productForm.valid">Save</button>
+                    <button type="button" class="btn btn-danger btn-margin" (click)="onCancel()">Cancel</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input 
+                            type="text" 
+                            id="name"
+                            class="form-control"
+                            formControlName="name">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input 
+                            type="number" 
+                            id="price"
+                            class="form-control"
+                            formControlName="price">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea 
+                            type="text" 
+                            id="description"
+                            class="form-control"
+                            rows="6"
+                            formControlName="description">
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12" formArrayName="characteristics">
+                    <div class="row"
+                        *ngFor="let ingredient of productForm.get('characteristics')['controls']; let i = index"
+                        [formGroupName]="i"
+                        style="margin-top: 10px;">
+                        <div class="col-lg-8">
+                            <input
+                            formControlName = "name" 
+                            type="text" 
+                            class="form-control">
+                        </div>
+                        <div class="col-lg-2">
+                            <input 
+                            formControlName = "amount" 
+                            type="number" 
+                            class="form-control">
+                        </div>
+                        <div class="col-lg-2">
+                            <button type="button" class="btn btn-danger" (click)="onDeleteCharacteristic(i)">X</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-12">
+                    <button class="btn btn-success" type="button" (click)="onAdd()">Add characteristic</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

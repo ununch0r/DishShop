@@ -12,8 +12,10 @@ import { ProductEditComponent } from './products/product-edit/product-edit.compo
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductService  } from './products/product.service';
+import { ProductsResolverService  } from './products/products-resolver.service';
 import { ProductsStateService  } from './products/products-state.service';
 import { ProductStartComponent } from './products/product-start/product-start.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,9 +31,10 @@ import { ProductStartComponent } from './products/product-start/product-start.co
   imports: [
     AppRoutingModule,
     BrowserModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ProductService, ProductsStateService],
+  providers: [ProductService, ProductsStateService, ProductsResolverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

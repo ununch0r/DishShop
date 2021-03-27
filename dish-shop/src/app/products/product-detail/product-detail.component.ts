@@ -22,9 +22,6 @@ export class ProductDetailComponent implements OnInit {
       (params: Params) => {
         this.id = +params['id'];
         this.product = this.productService.getProduct(this.id);
-        setTimeout(() => {
-          this.product = this.productService.getProduct(this.id);
-        }, 1000)
       }
     )
   }

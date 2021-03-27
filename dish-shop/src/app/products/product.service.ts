@@ -18,6 +18,16 @@ export class ProductService{
         .append('Access-Control-Allow-Methods', 'GET')
         .append('Access-Control-Allow-Origin', '*');
 
-        return this.http.get<Product[]>(this.endpoint, {headers});
+        return this.http.get<Product[]>(this.endpoint, {headers: headers});
+    }
+
+    createProduct(body) : Observable<Product>{
+        const headers = new HttpHeaders()
+        .append('Content-Type', 'application/json')
+        .append('Access-Control-Allow-Headers', 'Content-Type')
+        .append('Access-Control-Allow-Methods', 'POST')
+        .append('Access-Control-Allow-Origin', '*');
+
+        return this.http.post<Product>(this.endpoint,body,{headers: headers})
     }
 }
