@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using DS.API.ViewModels.ViewModels.CategoryViewModels;
 using DS.Services.DTO.DTOs.CategoryDTOs;
 using DS.Services.Interfaces.Interfaces;
@@ -33,6 +34,16 @@ namespace DS.API.Controllers
             var createdCategoryViewModel = _mapper.Map<CategoryViewModel>(createdCategoryDTO);
 
             return Ok(createdCategoryViewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetCategoriesAsync()
+        {
+            var catalogCategoryDTOs = await _categoriesService.GetCategoriesAsync();
+
+            var catalogCategoryViewModels = _mapper.Map<IEnumerable<CategoryViewModel>>(catalogCategoryDTOs);
+
+            return Ok(catalogCategoryViewModels);
         }
     }
 }

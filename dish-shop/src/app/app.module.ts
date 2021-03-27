@@ -12,6 +12,7 @@ import { ProductEditComponent } from './products/product-edit/product-edit.compo
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductService  } from './products/product.service';
+import { CategoryService  } from './products/http-services/category-service';
 import { ProductsResolverService  } from './products/products-resolver.service';
 import { ProductsStateService  } from './products/products-state.service';
 import { ProductStartComponent } from './products/product-start/product-start.component';
@@ -34,7 +35,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ProductService, ProductsStateService, ProductsResolverService],
+  providers: [ProductService, ProductsStateService, ProductsResolverService, CategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,6 +8,13 @@ export class ProductsResolverService implements Resolve<Product[]>{
     constructor(private productStateService: ProductsStateService){}
 
     resolve(route : ActivatedRouteSnapshot, state : RouterStateSnapshot){
-        return this.productStateService.fetchProducts();
+        let products = this.productStateService.getProducts();
+        if(products.length ===0)
+        {
+            return this.productStateService.fetchProducts();
+        }
+        else{
+            return products;
+        }
     }
 }

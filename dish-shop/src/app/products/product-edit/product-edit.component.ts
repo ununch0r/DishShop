@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Category } from 'src/app/models/category.model';
+import { CategoryService } from '../http-services/category-service';
 import { ProductsStateService } from '../products-state.service';
 
 @Component({
@@ -8,12 +11,23 @@ import { ProductsStateService } from '../products-state.service';
   templateUrl: './product-edit.component.html',
   styleUrls: ['./product-edit.component.css']
 })
-export class ProductEditComponent implements OnInit {
+export class ProductEditComponent implements OnInit, OnDestroy {
   id: number;
   editMode: boolean = false;
   productForm : FormGroup;
+  categories : Category[];
+  subscriptions : Subscription = new Subscription();
 
-  constructor(private route: ActivatedRoute, private productsService : ProductsStateService,private router : Router) { }
+  constructor(
+    private route: ActivatedRoute,
+    private productsService : ProductsStateService,
+    private router : Router,
+    private categoryService : CategoryService
+    ) { }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -23,9 +37,14 @@ export class ProductEditComponent implements OnInit {
         this.initForm();
       }
     )
+
+    this.subscriptions.add(this.categoryService.getAllCategories().subscribe(
+      categories => this.categories = categories
+    ));
   }
 
   private initForm(){
+
     let productName = '';
     let price = '';
     let productDescription = '';
@@ -50,8 +69,9 @@ export class ProductEditComponent implements OnInit {
     //  this.productsService.updateRecipe(this.id, this.productForm.value);
     }
     else{
-      this.productsService.addProduct(this.productForm.value);
+      //this.productsService.addProduct(this.productForm.value);
     }
+    console.log(this.categories);
     this.router.navigate(['../'], {relativeTo: this.route})
   }
 
