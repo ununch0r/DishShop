@@ -11,7 +11,7 @@
         <app-product-item 
             *ngFor="let product of products; let i = index"
             [product] = "product"
-            [index] = "i">
+            [index] = "product.id">
         </app-product-item>
     </div>
 </div>

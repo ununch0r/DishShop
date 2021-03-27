@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Product } from 'src/app/models/product.model';
 import { ProductService } from '../product.service';
+import { ProductsStateService } from '../products-state.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -13,7 +14,7 @@ export class ProductDetailComponent implements OnInit {
   id : number;
 
 
-  constructor(private activatedRoute: ActivatedRoute, private productService: ProductService, private router: Router) { }
+  constructor(private activatedRoute: ActivatedRoute, private productService: ProductsStateService, private router: Router) { }
 
 
   ngOnInit(): void {
@@ -21,6 +22,9 @@ export class ProductDetailComponent implements OnInit {
       (params: Params) => {
         this.id = +params['id'];
         this.product = this.productService.getProduct(this.id);
+        setTimeout(() => {
+          this.product = this.productService.getProduct(this.id);
+        }, 1000)
       }
     )
   }

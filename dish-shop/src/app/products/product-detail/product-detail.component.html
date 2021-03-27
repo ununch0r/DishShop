@@ -1,10 +1,47 @@
-<div class="row">
-    <div class="col-lg-12">
-        <h1>{{product.Name}}</h1>
+<div class="card  mb-3">
+    <div class="card-header card-title">
+        <h1 style="text-align: center;">{{product.name}}</h1>
+        <span class="badge badge-primary badge-pill price">{{product.price | currency}}</span>
     </div>
-</div>
-<div class="row">
-    <div class="col-lg-12">
-        {{product.Description}}
+    <div class="description" *ngIf="product.description !=='' && product.description !== null">
+    <strong>Description:</strong>
+      <p class="card-text">{{product.description}}</p>
     </div>
-</div>
+    <div class="card text-center">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <div class="list-group-item-fixed">
+            <strong class="list-group-left">Category:  </strong>
+            <span class="list-group-right">{{product.category.name}}</span>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="list-group-item-fixed">
+            <strong class="list-group-left">Producer:  </strong>
+            <span class="list-group-right">{{product.producer.name}}</span>
+          </div>
+          <div class="list-group-item-fixed">
+            <strong class="list-group-left">Country:  </strong>
+            <span class="list-group-right">{{product.producer.country.name}}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="product.productsCharacteristics.length > 0">
+      <h4 class="card-header card-title" style="text-align: center;">Characteristics: </h4>
+      <div class="card text-center">
+        <ul class="list-group list-group-flush characteristics">
+          <li class="list-group-item"
+            *ngFor="let productCharacteristic of product.productsCharacteristics">
+            <div class="list-group-item-fixed" *ngIf="productCharacteristic.value !== null">
+              <strong class="list-group-left">{{productCharacteristic.characteristic.name}}:  </strong>
+              <span class="list-group-right">{{productCharacteristic.value}} {{productCharacteristic.characteristic.valueType.type}}</span>
+            </div>
+            <div class="list-group-item-fixed" *ngIf="productCharacteristic.value === null">
+              <strong class="list-group-left">{{productCharacteristic.characteristic.name}}</strong>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>

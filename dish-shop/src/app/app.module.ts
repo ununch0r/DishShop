@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule} from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module'
 
@@ -10,7 +11,8 @@ import { ProductItemComponent } from './products/product-list/product-item/produ
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { ProductsComponent } from './products/products.component';
-import { ProductService } from './products/product.service';
+import { ProductService  } from './products/product.service';
+import { ProductsStateService  } from './products/products-state.service';
 import { ProductStartComponent } from './products/product-start/product-start.component';
 
 @NgModule({
@@ -26,9 +28,10 @@ import { ProductStartComponent } from './products/product-start/product-start.co
   ],
   imports: [
     AppRoutingModule,
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [ProductService],
+  providers: [ProductService, ProductsStateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
