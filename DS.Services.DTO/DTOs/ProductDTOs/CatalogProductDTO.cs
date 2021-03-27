@@ -14,7 +14,7 @@ namespace DS.Services.DTO.DTOs.ProductDTOs
         public string ScanCode { get; set; }
 
         public CategoryDTO Category { get; set; }
-        public ProductNestedProducerDTO Producer { get; set; }
+        public ProducerDTO Producer { get; set; }
         public IEnumerable<ProductCharacteristicDTO> ProductsCharacteristics { get; set; }
     }
 }

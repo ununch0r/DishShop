@@ -41,9 +41,6 @@ export class ProductsStateService{
 
     addProduct(product){
         product.scanCode = "sdad";
-        product.categoryId = 1;
-        product.producerId = 1;
-        console.log('in add');
         this.productServive.createProduct(product).subscribe(
             createdProduct => {
                 this.subscriptions.push(this.fetchProducts().subscribe( 

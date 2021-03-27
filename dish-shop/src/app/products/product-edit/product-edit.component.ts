@@ -3,7 +3,9 @@ import { FormArray, FormControl, FormGroup, NgForm, Validators } from '@angular/
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Category } from 'src/app/models/category.model';
+import { Producer } from 'src/app/models/producer.model';
 import { CategoryService } from '../http-services/category-service';
+import { ProducerService } from '../http-services/producer.service';
 import { ProductsStateService } from '../products-state.service';
 
 @Component({
@@ -16,13 +18,15 @@ export class ProductEditComponent implements OnInit, OnDestroy {
   editMode: boolean = false;
   productForm : FormGroup;
   categories : Category[];
+  producers : Producer[];
   subscriptions : Subscription = new Subscription();
 
   constructor(
     private route: ActivatedRoute,
     private productsService : ProductsStateService,
     private router : Router,
-    private categoryService : CategoryService
+    private categoryService : CategoryService,
+    private producerService : ProducerService
     ) { }
 
   ngOnDestroy(): void {
@@ -40,6 +44,10 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 
     this.subscriptions.add(this.categoryService.getAllCategories().subscribe(
       categories => this.categories = categories
+    ));
+
+    this.subscriptions.add(this.producerService.getAllProducers().subscribe(
+      producers => this.producers = producers
     ));
   }
 
@@ -60,6 +68,8 @@ export class ProductEditComponent implements OnInit, OnDestroy {
       'name' : new FormControl(productName, [Validators.required]),
       'description' : new FormControl(productDescription, [Validators.required]),
       'price' : new FormControl(price, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
+      'categoryId' : new FormControl(null, [Validators.required]),
+      'producerId' : new FormControl(null, [Validators.required]),
       'characteristics' : characteristics
     })
   }
@@ -69,9 +79,9 @@ export class ProductEditComponent implements OnInit, OnDestroy {
     //  this.productsService.updateRecipe(this.id, this.productForm.value);
     }
     else{
-      //this.productsService.addProduct(this.productForm.value);
+      this.productsService.addProduct(this.productForm.value);
     }
-    console.log(this.categories);
+    console.log(this.productForm.value);
     this.router.navigate(['../'], {relativeTo: this.route})
   }
 

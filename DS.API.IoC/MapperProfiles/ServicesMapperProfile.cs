@@ -31,7 +31,7 @@ namespace DS.API.IoC.MapperProfiles
 
             CreateMap<Product, CatalogProductDTO>();
             CreateMap<Category, CategoryDTO>();
-            CreateMap<Producer, ProductNestedProducerDTO>();
+            CreateMap<Producer, ProducerDTO>();
             CreateMap<Country, CountryDTO>();
             CreateMap<ProductsCharacteristic, ProductCharacteristicDTO>();
             CreateMap<Characteristic, CharacteristicDTO>();

@@ -2,7 +2,7 @@
 
 namespace DS.API.ViewModels.ViewModels.ProducerViewModels
 {
-    public class ProductNestedProducerViewModel
+    public class ProducerViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
