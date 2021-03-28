@@ -41,7 +41,11 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label for="categoryId">Category</label>
-                        <select id="categoryId" formControlName="categoryId" class="form-control">
+                        <select 
+                            id="categoryId" 
+                            formControlName="categoryId" 
+                            class="form-control" 
+                            (change)="onCategoryChange($event.target.value)">
                             <option *ngFor="let category of categories" [ngValue]="category.id">{{ category.name }}</option>
                         </select>
                     </div>

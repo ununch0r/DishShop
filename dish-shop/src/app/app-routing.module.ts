@@ -11,7 +11,7 @@ const appRoutes: Routes = [
     { path: '', redirectTo: '/products', pathMatch: 'full'},
     { path: 'products', component: ProductsComponent, children:[
         {path: '', component: ProductStartComponent},
-        {path: 'new', component: ProductEditComponent},
+        {path: 'new', component: ProductEditComponent, resolve: [ProductsResolverService, CharacteristicResolverService]},
         {path: ':id', component: ProductDetailComponent, resolve: [ProductsResolverService]},
         {path: ':id/edit', component: ProductEditComponent, resolve: [ProductsResolverService, CharacteristicResolverService]}
     ]}

@@ -32,6 +32,18 @@ export class CharacteristicService{
         return this.http.get<Characteristic[]>(this.endpoint, {headers: headers});
     }
 
+    getCharacteristicsByCategoryId(categoryId : number): Observable<Characteristic[]>{
+        const endpoint = this.endpoint + '/' + categoryId;
+
+        const headers = new HttpHeaders()
+        .append('Content-Type', 'application/json')
+        .append('Access-Control-Allow-Headers', 'Content-Type')
+        .append('Access-Control-Allow-Methods', 'GET')
+        .append('Access-Control-Allow-Origin', '*');
+
+        return this.http.get<Characteristic[]>(endpoint, {headers: headers});
+    }
+
     createCharacteristic(body) : Observable<Characteristic>{
         const headers = new HttpHeaders()
         .append('Content-Type', 'application/json')

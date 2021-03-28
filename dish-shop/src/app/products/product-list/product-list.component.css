@@ -13,3 +13,8 @@
     height: 50px;
     width: 50px;
 }
+
+.product-list{
+    overflow: auto;
+    max-height: 80vh;
+}

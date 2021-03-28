@@ -9,6 +9,7 @@ import { CategoryService } from '../http-services/category-service';
 import { CharacteristicService } from '../http-services/characteristic-service';
 import { ProducerService } from '../http-services/producer.service';
 import { ProductsStateService } from '../products-state.service';
+import { NotificationService } from '../../notification.service';
 
 @Component({
   selector: 'app-product-edit',
@@ -53,10 +54,6 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 
     this.subscriptions.add(this.producerService.getAllProducers().subscribe(
       producers => this.producers = producers
-    ));
-
-    this.subscriptions.add(this.characteristicService.getAllCharacteristics().subscribe(
-      characteristics => this.allCharacteristics = characteristics
     ));
 
     this.allCharacteristics = this.characteristicService.getSavedCharacteristics();
@@ -118,6 +115,36 @@ export class ProductEditComponent implements OnInit, OnDestroy {
     }
   }
 
+  onCategoryChange(value : string){
+    if(!this.editMode)
+    {
+      const categoryId = (+value.split(':')[1]);
+
+      this.characteristicService.getCharacteristicsByCategoryId(categoryId).subscribe(
+        characteristics => {
+          this.addCharacteristicsByCategory(characteristics);
+          console.log(characteristics);
+        }
+      )
+    }
+  }
+
+  addCharacteristicsByCategory(characteristics : Characteristic []){
+    const characteristicsArray = (<FormArray>this.productForm.get('productsCharacteristics'));
+    characteristicsArray.clear();
+    characteristics.forEach(
+      (characteristic)=>{
+        characteristicsArray.push(
+          new FormGroup({
+            'characteristicId' : new FormControl(characteristic.id),
+            'value': new FormControl(null, [
+              Validators.pattern(/^[1-9]+[0-9]*$/)
+             ])
+          })
+        )
+      })
+  }
+
   patchDefaultValues(categoryId: number, producerId: number){
     if(categoryId)
     {
@@ -137,7 +164,6 @@ export class ProductEditComponent implements OnInit, OnDestroy {
     else{
       this.productsService.addProduct(this.productForm.value);
     }
-    console.log(this.productForm.value);
     this.router.navigate(['../'], {relativeTo: this.route})
   }
 

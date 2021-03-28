@@ -5,6 +5,7 @@
 .form-custom{
     border: 1px solid lightgray;
     padding: 10px;
+    max-height: 80vh;
 }
 
 input.ng-invalid.ng-touched,

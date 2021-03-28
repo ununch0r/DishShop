@@ -3,6 +3,7 @@ import { Subject, Subscription, from } from 'rxjs';
 import { Product } from '../models/product.model';
 import { ProductService } from './product.service';
 import {tap} from 'rxjs/operators'
+import { NotificationService } from '../notification.service';
 
 @Injectable()
 export class ProductsStateService{
@@ -10,7 +11,10 @@ export class ProductsStateService{
     subscriptions : Subscription[] = []
     products : Product[] = [];
 
-    constructor(public productServive : ProductService){
+    constructor(
+        public productServive : ProductService,
+        private notifyService : NotificationService
+    ){
         this.subscriptions.push(this.fetchProducts().subscribe( data => this.reloadProducts(data)))
     }
 
@@ -40,12 +44,16 @@ export class ProductsStateService{
     }
 
     addProduct(product){
-        product.scanCode = "sdad";
         this.productServive.createProduct(product).subscribe(
             () => {
                 this.subscriptions.push(this.fetchProducts().subscribe( 
-                    data => this.reloadProducts(data),
-                    error => console.log(error)));
+                    data => {
+                        this.reloadProducts(data)
+                        this.notifyService.showSuccess("Dish was added succesfully!", "Dish added!")
+                    },
+                    error => {
+                        this.notifyService.showSuccess(error, "Error occured!")
+                    }));
             }
         )
     }
@@ -54,7 +62,10 @@ export class ProductsStateService{
         this.productServive.updateProduct(id, product).subscribe(
             () => {
                 this.subscriptions.push(this.fetchProducts().subscribe( 
-                    data => this.reloadProducts(data),
+                    data =>{
+                        this.reloadProducts(data)
+                        this.notifyService.showSuccess("Dish was updated!", "Dish updated!")
+                    } ,
                     error => console.log(error)));
             }
         )
