@@ -3,8 +3,10 @@ import { FormArray, FormControl, FormGroup, NgForm, Validators } from '@angular/
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Category } from 'src/app/models/category.model';
+import { Characteristic } from 'src/app/models/characteristic.model';
 import { Producer } from 'src/app/models/producer.model';
 import { CategoryService } from '../http-services/category-service';
+import { CharacteristicService } from '../http-services/characteristic-service';
 import { ProducerService } from '../http-services/producer.service';
 import { ProductsStateService } from '../products-state.service';
 
@@ -19,6 +21,7 @@ export class ProductEditComponent implements OnInit, OnDestroy {
   productForm : FormGroup;
   categories : Category[];
   producers : Producer[];
+  allCharacteristics : Characteristic[];
   subscriptions : Subscription = new Subscription();
 
   constructor(
@@ -26,7 +29,8 @@ export class ProductEditComponent implements OnInit, OnDestroy {
     private productsService : ProductsStateService,
     private router : Router,
     private categoryService : CategoryService,
-    private producerService : ProducerService
+    private producerService : ProducerService,
+    private characteristicService : CharacteristicService
     ) { }
 
   ngOnDestroy(): void {
@@ -43,40 +47,92 @@ export class ProductEditComponent implements OnInit, OnDestroy {
     )
 
     this.subscriptions.add(this.categoryService.getAllCategories().subscribe(
-      categories => this.categories = categories
+      categories =>{ this.categories = categories
+      }
     ));
 
     this.subscriptions.add(this.producerService.getAllProducers().subscribe(
       producers => this.producers = producers
     ));
+
+    this.subscriptions.add(this.characteristicService.getAllCharacteristics().subscribe(
+      characteristics => this.allCharacteristics = characteristics
+    ));
+
+    this.allCharacteristics = this.characteristicService.getSavedCharacteristics();
   }
 
   private initForm(){
-
     let productName = '';
-    let price = '';
+    let price: number;
     let productDescription = '';
+    let category : number;
+    let producer : number;
     let characteristics = new FormArray([]);
 
     if(this.editMode){
-      const recipe = this.productsService.getProduct(this.id);
-      productName = recipe.name;
-      productDescription = recipe.description;
+      const product = this.productsService.getProduct(this.id);
+      productName = product.name;
+      category = product.category.id;
+      producer = product.producer.id;
+      price = product.price;
+      productDescription = product.description;
+
+      if(product['productsCharacteristics']){
+        for(let characteristic of product.productsCharacteristics){
+          characteristics.push(
+            new FormGroup({
+              'characteristicId' : new FormControl(characteristic.characteristic.id),
+              'value' : new FormControl(characteristic.value, [Validators.pattern(/^[1-9]+[0-9]*$/)])
+            })
+          );
+        }
+      }
     }
 
     this.productForm = new FormGroup({
       'name' : new FormControl(productName, [Validators.required]),
-      'description' : new FormControl(productDescription, [Validators.required]),
+      'description' : new FormControl(productDescription),
       'price' : new FormControl(price, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
       'categoryId' : new FormControl(null, [Validators.required]),
       'producerId' : new FormControl(null, [Validators.required]),
-      'characteristics' : characteristics
+      'productsCharacteristics' : characteristics
     })
+
+    this.patchDefaultValues(category, producer);
+  }
+
+  canCharacteristicHoldValue(control : FormGroup) : boolean {
+    const characteristic = this.allCharacteristics.find(c => c.id === control.get('characteristicId').value);
+    if(characteristic){
+      if(characteristic.valueType === null)
+      {
+        control.get('value').setValue(null);
+        return false;
+      }
+      else{
+        return true;
+      }
+    } else{
+      return false;
+    }
+  }
+
+  patchDefaultValues(categoryId: number, producerId: number){
+    if(categoryId)
+    {
+      this.productForm.get('categoryId').patchValue(categoryId);
+    }
+    if(producerId)
+    {
+      this.productForm.get('producerId').patchValue(producerId);
+    }
   }
 
   onSubmit(){
+
     if(this.editMode){
-    //  this.productsService.updateRecipe(this.id, this.productForm.value);
+      this.productsService.updateProduct(this.id, this.productForm.value);
     }
     else{
       this.productsService.addProduct(this.productForm.value);
@@ -86,19 +142,18 @@ export class ProductEditComponent implements OnInit, OnDestroy {
   }
 
   onAdd(){
-    (<FormArray>this.productForm.get('ingredients')).push(
+    (<FormArray>this.productForm.get('productsCharacteristics')).push(
       new FormGroup({
-        'name': new FormControl(null, [Validators.required]),
-        'amount': new FormControl(null, [
-          Validators.required,
+        'characteristicId': new FormControl(null),
+        'value': new FormControl(null, [
            Validators.pattern(/^[1-9]+[0-9]*$/)
           ])
       })
     )
   }
 
-  onDeleteIngredient(index : number){
-    (<FormArray>this.productForm.get('ingredients')).removeAt(index);
+  onDeleteCharacteristic(index : number){
+    (<FormArray>this.productForm.get('productsCharacteristics')).removeAt(index);
   }
 
   onCancel(){

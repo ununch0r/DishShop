@@ -17,7 +17,6 @@ namespace DS.API.ViewModels.ViewModels.ProductViewModels
         [Range(0, int.MaxValue)]
         public decimal Price { get; set; }
 
-        [Required]
         [MaxLength(1000)]
         public string ScanCode { get; set; }
 

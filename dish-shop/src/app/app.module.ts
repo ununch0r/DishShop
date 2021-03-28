@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule} from '@angular/common/http'
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module'
 
@@ -13,11 +14,16 @@ import { ProductDetailComponent } from './products/product-detail/product-detail
 import { ProductsComponent } from './products/products.component';
 import { ProductService  } from './products/product.service';
 import { CategoryService  } from './products/http-services/category-service';
+import { CharacteristicService  } from './products/http-services/characteristic-service';
 import { ProducerService  } from './products/http-services/producer.service';
 import { ProductsResolverService  } from './products/products-resolver.service';
+import { CharacteristicResolverService  } from './products/resolvers/characteristic-resolver.service';
 import { ProductsStateService  } from './products/products-state.service';
 import { ProductStartComponent } from './products/product-start/product-start.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -34,14 +40,20 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     BrowserModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule 
   ],
   providers: [
     ProductService,
     ProductsStateService,
     ProductsResolverService,
     CategoryService,
-    ProducerService
+    ProducerService,
+    CharacteristicService,
+    CharacteristicResolverService
     ],
   bootstrap: [AppComponent]
 })

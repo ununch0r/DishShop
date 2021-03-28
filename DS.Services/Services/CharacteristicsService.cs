@@ -46,5 +46,17 @@ namespace DS.Services.Services
 
             return characteristicDTOs;
         }
+
+        public async Task<IEnumerable<CharacteristicDTO>> GetCharacteristicsAsync()
+        {
+            var characteristics = await _dishShopContext.Characteristics
+                .Include(characteristic => characteristic.ValueType)
+                .AsNoTracking()
+                .ToListAsync();
+
+            var characteristicDTOs = _mapper.Map<IEnumerable<CharacteristicDTO>>(characteristics);
+
+            return characteristicDTOs;
+        }
     }
 }

@@ -5,6 +5,7 @@ import { ProductStartComponent } from './products/product-start/product-start.co
 import { ProductsComponent } from './products/products.component';
 import { ProductsResolverService } from './products/products-resolver.service'
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
+import { CharacteristicResolverService } from './products/resolvers/characteristic-resolver.service';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/products', pathMatch: 'full'},
@@ -12,7 +13,7 @@ const appRoutes: Routes = [
         {path: '', component: ProductStartComponent},
         {path: 'new', component: ProductEditComponent},
         {path: ':id', component: ProductDetailComponent, resolve: [ProductsResolverService]},
-        {path: ':id/edit', component: ProductEditComponent}
+        {path: ':id/edit', component: ProductEditComponent, resolve: [ProductsResolverService, CharacteristicResolverService]}
     ]}
 ]
 

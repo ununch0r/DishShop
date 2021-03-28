@@ -42,11 +42,37 @@ export class ProductsStateService{
     addProduct(product){
         product.scanCode = "sdad";
         this.productServive.createProduct(product).subscribe(
-            createdProduct => {
+            () => {
                 this.subscriptions.push(this.fetchProducts().subscribe( 
                     data => this.reloadProducts(data),
                     error => console.log(error)));
             }
         )
+    }
+
+    updateProduct(id: number, product){
+        this.productServive.updateProduct(id, product).subscribe(
+            () => {
+                this.subscriptions.push(this.fetchProducts().subscribe( 
+                    data => this.reloadProducts(data),
+                    error => console.log(error)));
+            }
+        )
+    }
+
+    deleteProduct(id: number){
+        this.productServive.deleteProduct(id).subscribe(
+            () => {
+                this.products.forEach(
+                    (product, index) => {
+                        if(product.id === id){
+                            this.products.splice(index, 1);
+                        }
+                    }
+                )
+            }
+        );
+
+        this.productsCollectionChanged.next(this.products.slice());
     }
 }

@@ -55,41 +55,45 @@
                     </div>
                 </div>
             </div>
+            <hr>
             <div class="row">
-                <div class="col-lg-12" formArrayName="characteristics">
+                <div class="col-lg-12" formArrayName="productsCharacteristics">
                     <div class="row"
-                        *ngFor="let ingredient of productForm.get('characteristics')['controls']; let i = index"
+                        *ngFor="let characteristic of productForm.get('productsCharacteristics')['controls']; let i = index"
                         [formGroupName]="i"
                         style="margin-top: 10px;">
                         <div class="col-lg-8">
-                            <input
-                            formControlName = "name" 
-                            type="text" 
-                            class="form-control">
+                            <select formControlName="characteristicId" class="form-control">
+                                <option *ngFor="let characteristic of allCharacteristics" [ngValue]="characteristic.id">
+                                    {{ characteristic.name }}</option>
+                            </select>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-2" >
                             <input 
-                            formControlName = "amount" 
+                            *ngIf="canCharacteristicHoldValue(characteristic)"
+                            formControlName = "value"
                             type="number" 
                             class="form-control">
                         </div>
                         <div class="col-lg-2">
-                            <button type="button" class="btn btn-danger" (click)="onDeleteCharacteristic(i)">X</button>
+                            <button type="button" style="width: 100%;" class="btn btn-danger" (click)="onDeleteCharacteristic(i)">X</button>
                         </div>
                     </div>
                 </div>
             </div>
             <hr>
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-8">
                     <button class="btn btn-success" type="button" (click)="onAdd()">Add characteristic</button>
                 </div>
-                <div class="col-lg-8">
-                    <div class="d-flex justify-content-end">
-                        <button type="button" class="btn btn-danger btn-margin" (click)="onCancel()">Cancel</button>
-                        <button type="submit" class="btn btn-success save" [disabled]="!productForm.valid">Save</button>
-                    </div>
+                <div class="col-lg-2">
+                        <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
                 </div>
+                <div class="col-lg-2">
+                    <button type="submit" class="btn btn-success"
+                    style="width: 100%;"
+                    [disabled]="!productForm.valid">Save</button>
+            </div>
             </div>
         </form>
     </div>

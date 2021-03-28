@@ -1,6 +1,9 @@
 <div class="card  mb-3">
     <div class="card-header card-title">
         <h1 style="text-align: center;">{{product.name}}</h1>
+        <button mat-fab color="accent" class="edit-btn" (click)="onEdit()">
+          <mat-icon>edit</mat-icon>
+        </button>
         <span class="badge badge-primary badge-pill price">{{product.price | currency}}</span>
     </div>
     <div class="description" *ngIf="product.description !=='' && product.description !== null">
@@ -45,3 +48,4 @@
       </div>
     </div>
   </div>
+

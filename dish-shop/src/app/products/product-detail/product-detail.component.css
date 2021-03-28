@@ -19,3 +19,9 @@ p, h5, h6, h1{
     overflow: auto;
     max-height: 300px;
 }
+
+.edit-btn{
+    position: absolute;
+    right: 5px;
+    top: 5px;  
+}

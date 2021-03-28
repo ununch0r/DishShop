@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Product } from 'src/app/models/product.model';
-import { ProductService } from '../product.service';
 import { ProductsStateService } from '../products-state.service';
 
 @Component({
@@ -26,4 +25,7 @@ export class ProductDetailComponent implements OnInit {
     )
   }
 
+  onEdit(){
+    this.router.navigate(['edit'], {relativeTo: this.activatedRoute});
+  }
 }

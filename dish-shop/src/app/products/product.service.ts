@@ -30,4 +30,28 @@ export class ProductService{
 
         return this.http.post<Product>(this.endpoint,body,{headers: headers})
     }
+
+    updateProduct(id: number, body) : Observable<Product>{
+        const endpoint = this.endpoint + '/' + id;
+
+        const headers = new HttpHeaders()
+        .append('Content-Type', 'application/json')
+        .append('Access-Control-Allow-Headers', 'Content-Type')
+        .append('Access-Control-Allow-Methods', 'PUT')
+        .append('Access-Control-Allow-Origin', '*');
+
+        return this.http.put<Product>(endpoint,body,{headers: headers})
+    }
+
+    deleteProduct(id: number) : Observable<Object>{
+        const endpoint = this.endpoint + '/' + id;
+        
+        const headers = new HttpHeaders()
+        .append('Content-Type', 'application/json')
+        .append('Access-Control-Allow-Headers', 'Content-Type')
+        .append('Access-Control-Allow-Methods', 'DELETE')
+        .append('Access-Control-Allow-Origin', '*');
+
+        return this.http.delete(endpoint,{headers: headers});
+    }
 }

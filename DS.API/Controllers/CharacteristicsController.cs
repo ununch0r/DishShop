@@ -45,5 +45,15 @@ namespace DS.API.Controllers
 
             return Ok(characteristicViewModels);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetCharacteristicsAsync()
+        {
+            var characteristicDTOs = await _characteristicService.GetCharacteristicsAsync();
+
+            var characteristicViewModels = _mapper.Map<IEnumerable<CharacteristicViewModel>>(characteristicDTOs);
+
+            return Ok(characteristicViewModels);
+        }
     }
 }
