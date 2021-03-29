@@ -17,6 +17,9 @@ using DS.Services.DTO.DTOs.ProducerDTOs;
 using DS.Services.DTO.DTOs.ProductCharacteristicDTOs;
 using DS.Services.DTO.DTOs.ProductDTOs;
 using DS.Services.DTO.DTOs.ProviderDTOs;
+using DS.Services.DTO.DTOs.SupplyContentDTOs;
+using DS.Services.DTO.DTOs.SupplyDTOs;
+using DS.Services.DTO.DTOs.SupplyStatusDTOs;
 using DS.Services.DTO.DTOs.ValueTypeDTOs;
 
 namespace DS.API.IoC.MapperProfiles
@@ -41,6 +44,10 @@ namespace DS.API.IoC.MapperProfiles
             CreateMap<Contract, ContractDTO>();
             CreateMap<Contract, ContractNestedInProviderDTO>();
             CreateMap<ContractsContent, ContractContentDTO>();
+            CreateMap<SupplyStatus, SupplyStatusDTO>();
+            CreateMap<Supply, SupplyDTO>();
+            CreateMap<SuppliesContent, SupplyContentDTO>();
+
 
 
 
@@ -52,6 +59,7 @@ namespace DS.API.IoC.MapperProfiles
             CreateMap<CreateProviderViewModel, CreateProviderDTO>();
             CreateMap<CreateContractContentViewModel, CreateContractContentDTO>();
             CreateMap<CreateContractViewModel, CreateContractDTO>();
+
         }
     }
 }
