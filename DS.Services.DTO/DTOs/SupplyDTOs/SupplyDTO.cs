@@ -2,6 +2,8 @@
 using DS.Services.DTO.DTOs.SupplyStatusDTOs;
 using System;
 using System.Collections.Generic;
+using DS.Services.DTO.DTOs.EmployeeDTOs;
+using DS.Services.DTO.DTOs.ShopDTOs;
 using DS.Services.DTO.DTOs.SupplyContentDTOs;
 
 namespace DS.Services.DTO.DTOs.SupplyDTOs
@@ -14,8 +16,8 @@ namespace DS.Services.DTO.DTOs.SupplyDTOs
         public DateTime? DateReceived { get; set; }
 
         public ContractDTO Contract { get; set; }
-        //public EmployeeDTO Employee { get; set; }
-        //public ShopDTO Shop { get; set; }
+        public EmployeeDTO Employee { get; set; }
+        public ShopDTO Shop { get; set; }
         public SupplyStatusDTO Status { get; set; }
         public IEnumerable<SupplyContentDTO> SuppliesContents { get; set; }
     }

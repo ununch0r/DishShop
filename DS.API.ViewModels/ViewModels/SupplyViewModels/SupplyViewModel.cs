@@ -3,6 +3,8 @@ using DS.API.ViewModels.ViewModels.SupplyContentViewModels;
 using DS.API.ViewModels.ViewModels.SupplyStatusViewModels;
 using System;
 using System.Collections.Generic;
+using DS.API.ViewModels.ViewModels.EmployeeViewModels;
+using DS.API.ViewModels.ViewModels.ShopViewModels;
 
 namespace DS.API.ViewModels.ViewModels.SupplyViewModels
 {
@@ -14,8 +16,8 @@ namespace DS.API.ViewModels.ViewModels.SupplyViewModels
         public DateTime? DateReceived { get; set; }
 
         public ContractViewModel Contract { get; set; }
-        //public EmployeeDTO Employee { get; set; }
-        //public ShopDTO Shop { get; set; }
+        public EmployeeViewModel Employee { get; set; }
+        public ShopViewModel Shop { get; set; }
         public SupplyStatusViewModel Status { get; set; }
         public IEnumerable<SupplyContentViewModel> SuppliesContents { get; set; }
     }

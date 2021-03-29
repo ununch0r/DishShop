@@ -17,6 +17,7 @@ namespace DS.API.IoC.Extensions
             services.AddTransient<IShopsService, ShopsService>();
             services.AddTransient<IProducersService, ProducersService>();
             services.AddTransient<ISuppliesService, SuppliesService>();
+            services.AddTransient<IEmployeesService, EmployeesService>();
         }
     }
 }
