@@ -39,11 +39,11 @@ namespace DS.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetProvidersAsync()
         {
-            var catalogProviderDTOs = await _providersService.GetProvidersAsync();
+            var providerDTOs = await _providersService.GetProvidersAsync();
 
-            var catalogProviderViewModels = _mapper.Map<IEnumerable<ProviderViewModel>>(catalogProviderDTOs);
+            var providerViewModels = _mapper.Map<IEnumerable<ProviderViewModel>>(providerDTOs);
 
-            return Ok(catalogProviderViewModels);
+            return Ok(providerViewModels);
         }
     }
 }
