@@ -5,7 +5,9 @@ using DS.Services.DTO.DTOs.ShopDTOs;
 using DS.Services.Interfaces.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using DS.Services.DTO.DTOs.ShopAvailabilityDTOs;
 
 namespace DS.Services.Services
 {
@@ -29,6 +31,25 @@ namespace DS.Services.Services
 
             var shopDTOs = _mapper.Map<IEnumerable<ShopDTO>>(shopEntities);
             return shopDTOs;
+        }
+
+        public async Task<IEnumerable<ShopAvailabilityDTO>> GetShopAvailabilitiesAsync(int shopId)
+        {
+            var shopAvailabilities = await _dishShopContext.ShopsAvailabilities
+                .Include(shopAvailability =>shopAvailability.Product)
+                    .ThenInclude(product => product.Category)
+                .Include(shopAvailability => shopAvailability.Product)
+                    .ThenInclude(product => product.Producer)
+                        .ThenInclude(producer => producer.Country)
+                .Include(shopAvailability => shopAvailability.Product)
+                    .ThenInclude(product => product.ProductsCharacteristics)
+                        .ThenInclude(productCharacteristic => productCharacteristic.Characteristic)
+                            .ThenInclude(characteristic => characteristic.ValueType)
+                .Where(shopAvailability => shopAvailability.ShopId == shopId)
+                .ToListAsync();
+
+            var shopAvailabilityDTOs = _mapper.Map<IEnumerable<ShopAvailabilityDTO>>(shopAvailabilities);
+            return shopAvailabilityDTOs;
         }
 
         public async Task<ShopDTO> CreateShopAsync(CreateShopDTO createShopDTO)

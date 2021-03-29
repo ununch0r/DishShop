@@ -39,11 +39,21 @@ namespace DS.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetEmployeesAsync()
         {
-            var catalogEmployeeDTOs = await _employeesService.GetEmployeesAsync();
+            var employeeDTOs = await _employeesService.GetEmployeesAsync();
 
-            var catalogEmployeeViewModels = _mapper.Map<IEnumerable<EmployeeViewModel>>(catalogEmployeeDTOs);
+            var employeeViewModels = _mapper.Map<IEnumerable<EmployeeViewModel>>(employeeDTOs);
 
-            return Ok(catalogEmployeeViewModels);
+            return Ok(employeeViewModels);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetEmployeesByShopIdAsync(int id)
+        {
+            var employeeDTOs = await _employeesService.GetEmployeesByShopIdAsync(id);
+
+            var employeeViewModels = _mapper.Map<IEnumerable<EmployeeViewModel>>(employeeDTOs);
+
+            return Ok(employeeViewModels);
         }
     }
 }

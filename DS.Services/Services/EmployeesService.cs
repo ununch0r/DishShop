@@ -5,6 +5,7 @@ using DS.Services.DTO.DTOs.EmployeeDTOs;
 using DS.Services.Interfaces.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DS.Services.Services
@@ -26,6 +27,19 @@ namespace DS.Services.Services
                 .Include(employee => employee.Position)
                 .Include(employee => employee.Shop)
                 .AsNoTracking()
+                .ToListAsync();
+
+            var employeeDTOs = _mapper.Map<IEnumerable<EmployeeDTO>>(employeeEntities);
+            return employeeDTOs;
+        }
+
+        public async Task<IEnumerable<EmployeeDTO>> GetEmployeesByShopIdAsync(int id)
+        {
+            var employeeEntities = await _dishShopContext.Employees
+                .Include(employee => employee.Position)
+                .Include(employee => employee.Shop)
+                .AsNoTracking()
+                .Where(employee => employee.ShopId == id)
                 .ToListAsync();
 
             var employeeDTOs = _mapper.Map<IEnumerable<EmployeeDTO>>(employeeEntities);

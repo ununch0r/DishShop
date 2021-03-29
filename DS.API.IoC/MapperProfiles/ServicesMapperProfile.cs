@@ -8,6 +8,8 @@ using DS.API.ViewModels.ViewModels.ProductCharacteristicViewModels;
 using DS.API.ViewModels.ViewModels.ProductViewModels;
 using DS.API.ViewModels.ViewModels.ProviderViewModels;
 using DS.API.ViewModels.ViewModels.ShopViewModels;
+using DS.API.ViewModels.ViewModels.SupplyContentViewModels;
+using DS.API.ViewModels.ViewModels.SupplyViewModels;
 using DS.Domain.Entities.Entities;
 using DS.Services.DTO.DTOs.CategoryDTOs;
 using DS.Services.DTO.DTOs.CharacteristicDTOs;
@@ -21,6 +23,7 @@ using DS.Services.DTO.DTOs.ProducerDTOs;
 using DS.Services.DTO.DTOs.ProductCharacteristicDTOs;
 using DS.Services.DTO.DTOs.ProductDTOs;
 using DS.Services.DTO.DTOs.ProviderDTOs;
+using DS.Services.DTO.DTOs.ShopAvailabilityDTOs;
 using DS.Services.DTO.DTOs.ShopDTOs;
 using DS.Services.DTO.DTOs.SupplyContentDTOs;
 using DS.Services.DTO.DTOs.SupplyDTOs;
@@ -42,7 +45,6 @@ namespace DS.API.IoC.MapperProfiles
             CreateMap<ProductsCharacteristic, ProductCharacteristicDTO>();
             CreateMap<Characteristic, CharacteristicDTO>();
             CreateMap<ValueType, ValueTypeDTO>();
-
             CreateMap<City,CityDTO>();
             CreateMap<Provider, ProviderDTO>();
             CreateMap<Provider, ProviderNestedInContractDTO>();
@@ -55,6 +57,7 @@ namespace DS.API.IoC.MapperProfiles
             CreateMap<Employee, EmployeeDTO>();
             CreateMap<Position, PositionDTO>();
             CreateMap<Shop, ShopDTO>();
+            CreateMap<ShopsAvailability, ShopAvailabilityDTO>();
 
 
 
@@ -64,12 +67,13 @@ namespace DS.API.IoC.MapperProfiles
             CreateMap<CreateCategoryViewModel, CreateCategoryDTO>();
             CreateMap<CreateProductViewModel, CreateProductDTO>();
             CreateMap<CreateProductCharacteristicViewModel, CreateProductCharacteristicDTO>();
-
             CreateMap<CreateProviderViewModel, CreateProviderDTO>();
             CreateMap<CreateContractContentViewModel, CreateContractContentDTO>();
             CreateMap<CreateContractViewModel, CreateContractDTO>();
             CreateMap<CreateShopViewModel, CreateShopDTO>();
             CreateMap<CreateEmployeeViewModel, CreateEmployeeDTO>();
+            CreateMap<CreateSupplyContentViewModel, CreateSupplyContentDTO>();
+            CreateMap<CreateSupplyViewModel, CreateSupplyDTO>();
         }
     }
 }

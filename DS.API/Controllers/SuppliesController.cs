@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using AutoMapper;
 using DS.API.ViewModels.ViewModels.SupplyViewModels;
+using DS.Services.DTO.DTOs.SupplyDTOs;
 using DS.Services.Interfaces.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,5 +32,28 @@ namespace DS.API.Controllers
 
             return Ok(supplyViewModels);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateSupplyAsync(
+            [FromBody][Required] CreateSupplyViewModel createSupplyViewModel
+        )
+        {
+            // problem can be in missing default value for 'created supply' field
+            var createSupplyDTO = _mapper.Map<CreateSupplyDTO>(createSupplyViewModel);
+
+            var createdSupplyDTO = await _suppliesService.CreateSupplyAsync(createSupplyDTO);
+            var createdSupplyViewModel = _mapper.Map<SupplyViewModel>(createdSupplyDTO);
+
+            return Ok(createdSupplyViewModel);
+        }
+
+        [HttpPut("{id}/receive")]
+        public async Task<IActionResult> ReceiveSupplyAsync(int id)
+        {
+            await _suppliesService.ReceiveSupplyAsync(id);
+
+            return Ok();
+        }
+
     }
 }

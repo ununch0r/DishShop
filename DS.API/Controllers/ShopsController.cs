@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using AutoMapper;
+using DS.API.ViewModels.ViewModels.ShopAvailabilityViewModels;
 using DS.API.ViewModels.ViewModels.ShopViewModels;
 using DS.Services.DTO.DTOs.ShopDTOs;
 using DS.Services.Interfaces.Interfaces;
@@ -39,11 +40,21 @@ namespace DS.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetShopsAsync()
         {
-            var catalogShopDTOs = await _shopsService.GetShopsAsync();
+            var shopDTOs = await _shopsService.GetShopsAsync();
 
-            var catalogShopViewModels = _mapper.Map<IEnumerable<ShopViewModel>>(catalogShopDTOs);
+            var shopViewModels = _mapper.Map<IEnumerable<ShopViewModel>>(shopDTOs);
 
-            return Ok(catalogShopViewModels);
+            return Ok(shopViewModels);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetShopAvailabilitiesAsync(int shopId)
+        {
+            var shopAvailabilityDTOs = await _shopsService.GetShopAvailabilitiesAsync(shopId);
+
+            var shopAvailabilityViewModels = _mapper.Map<IEnumerable<ShopAvailabilityViewModel>>(shopAvailabilityDTOs);
+
+            return Ok(shopAvailabilityViewModels);
         }
     }
 }
