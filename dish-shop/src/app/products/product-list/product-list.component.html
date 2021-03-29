@@ -7,11 +7,11 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-12 product-list">
         <app-product-item 
             *ngFor="let product of products; let i = index"
             [product] = "product"
-            [index] = "i">
+            [index] = "product.id">
         </app-product-item>
     </div>
 </div>

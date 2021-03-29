@@ -55,5 +55,28 @@ namespace DS.API.Controllers
 
             return Ok(createdProductViewModel);
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateProductAsync(
+            int id,
+            [FromBody][Required] CreateProductViewModel updateProductViewModel
+        )
+        {
+            var updateProductDTO = _mapper.Map<CreateProductDTO>(updateProductViewModel);
+
+            var updatedProductDTO = await _productsService.UpdateProductAsync(id,updateProductDTO);
+            var updatedProductViewModel = _mapper.Map<CatalogProductViewModel>(updatedProductDTO);
+
+            return Ok(updatedProductViewModel);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProductByIdAsync(int id)
+        {
+            await _productsService.DeleteProductByIdAsync(id);
+
+            return NoContent();
+        }
+
     }
 }

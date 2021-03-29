@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using DS.Infrastructure.Context;
 using DS.Services.DTO.DTOs.ProductDTOs;
 using DS.Services.Interfaces.Interfaces;
@@ -14,6 +15,14 @@ namespace DS.Services.Services
     {
         private readonly DishShopContext _dishShopContext;
         private readonly IMapper _mapper;
+        private static readonly Random Random = new Random();
+
+        public static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+                .Select(s => s[Random.Next(s.Length)]).ToArray());
+        }
 
         public ProductsService(DishShopContext dishShopContext, IMapper mapper)
         {
@@ -58,8 +67,9 @@ namespace DS.Services.Services
 
         public async Task<CatalogProductDTO> CreateProductAsync(CreateProductDTO createProductDTO)
         {
+            createProductDTO.ScanCode = RandomString(1000);
             var productEntity = _mapper.Map<Product>(createProductDTO);
-
+            
             await _dishShopContext.AddAsync(productEntity);
             await _dishShopContext.SaveChangesAsync();
 
@@ -75,6 +85,36 @@ namespace DS.Services.Services
 
             var createdProductDTO = _mapper.Map<CatalogProductDTO>(createdProductEntity);
             return createdProductDTO;
+        }
+
+        public async Task<CatalogProductDTO> UpdateProductAsync(int id, CreateProductDTO updateProductDTO)
+        {
+            var productToBeUpdated = await _dishShopContext.Products
+                .Include(product => product.ProductsCharacteristics)
+                .SingleOrDefaultAsync(product => product.Id == id);
+            var newProduct = _mapper.Map<Product>(updateProductDTO);
+
+
+            productToBeUpdated.CategoryId = newProduct.CategoryId;
+            productToBeUpdated.ProducerId = newProduct.ProducerId;
+            productToBeUpdated.Price = newProduct.Price;
+            productToBeUpdated.Description = newProduct.Description;
+            productToBeUpdated.ProductsCharacteristics = newProduct.ProductsCharacteristics;
+
+            await _dishShopContext.SaveChangesAsync();
+
+            var updatedProductDTO = _mapper.Map<CatalogProductDTO>(productToBeUpdated);
+            return updatedProductDTO;
+        }
+
+        public async Task DeleteProductByIdAsync(int id)
+        {
+            var productToBeDeleted = await _dishShopContext.Products
+                .SingleOrDefaultAsync(product => product.Id == id);
+
+            _dishShopContext.Remove(productToBeDeleted);
+
+            await _dishShopContext.SaveChangesAsync();
         }
     }
 }

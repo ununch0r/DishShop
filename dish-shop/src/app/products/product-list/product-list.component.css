@@ -1,7 +1,6 @@
 .header{
-    background-color: lightslategray;
+    background-color: #b3b3b3;
     margin-bottom: 5px;
-    border: 1px solid black;
     height: 50px;
 }
 
@@ -13,4 +12,9 @@
     margin: 0;
     height: 50px;
     width: 50px;
+}
+
+.product-list{
+    overflow: auto;
+    max-height: 80vh;
 }

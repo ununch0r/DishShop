@@ -1,9 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using DS.Domain.Entities.Entities;
 using DS.Infrastructure.Context;
 using DS.Services.DTO.DTOs.CategoryDTOs;
 using DS.Services.Interfaces.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace DS.Services.Services
 {
@@ -27,6 +29,17 @@ namespace DS.Services.Services
 
             var createdCategoryDTO = _mapper.Map<CategoryDTO>(categoryEntity);
             return createdCategoryDTO;
+        }
+
+        public async Task<IEnumerable<CategoryDTO>> GetCategoriesAsync()
+        {
+            var categories = await _dishShopContext.Categories
+                .AsNoTracking()
+                .ToListAsync();
+
+            var categoryDTOs = _mapper.Map<IEnumerable<CategoryDTO>>(categories);
+
+            return categoryDTOs;
         }
     }
 }

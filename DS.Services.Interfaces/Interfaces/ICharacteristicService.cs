@@ -8,5 +8,6 @@ namespace DS.Services.Interfaces.Interfaces
     {
         Task<CharacteristicDTO> CreateCharacteristicAsync(CreateCharacteristicDTO createCharacteristicDto);
         Task<IEnumerable<CharacteristicDTO>> GetCharacteristicsByCategoryIdAsync(int id);
+        Task<IEnumerable<CharacteristicDTO>> GetCharacteristicsAsync();
     }
 }
