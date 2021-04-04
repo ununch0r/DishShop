@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterContentChecked, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -9,7 +9,7 @@ import { CategoryService } from '../http-services/category-service';
 import { CharacteristicService } from '../http-services/characteristic-service';
 import { ProducerService } from '../http-services/producer.service';
 import { ProductsStateService } from '../products-state.service';
-import { NotificationService } from '../../notification.service';
+import { ConfirmationDialogService } from 'src/app/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-product-edit',
@@ -31,12 +31,14 @@ export class ProductEditComponent implements OnInit, OnDestroy {
     private router : Router,
     private categoryService : CategoryService,
     private producerService : ProducerService,
-    private characteristicService : CharacteristicService
+    private characteristicService : CharacteristicService,
+    private confirmationDialogService: ConfirmationDialogService
     ) { }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
+
 
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -54,6 +56,10 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 
     this.subscriptions.add(this.producerService.getAllProducers().subscribe(
       producers => this.producers = producers
+    ));
+
+    this.subscriptions.add(this.characteristicService.getAllCharacteristics().subscribe(
+      characteristics => this.allCharacteristics = characteristics
     ));
 
     this.allCharacteristics = this.characteristicService.getSavedCharacteristics();
@@ -118,20 +124,25 @@ export class ProductEditComponent implements OnInit, OnDestroy {
   onCategoryChange(value : string){
     if(!this.editMode)
     {
-      const categoryId = (+value.split(':')[1]);
-
-      this.characteristicService.getCharacteristicsByCategoryId(categoryId).subscribe(
-        characteristics => {
-          this.addCharacteristicsByCategory(characteristics);
-          console.log(characteristics);
-        }
-      )
+    this.confirmationDialogService.confirm('Please confirm..', 'Do you want to pull characteristics by category?')
+    .then((confirmed) => {
+      if(confirmed){
+        const categoryId = (+value.split(':')[1]);
+        this.characteristicService.getCharacteristicsByCategoryId(categoryId).subscribe(
+          characteristics => {
+            this.addCharacteristicsByCategory(characteristics);
+          }
+        )
+      }
+    })
+    .catch(() => {})
     }
   }
 
   addCharacteristicsByCategory(characteristics : Characteristic []){
     const characteristicsArray = (<FormArray>this.productForm.get('productsCharacteristics'));
     characteristicsArray.clear();
+    console.log(this.allCharacteristics);
     characteristics.forEach(
       (characteristic)=>{
         characteristicsArray.push(

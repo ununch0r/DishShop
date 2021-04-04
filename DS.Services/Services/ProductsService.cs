@@ -69,6 +69,19 @@ namespace DS.Services.Services
         {
             createProductDTO.ScanCode = RandomString(1000);
             var productEntity = _mapper.Map<Product>(createProductDTO);
+
+            var categoryCharacteristics = productEntity.ProductsCharacteristics
+                .Select(productCharacteristic =>
+                new CategoriesCharacteristic
+                {
+                    CategoryId = productEntity.CategoryId,
+                    CharacteristicId = productCharacteristic.CharacteristicId
+                }).ToList();
+
+            await DeleteExistingCategoryCharacteristicAsync(categoryCharacteristics);
+
+            await _dishShopContext.CategoriesCharacteristics
+                .AddRangeAsync(categoryCharacteristics);
             
             await _dishShopContext.AddAsync(productEntity);
             await _dishShopContext.SaveChangesAsync();
@@ -85,6 +98,27 @@ namespace DS.Services.Services
 
             var createdProductDTO = _mapper.Map<CatalogProductDTO>(createdProductEntity);
             return createdProductDTO;
+        }
+
+        private async Task DeleteExistingCategoryCharacteristicAsync(
+            ICollection<CategoriesCharacteristic> categoryCharacteristics)
+        {
+            var itemsToBeRemoved = new List<CategoriesCharacteristic>();
+            foreach (var categoryCharacteristic in categoryCharacteristics)
+            {
+                var doesExist = await _dishShopContext.CategoriesCharacteristics.AnyAsync(catChar =>
+                    catChar.CharacteristicId == categoryCharacteristic.CharacteristicId &&
+                    catChar.CategoryId == categoryCharacteristic.CategoryId);
+                if (doesExist)
+                {
+                    itemsToBeRemoved.Add(categoryCharacteristic);
+                }
+            }
+
+            foreach (var item in itemsToBeRemoved)
+            {
+                categoryCharacteristics.Remove(item);
+            }
         }
 
         public async Task<CatalogProductDTO> UpdateProductAsync(int id, CreateProductDTO updateProductDTO)

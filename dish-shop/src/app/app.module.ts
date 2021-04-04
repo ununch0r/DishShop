@@ -25,7 +25,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
 import { ToastrModule } from 'ngx-toastr';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ import { ToastrModule } from 'ngx-toastr';
     ProductEditComponent,
     ProductDetailComponent,
     ProductsComponent,
-    ProductStartComponent
+    ProductStartComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -50,7 +54,8 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
-    })
+    }),
+    NgbModule
   ],
   providers: [
     ProductService,
@@ -59,8 +64,10 @@ import { ToastrModule } from 'ngx-toastr';
     CategoryService,
     ProducerService,
     CharacteristicService,
-    CharacteristicResolverService
+    CharacteristicResolverService,
+    ConfirmationDialogService
     ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ ConfirmationDialogComponent ]
 })
 export class AppModule { }
