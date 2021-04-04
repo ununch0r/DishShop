@@ -12,11 +12,13 @@ import { ProductItemComponent } from './products/product-list/product-item/produ
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { ProductsComponent } from './products/products.component';
-import { ProductService  } from './products/product.service';
-import { CategoryService  } from './products/http-services/category-service';
-import { CharacteristicService  } from './products/http-services/characteristic-service';
+import { ProductService  } from './products/http-services/product.service';
+import { CategoryService  } from './products/http-services/category.service';
+import { ShopService  } from './shops/http-services/shop.service';
+import { ShopsStateService  } from './shops/shops-state.service';
+import { CharacteristicService  } from './products/http-services/characteristic.service';
 import { ProducerService  } from './products/http-services/producer.service';
-import { ProductsResolverService  } from './products/products-resolver.service';
+import { ProductsResolverService  } from './products/resolvers/products-resolver.service';
 import { CharacteristicResolverService  } from './products/resolvers/characteristic-resolver.service';
 import { ProductsStateService  } from './products/products-state.service';
 import { ProductStartComponent } from './products/product-start/product-start.component';
@@ -29,6 +31,10 @@ import { ConfirmationDialogService } from './confirmation-dialog/confirmation-di
 import { ToastrModule } from 'ngx-toastr';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ShopsComponent } from './shops/shops.component';
+import { ShopListComponent } from './shops/shop-list/shop-list.component';
+import { ShopItemComponent } from './shops/shop-list/shop-item/shop-item.component';
+import { ShopStartComponent } from './shops/shop-start/shop-start.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +47,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProductsComponent,
     ProductStartComponent,
     ConfirmationDialogComponent,
+    ShopsComponent,
+    ShopListComponent,
+    ShopItemComponent,
+    ShopStartComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -65,7 +75,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProducerService,
     CharacteristicService,
     CharacteristicResolverService,
-    ConfirmationDialogService
+    ConfirmationDialogService,
+    ShopService,
+    ShopsStateService
     ],
   bootstrap: [AppComponent],
   entryComponents: [ ConfirmationDialogComponent ]

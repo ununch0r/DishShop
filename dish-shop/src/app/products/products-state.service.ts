@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject, Subscription, from } from 'rxjs';
 import { Product } from '../models/product.model';
-import { ProductService } from './product.service';
+import { ProductService } from './http-services/product.service';
 import {tap} from 'rxjs/operators'
 import { NotificationService } from '../notification.service';
 
