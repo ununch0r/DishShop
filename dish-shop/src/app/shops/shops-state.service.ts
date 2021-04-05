@@ -25,6 +25,7 @@ export class ShopsStateService{
             shops => {
                 this.shops = shops;
                 this.shopsCollectionChanged.next(this.shops.slice());
+                console.log(shops);
             }
         ));
     }

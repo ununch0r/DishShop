@@ -9,7 +9,7 @@ namespace DS.API.IoC.Extensions
         public static void AddDatabaseContext(this IServiceCollection services)
         {
             services.AddDbContext<DishShopContext>(options => options
-                .UseSqlServer("Server=DESKTOP-6UER13R;Database=DishShop;Trusted_Connection=True;"));
+                .UseSqlServer("Server=STELMASHCHUK-DE;Database=DishShop;Trusted_Connection=True;"));
         }
     }
 }

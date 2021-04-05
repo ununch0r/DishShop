@@ -3,7 +3,7 @@ using DS.API.ViewModels.ViewModels.ShopViewModels;
 
 namespace DS.API.ViewModels.ViewModels.EmployeeViewModels
 {
-    public class EmployeeViewModel
+    public class ShopNestedEmployeeViewModel
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

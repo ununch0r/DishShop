@@ -8,11 +8,11 @@ import { Shop } from 'src/app/models/shop.model';
 })
 export class ShopItemComponent implements OnInit {
   @Input() shop : Shop
+  @Input() index : number
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.shop);
   }
 
 }

@@ -25,11 +25,24 @@ namespace DS.Services.Services
         public async Task<IEnumerable<ShopDTO>> GetShopsAsync()
         {
             var shopEntities = await _dishShopContext.Shops
+                .Include(shop => shop.Employees)
+                .ThenInclude(employee => employee.Position)
+                .Include(shop => shop.Supplies)
+                    .ThenInclude(supply => supply.Status)
+                .Include(shop => shop.ShopsAvailabilities)
+                    .ThenInclude(shopAvailability => shopAvailability.Product)
+                        .ThenInclude(product => product.Category)
                 .Include(shop => shop.City)
                 .AsNoTracking()
                 .ToListAsync();
 
             var shopDTOs = _mapper.Map<IEnumerable<ShopDTO>>(shopEntities);
+
+            foreach (var shop in shopDTOs)
+            {
+                shop.Manager = shop.Employees.SingleOrDefault(employee => employee.Position.Id == 2);
+            }
+
             return shopDTOs;
         }
 

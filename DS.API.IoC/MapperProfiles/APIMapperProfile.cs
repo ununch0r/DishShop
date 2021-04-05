@@ -64,6 +64,8 @@ namespace DS.API.IoC.MapperProfiles
             CreateMap<EmployeeDTO, EmployeeViewModel>();
             CreateMap<ShopDTO, ShopViewModel>();
             CreateMap<ShopAvailabilityDTO, ShopAvailabilityViewModel>();
+            CreateMap<ShopNestedEmployeeDTO, ShopNestedEmployeeViewModel>();
+            CreateMap<ShopNestedSupplyDTO, ShopNestedSupplyViewModel>();
         }
     }
 }

@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Extensions\**" />
+    <EmbeddedResource Remove="Extensions\**" />
+    <None Remove="Extensions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
   </ItemGroup>
 
@@ -12,10 +18,6 @@
     <ProjectReference Include="..\DS.Infrastructure\DS.Infrastructure.csproj" />
     <ProjectReference Include="..\DS.Services.DTO\DS.Services.DTO.csproj" />
     <ProjectReference Include="..\DS.Services.Interfaces\DS.Services.Interfaces.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Extensions\" />
   </ItemGroup>
 
 </Project>

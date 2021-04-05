@@ -1,0 +1,17 @@
+.manager-info-container{
+    margin-left: 15px;
+}
+
+span{
+    margin-left: 10px;
+}
+
+.manager-header{
+    padding: 5px 5px 0px 5px;
+}
+
+.manager-info{
+    background-color: lightyellow;
+    padding-bottom: 10px;
+    border: 1px solid yellowgreen;
+}

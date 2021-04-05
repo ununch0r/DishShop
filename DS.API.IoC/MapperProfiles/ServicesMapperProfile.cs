@@ -58,6 +58,8 @@ namespace DS.API.IoC.MapperProfiles
             CreateMap<Position, PositionDTO>();
             CreateMap<Shop, ShopDTO>();
             CreateMap<ShopsAvailability, ShopAvailabilityDTO>();
+            CreateMap<Employee, ShopNestedEmployeeDTO>();
+            CreateMap<Supply, ShopNestedSupplyDTO>();
 
 
 

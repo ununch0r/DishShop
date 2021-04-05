@@ -8,6 +8,8 @@ import { ProductEditComponent } from './products/product-edit/product-edit.compo
 import { CharacteristicResolverService } from './products/resolvers/characteristic-resolver.service';
 import { ShopsComponent } from './shops/shops.component';
 import { ShopStartComponent } from './shops/shop-start/shop-start.component';
+import { ShopDetailComponent } from './shops/shop-detail/shop-detail.component';
+import { ShopsResolverService } from './shops/resolvers/shops-resolver.service';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/products', pathMatch: 'full'},
@@ -18,7 +20,8 @@ const appRoutes: Routes = [
         {path: ':id/edit', component: ProductEditComponent, resolve: [ProductsResolverService, CharacteristicResolverService]}
     ]},
     { path: 'shops', component: ShopsComponent, children:[
-        {path: '', component: ShopStartComponent}
+        {path: '', component: ShopStartComponent},
+        {path: ':id', component: ShopDetailComponent, resolve: [ShopsResolverService]}
     ]},
 ]
 

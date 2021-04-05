@@ -35,6 +35,8 @@ import { ShopsComponent } from './shops/shops.component';
 import { ShopListComponent } from './shops/shop-list/shop-list.component';
 import { ShopItemComponent } from './shops/shop-list/shop-item/shop-item.component';
 import { ShopStartComponent } from './shops/shop-start/shop-start.component';
+import { ShopDetailComponent } from './shops/shop-detail/shop-detail.component';
+import { ShopsResolverService } from './shops/resolvers/shops-resolver.service';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,7 @@ import { ShopStartComponent } from './shops/shop-start/shop-start.component';
     ShopListComponent,
     ShopItemComponent,
     ShopStartComponent,
+    ShopDetailComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -77,7 +80,8 @@ import { ShopStartComponent } from './shops/shop-start/shop-start.component';
     CharacteristicResolverService,
     ConfirmationDialogService,
     ShopService,
-    ShopsStateService
+    ShopsStateService,
+    ShopsResolverService
     ],
   bootstrap: [AppComponent],
   entryComponents: [ ConfirmationDialogComponent ]
