@@ -14,9 +14,7 @@ export class ShopsStateService{
     constructor(
         public shopServive : ShopService,
         private notifyService : NotificationService
-    ){
-        this.subscriptions.push(this.fetchShops().subscribe( data => this.reloadShops(data)))
-    }
+    ){}
 
     fetchShops(){
         return this.shopServive.getAllShops()
@@ -25,7 +23,6 @@ export class ShopsStateService{
             shops => {
                 this.shops = shops;
                 this.shopsCollectionChanged.next(this.shops.slice());
-                console.log(shops);
             }
         ));
     }

@@ -21,7 +21,10 @@ export class ShopListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.shops = this.shopService.getShops();
     this.subscription = this.shopService.shopsCollectionChanged.subscribe(
-        shops => this.shops = shops
+        shops => {
+          this.shops = shops
+          console.log(this.shops);
+        }
       );
   }
 
