@@ -31,7 +31,6 @@ export class ShopDetailComponent implements OnInit {
       (params: Params) => {
         this.id = +params['id'];
         this.shop = this.shopsService.getShop(this.id);
-        console.log(this.shop);
       }
     ));
 
@@ -46,7 +45,8 @@ export class ShopDetailComponent implements OnInit {
   getBadgeClass(supplyStatus : SupplyStatus){
     return {
       'badge-success' : supplyStatus.name === 'Received',
-      'badge-warning' : supplyStatus.name === 'In progress'
+      'badge-warning' : supplyStatus.name === 'In progress',
+      'badge-danger' : supplyStatus.name === 'Canceled'
     }
   }
 
@@ -56,5 +56,17 @@ export class ShopDetailComponent implements OnInit {
     } else if (supply.status.name === 'In progress'){
       return supply.dateCreated;
     }
+  }
+
+  showEmployees(){
+    this.router.navigate(['employees'], {relativeTo: this.activatedRoute});
+  }
+
+  showSupplies(){
+    this.router.navigate(['supplies'], {relativeTo: this.activatedRoute});
+  }
+
+  showAvailabilities(){
+    this.router.navigate(['availabilities'], {relativeTo: this.activatedRoute});
   }
 }

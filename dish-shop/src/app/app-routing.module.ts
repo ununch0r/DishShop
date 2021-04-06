@@ -10,6 +10,9 @@ import { ShopsComponent } from './shops/shops.component';
 import { ShopStartComponent } from './shops/shop-start/shop-start.component';
 import { ShopDetailComponent } from './shops/shop-detail/shop-detail.component';
 import { ShopsResolverService } from './shops/resolvers/shops-resolver.service';
+import { EmployeeListComponent } from './shops/employee-list/employee-list.component';
+import { SupplyListComponent } from './shops/supply-list/supply-list.component';
+import { AvailabilityListComponent } from './shops/availability-list/availability-list.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/products', pathMatch: 'full'},
@@ -21,7 +24,10 @@ const appRoutes: Routes = [
     ]},
     { path: 'shops', component: ShopsComponent,resolve:[ShopsResolverService], children:[
         {path: '', component: ShopStartComponent},
-        {path: ':id', component: ShopDetailComponent, resolve: [ShopsResolverService]}
+        {path: ':id', component: ShopDetailComponent, resolve: [ShopsResolverService]},
+        {path: ':id/employees', component: EmployeeListComponent, resolve: [ShopsResolverService]},
+        {path: ':id/supplies', component: SupplyListComponent, resolve: [ShopsResolverService]},
+        {path: ':id/availabilities', component: AvailabilityListComponent, resolve: [ShopsResolverService]}
     ]},
 ]
 

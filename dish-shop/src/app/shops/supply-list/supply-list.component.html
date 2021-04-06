@@ -1,0 +1,17 @@
+<div class="row justify-content-center">
+    <div class="col-lg-11 header-container">
+        <div class="d-flex justify-content-between align-items-center header rounded">
+            <H4 class="align-self-center header-align">Supplies list</H4>
+            <button class="btn btn-success btn-align" routerLink="new">+</button>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-lg-11 supply-list">
+        <app-supply-item 
+            *ngFor="let supply of supplies; let i = index"
+            [supply] = "supply"
+            [index] = "supply.id">
+        </app-supply-item>
+    </div>
+</div>

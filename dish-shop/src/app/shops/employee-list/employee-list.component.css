@@ -1,0 +1,38 @@
+.header{
+    background-color: #b3b3b3;
+    height: 50px;
+}
+
+.header-container{
+    padding: 5px 0px 5px 0px;
+}
+
+.header-align{
+    margin: 0px 0px 0px 10px;
+}
+
+.btn-align{
+    margin: 0;
+    height: 50px;
+    width: 50px;
+}
+
+.employee-list{
+    padding: 5px;
+    overflow: auto;
+    max-height: 80vh;
+}
+
+::-webkit-scrollbar {
+    padding: 0px;
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}

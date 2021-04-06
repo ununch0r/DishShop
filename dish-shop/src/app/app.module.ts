@@ -37,6 +37,12 @@ import { ShopItemComponent } from './shops/shop-list/shop-item/shop-item.compone
 import { ShopStartComponent } from './shops/shop-start/shop-start.component';
 import { ShopDetailComponent } from './shops/shop-detail/shop-detail.component';
 import { ShopsResolverService } from './shops/resolvers/shops-resolver.service';
+import { EmployeeListComponent } from './shops/employee-list/employee-list.component';
+import { EmployeeItemComponent } from './shops/employee-list/employee-item/employee-item.component';
+import { SupplyListComponent } from './shops/supply-list/supply-list.component';
+import { SupplyItemComponent } from './shops/supply-list/supply-item/supply-item.component';
+import { AvailabilityListComponent } from './shops/availability-list/availability-list.component';
+import { AvailabilityItemComponent } from './shops/availability-list/availability-item/availability-item.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +60,12 @@ import { ShopsResolverService } from './shops/resolvers/shops-resolver.service';
     ShopItemComponent,
     ShopStartComponent,
     ShopDetailComponent,
+    EmployeeListComponent,
+    EmployeeItemComponent,
+    SupplyListComponent,
+    SupplyItemComponent,
+    AvailabilityListComponent,
+    AvailabilityItemComponent,
   ],
   imports: [
     AppRoutingModule,

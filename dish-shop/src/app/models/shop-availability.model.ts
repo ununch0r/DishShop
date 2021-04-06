@@ -1,6 +1,6 @@
 import { Product } from './product.model'
 
-export class ShopAvailabilities{
+export class ShopAvailability{
     amount : number
     product : Product
 }

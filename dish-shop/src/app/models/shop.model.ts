@@ -1,6 +1,6 @@
 import { City } from './city.model'
 import { Supply } from './supply.model'
-import { ShopAvailabilities } from './shop-availability.model'
+import { ShopAvailability } from './shop-availability.model'
 import { ShopNestedEmployee } from './shop-nested-models/shop-nested-employee.model'
 
 
@@ -12,6 +12,6 @@ export class Shop{
     city : City
     manager : ShopNestedEmployee
     employees : ShopNestedEmployee[]
-    shopsAvailabilities : ShopAvailabilities[]
+    shopsAvailabilities : ShopAvailability[]
     supplies : Supply[]
 }

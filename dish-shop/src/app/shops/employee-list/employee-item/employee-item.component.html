@@ -1,0 +1,31 @@
+<a  routerLinkActive="selected"
+    class="list-group-item clearfix list-group-item-action rounded">
+    <div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <h6 class="font-weight-bold">Name: </h6>
+                <h6 class="text-muted">{{employee.firstName}}</h6>
+            </div>
+            <div>
+                <h6 class="font-weight-bold">Last name: </h6>
+                <h6 class="text-muted">{{employee.lastName}}</h6>
+            </div>
+            <div>
+                <h6 class="font-weight-bold">Phone: </h6>
+                <h6 class="text-muted">{{employee.phoneNumber}}</h6>
+            </div>
+            <div>
+                <h6 class="font-weight-bold">Email: </h6>
+                <h6 class="text-muted">{{employee.email}}</h6>
+            </div>
+            <div>
+                <h6 class="font-weight-bold">Position: </h6>
+                <h6 class="text-muted">{{employee.position.name}}</h6>
+            </div>
+            <div class="d-flex flex-column justity-content-center" *ngIf="employee.position.name ==='Worker'">
+                <button  class="btn btn-success btn-center" style="margin-bottom: 2px;">Promote</button>
+                <button class="btn btn-danger btn-center">Fire</button>
+            </div>
+        </div>
+    </div>
+</a>
