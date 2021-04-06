@@ -1,28 +1,28 @@
 <div class="container">
     <div class="row justify-content-around">
         <div class="col-lg-6 manager-info rounded">
-            <h2 class="manager-header">Manager info:</h2>
+            <h2 class="custom-header">Manager info:</h2>
             <div class="card">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">
+                  <li class="list-group-item info-item">
                     <div class="list-group-item-fixed">
                       <strong class="list-group-left">First name:</strong>
                       <span class="list-group-right">{{shop.manager.firstName}}</span>
                     </div>
                   </li>
-                  <li class="list-group-item">
+                  <li class="list-group-item info-item">
                     <div class="list-group-item-fixed">
                       <strong class="list-group-left">Last name:</strong>
                       <span class="list-group-right">{{shop.manager.lastName}}</span>
                     </div>
                   </li>
-                  <li class="list-group-item">
+                  <li class="list-group-item info-item">
                     <div class="list-group-item-fixed">
                       <strong class="list-group-left">Phone number:</strong>
                       <span class="list-group-right">{{shop.manager.phoneNumber}}</span>
                     </div>
                   </li>
-                  <li class="list-group-item">
+                  <li class="list-group-item info-item">
                     <div class="list-group-item-fixed">
                       <strong class="list-group-left">Email:</strong>
                       <span class="list-group-right">{{shop.manager.email}}</span>
@@ -31,6 +31,56 @@
                 </ul>
               </div>
         </div>
-        <div class="col-lg-4"></div>
+        <div class="col-lg-5 employees-info rounded">
+            <h2 class="custom-header">Employees:</h2>
+            <div class=" scrollable-list">
+              <ul class="list-group" *ngFor="let employee of shop.employees">
+                <li class="list-group-item d-flex justify-content-between align-items-center info-item">
+                  <strong>{{employee.firstName}} {{employee.lastName}}</strong>
+                  <span class="badge badge-primary badge-pill">{{employee.position.name}}</span>
+                </li>
+              </ul>
+            </div>
+            <div class="btn-details-container">
+              <button class="btn btn-success btn-details">
+                Show details
+              </button>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-around" style="margin-top: 2vh;">
+        <div class="col-lg-6 availabilities-info rounded">
+          <h2 class="custom-header">Availabilities:</h2>
+          <div class=" scrollable-list">
+            <ul class="list-group" *ngFor="let availability of shop.shopsAvailabilities">
+              <li class="list-group-item d-flex justify-content-between align-items-center info-item">
+                <strong>{{availability.product.name}}</strong>
+                <span class="badge badge-primary badge-pill">{{availability.amount}}</span>
+              </li>
+            </ul>
+          </div>
+          <div class="btn-details-container">
+            <button class="btn btn-success btn-details">
+              Show details
+            </button>
+          </div>
+        </div>
+        <div class="col-lg-5 supply-info rounded">
+            <h2 class="custom-header">Supplies:</h2>
+            <div class="scrollable-list">
+              <ul class="list-group" *ngFor="let supply of shop.supplies">
+                <li class="list-group-item d-flex info-item align-items-center">
+                  <strong >#{{supply.id}}</strong>
+                  <small class="text-muted" style="margin-left: 10px;">{{ getDate(supply) | date:'dd/MM/yyyy'}}</small>
+                  <span [ngClass]="getBadgeClass(supply.status)" class="badge badge-pill ml-auto">{{supply.status.name}}</span>
+                </li>
+              </ul>
+            </div>
+            <div class="btn-details-container">
+              <button class="btn btn-success btn-details">
+                Show details
+              </button>
+          </div>
+        </div>
     </div>
 </div>

@@ -19,7 +19,7 @@ const appRoutes: Routes = [
         {path: ':id', component: ProductDetailComponent, resolve: [ProductsResolverService]},
         {path: ':id/edit', component: ProductEditComponent, resolve: [ProductsResolverService, CharacteristicResolverService]}
     ]},
-    { path: 'shops', component: ShopsComponent, children:[
+    { path: 'shops', component: ShopsComponent,resolve:[ShopsResolverService], children:[
         {path: '', component: ShopStartComponent},
         {path: ':id', component: ShopDetailComponent, resolve: [ShopsResolverService]}
     ]},
