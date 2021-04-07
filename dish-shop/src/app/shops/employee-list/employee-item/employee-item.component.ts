@@ -25,4 +25,8 @@ export class EmployeeItemComponent implements OnInit {
     this.employeeService.promoteEmployee(this.index);
   }
 
+  onFire(){
+    this.employeeService.fireEmployee(this.index);
+  }
+
 }

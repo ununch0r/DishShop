@@ -77,5 +77,14 @@ namespace DS.Services.Services
 
             await _dishShopContext.SaveChangesAsync();
         }
+
+        public async Task FireEmployeeByIdAsync(int id)
+        {
+            var employeeToBeFired = await _dishShopContext.Employees
+                .SingleOrDefaultAsync(employee => employee.Id == id);
+            employeeToBeFired.IsFired = true;
+
+            await _dishShopContext.SaveChangesAsync();
+        }
     }
 }

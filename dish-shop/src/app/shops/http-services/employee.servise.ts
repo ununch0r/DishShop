@@ -29,7 +29,7 @@ export class EmployeeService{
     }
 
     promoteEmployee(id : number){
-        const endpoint = this.endpoint + '/' + id
+        const endpoint = this.endpoint + '/' + id + '/promote'
         const headers = this.headers.append('Access-Control-Allow-Methods', 'POST')
         this.subscriptions.push(this.http.post<ShopNestedEmployee>(endpoint,{headers: headers}).subscribe(
             () => {
@@ -37,6 +37,22 @@ export class EmployeeService{
                     shops => {
                         this.shopsService.reloadShops(shops);
                         this.notifyService.showSuccess("Employee was promoted", "Successfully promoted!");
+                     },
+                     error => this.notifyService.showError(error, "Error occured(")
+                ));
+            }
+        ));
+    }
+
+    fireEmployee(id : number){
+        const endpoint = this.endpoint + '/' + id + '/fire'
+        const headers = this.headers.append('Access-Control-Allow-Methods', 'POST')
+        this.subscriptions.push(this.http.post<ShopNestedEmployee>(endpoint,{headers: headers}).subscribe(
+            () => {
+                this.subscriptions.push(this.shopsService.fetchShops().subscribe(
+                    shops => {
+                        this.shopsService.reloadShops(shops);
+                        this.notifyService.showSuccess("Employee was fired", "Successfully fired!");
                      },
                      error => this.notifyService.showError(error, "Error occured(")
                 ));
