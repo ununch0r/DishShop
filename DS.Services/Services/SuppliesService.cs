@@ -42,6 +42,7 @@ namespace DS.Services.Services
         public async Task<SupplyDTO> CreateSupplyAsync(CreateSupplyDTO createSupplyDTO)
         {
             var supplyEntity = _mapper.Map<Supply>(createSupplyDTO);
+            supplyEntity.StatusId = 1;
 
             await _dishShopContext.AddAsync(supplyEntity);
             await _dishShopContext.SaveChangesAsync();
@@ -74,8 +75,9 @@ namespace DS.Services.Services
 
             IsSupplyStatusInProgress(supplyEntity);
             supplyEntity.StatusId = 2;
+            supplyEntity.DateReceived = DateTime.Now;
 
-            // add logic
+            // add logic (existing values should be aggregated)
             var shopAvailabilities = supplyEntity.SuppliesContents.Select(content => 
                 new ShopsAvailability
                 {

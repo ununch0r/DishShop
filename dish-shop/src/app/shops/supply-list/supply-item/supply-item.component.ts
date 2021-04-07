@@ -34,4 +34,8 @@ export class SupplyItemComponent implements OnInit {
   onCancel(){
     this.suppliesService.cancelSupply(this.supply.id);
   }
+
+  onReceive(){
+    this.suppliesService.receiveSupply(this.supply.id);
+  }
 }

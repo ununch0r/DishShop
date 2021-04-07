@@ -24,7 +24,10 @@
                 <h6 class="text-muted">{{supply.status.name}}</h6>
             </div>
             <div class="d-flex flex-column justity-content-center" *ngIf="supply.status.name ==='In progress'">
-                <button  class="btn btn-success btn-center" style="margin-bottom: 2px;">Receive</button>
+                <button  
+                    class="btn btn-success btn-center" 
+                    style="margin-bottom: 2px;"
+                    (click)="onReceive()">Receive</button>
                 <button class="btn btn-danger btn-center" (click)="onCancel()">Cancel</button>
             </div>
         </div>

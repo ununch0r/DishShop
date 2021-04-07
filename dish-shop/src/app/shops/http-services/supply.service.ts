@@ -25,13 +25,30 @@ export class SupplyService{
     cancelSupply(id : number){
         const endpoint = this.endpoint + '/' + id + '/cancel';
         const headers = this.headers.append('Access-Control-Allow-Methods', 'PUT');
-        
+
         this.subscriptions.push(this.http.put(endpoint,{headers: headers}).subscribe(
             () => {
                 this.subscriptions.push(this.shopsService.fetchShops().subscribe(
                     shops => {
                         this.shopsService.reloadShops(shops);
                         this.notifyService.showSuccess("Supply was canceled", "Successfully canceled!");
+                     },
+                     error => this.notifyService.showError(error, "Error occured(")
+                ));
+            }
+        ));
+    }
+
+    receiveSupply(id : number){
+        const endpoint = this.endpoint + '/' + id + '/receive';
+        const headers = this.headers.append('Access-Control-Allow-Methods', 'PUT');
+        
+        this.subscriptions.push(this.http.put(endpoint,{headers: headers}).subscribe(
+            () => {
+                this.subscriptions.push(this.shopsService.fetchShops().subscribe(
+                    shops => {
+                        this.shopsService.reloadShops(shops);
+                        this.notifyService.showSuccess("Supply was reveived", "Successfully received!");
                      },
                      error => this.notifyService.showError(error, "Error occured(")
                 ));
