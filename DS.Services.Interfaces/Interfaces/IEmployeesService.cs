@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using DS.Services.DTO.DTOs.EmployeeDTOs;
+using DS.Services.DTO.DTOs.PositionDTOs;
 
 namespace DS.Services.Interfaces.Interfaces
 {
@@ -11,5 +12,6 @@ namespace DS.Services.Interfaces.Interfaces
         Task<EmployeeDTO> CreateEmployeeAsync(CreateEmployeeDTO createEmployeeDTO);
         Task PromoteEmployeeByIdAsync(int id);
         Task FireEmployeeByIdAsync(int id);
+        Task<IEnumerable<PositionDTO>> GetAllPositionsAsync();
     }
 }

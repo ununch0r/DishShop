@@ -71,5 +71,13 @@ namespace DS.API.Controllers
 
             return Ok();
         }
+
+        [HttpGet("positions")]
+        public async Task<IActionResult> GetAllPositionsAsync(int id)
+        {
+            var positions = await _employeesService.GetAllPositionsAsync();
+
+            return Ok(positions);
+        }
     }
 }

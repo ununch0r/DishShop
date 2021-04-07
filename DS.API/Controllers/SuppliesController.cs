@@ -55,5 +55,12 @@ namespace DS.API.Controllers
             return Ok();
         }
 
+        [HttpPut("{id}/cancel")]
+        public async Task<IActionResult> CancelSupplyAsync(int id)
+        {
+            await _suppliesService.CancelSupplyAsync(id);
+
+            return Ok();
+        }
     }
 }

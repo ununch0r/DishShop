@@ -90,6 +90,16 @@ namespace DS.Services.Services
             await _dishShopContext.SaveChangesAsync();
         }
 
+        public async Task CancelSupplyAsync(int id)
+        {
+            var supplyToBeCanceled = await _dishShopContext.Supplies
+                .SingleOrDefaultAsync(supply => supply.Id == id);
+
+            supplyToBeCanceled.StatusId = 3;
+
+            await _dishShopContext.SaveChangesAsync();
+        }
+
         private void IsSupplyStatusInProgress(Supply supply)
         {
             if (supply.StatusId != 1)

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Supply } from 'src/app/models/supply.model';
+import { SupplyService } from '../../http-services/supply.service';
 
 @Component({
   selector: 'app-supply-item',
@@ -10,7 +12,11 @@ export class SupplyItemComponent implements OnInit {
   @Input() supply : Supply
   @Input() index : number
 
-  constructor() { }
+  constructor(
+    private suppliesService: SupplyService,
+    private router : Router,
+    private route : ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
   }
@@ -23,5 +29,9 @@ export class SupplyItemComponent implements OnInit {
     } else if (this.supply.status.name === 'Canceled'){
       return '#FFA390';
     }
+  }
+
+  onCancel(){
+    this.suppliesService.cancelSupply(this.supply.id);
   }
 }

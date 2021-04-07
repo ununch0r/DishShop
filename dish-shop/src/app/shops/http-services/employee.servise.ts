@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ShopNestedEmployee } from '../../models/shop-nested-models/shop-nested-employee.model';
 import { Observable, Subscription } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ShopsStateService } from '../shops-state.service';
 import { NotificationService } from 'src/app/notification.service';
+import { Position } from 'src/app/models/position.model';
 
 @Injectable()
 export class EmployeeService{
@@ -58,5 +60,25 @@ export class EmployeeService{
                 ));
             }
         ));
+    }
+
+    getAllPositions(): Observable<Position[]>{
+        const endpoint = this.endpoint  + '/positions'
+        const headers = this.headers.append('Access-Control-Allow-Methods', 'GET')
+
+        return this.http.get<Position[]>(endpoint, {headers: headers});
+    }
+
+    addEmployee(body){
+        const headers = this.headers.append('Access-Control-Allow-Methods', 'POST')
+
+        return this.http.post<ShopNestedEmployee>(this.endpoint,body,{headers: headers})
+        .pipe (flatMap(() => this.shopsService.fetchShops()))
+        .subscribe(
+            data => {
+                this.notifyService.showSuccess("Employee was added", "Successfully added!");
+            },
+            error => this.notifyService.showError(error, "Error occured(")
+        )
     }
 }

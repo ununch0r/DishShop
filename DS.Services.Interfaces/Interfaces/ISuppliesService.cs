@@ -9,5 +9,6 @@ namespace DS.Services.Interfaces.Interfaces
         Task<IEnumerable<SupplyDTO>> GetSuppliesAsync();
         Task<SupplyDTO> CreateSupplyAsync(CreateSupplyDTO createSupplyDTO);
         Task ReceiveSupplyAsync(int id);
+        Task CancelSupplyAsync(int id);
     }
 }

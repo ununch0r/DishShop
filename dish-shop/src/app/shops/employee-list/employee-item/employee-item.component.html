@@ -4,11 +4,11 @@
         <div class="d-flex justify-content-between">
             <div>
                 <h6 class="font-weight-bold">Name: </h6>
-                <h6 class="text-muted">{{employee.firstName}}</h6>
+                <h6 class="text-muted">{{employee.firstName | truncate:[10, '...']}}</h6>
             </div>
             <div>
                 <h6 class="font-weight-bold">Last name: </h6>
-                <h6 class="text-muted">{{employee.lastName}}</h6>
+                <h6 class="text-muted">{{employee.lastName | truncate:[15, '...']}}</h6>
             </div>
             <div>
                 <h6 class="font-weight-bold">Phone: </h6>
@@ -16,7 +16,7 @@
             </div>
             <div>
                 <h6 class="font-weight-bold">Email: </h6>
-                <h6 class="text-muted">{{employee.email}}</h6>
+                <h6 class="text-muted">{{employee.email| truncate:[20, '...'] }}</h6>
             </div>
             <div>
                 <h6 class="font-weight-bold">Position: </h6>

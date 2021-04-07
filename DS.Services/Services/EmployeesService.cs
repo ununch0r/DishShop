@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DS.Services.DTO.DTOs.PositionDTOs;
 
 namespace DS.Services.Services
 {
@@ -50,6 +51,7 @@ namespace DS.Services.Services
         public async Task<EmployeeDTO> CreateEmployeeAsync(CreateEmployeeDTO createEmployeeDTO)
         {
             var employeeEntity = _mapper.Map<Employee>(createEmployeeDTO);
+            employeeEntity.IsFired = false;
 
             await _dishShopContext.AddAsync(employeeEntity);
             await _dishShopContext.SaveChangesAsync();
@@ -85,6 +87,15 @@ namespace DS.Services.Services
             employeeToBeFired.IsFired = true;
 
             await _dishShopContext.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<PositionDTO>> GetAllPositionsAsync()
+        {
+            var positions = await _dishShopContext.Positions.ToListAsync();
+
+            var positionDTOs = _mapper.Map<IEnumerable<PositionDTO>>(positions);
+
+            return positionDTOs;
         }
     }
 }

@@ -44,6 +44,9 @@ import { SupplyListComponent } from './shops/supply-list/supply-list.component';
 import { SupplyItemComponent } from './shops/supply-list/supply-item/supply-item.component';
 import { AvailabilityListComponent } from './shops/availability-list/availability-list.component';
 import { AvailabilityItemComponent } from './shops/availability-list/availability-item/availability-item.component';
+import { EmployeeEditComponent } from './shops/employee-edit/employee-edit.component';
+import { SupplyService } from './shops/http-services/supply.service'
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -67,6 +70,8 @@ import { AvailabilityItemComponent } from './shops/availability-list/availabilit
     SupplyItemComponent,
     AvailabilityListComponent,
     AvailabilityItemComponent,
+    EmployeeEditComponent,
+    TruncatePipe
   ],
   imports: [
     AppRoutingModule,
@@ -95,7 +100,8 @@ import { AvailabilityItemComponent } from './shops/availability-list/availabilit
     ShopService,
     ShopsStateService,
     ShopsResolverService,
-    EmployeeService
+    EmployeeService,
+    SupplyService
     ],
   bootstrap: [AppComponent],
   entryComponents: [ ConfirmationDialogComponent ]
