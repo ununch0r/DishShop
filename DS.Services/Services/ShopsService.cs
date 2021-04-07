@@ -25,7 +25,7 @@ namespace DS.Services.Services
         public async Task<IEnumerable<ShopDTO>> GetShopsAsync()
         {
             var shopEntities = await _dishShopContext.Shops
-                .Include(shop => shop.Employees)
+                .Include(shop => shop.Employees.Where(employee => employee.IsFired == false))
                 .ThenInclude(employee => employee.Position)
                 .Include(shop => shop.Supplies)
                     .ThenInclude(supply => supply.Status)

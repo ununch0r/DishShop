@@ -55,5 +55,13 @@ namespace DS.API.Controllers
 
             return Ok(employeeViewModels);
         }
+
+        [HttpPost("{id}")]
+        public async Task<IActionResult> PromoteEmployeeByIdAsync(int id)
+        {
+            await _employeesService.PromoteEmployeeByIdAsync(id);
+
+            return Ok();
+        }
     }
 }

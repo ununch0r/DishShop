@@ -9,5 +9,6 @@ namespace DS.Services.Interfaces.Interfaces
         Task<IEnumerable<EmployeeDTO>> GetEmployeesAsync();
         Task<IEnumerable<EmployeeDTO>> GetEmployeesByShopIdAsync(int id);
         Task<EmployeeDTO> CreateEmployeeAsync(CreateEmployeeDTO createEmployeeDTO);
+        Task PromoteEmployeeByIdAsync(int id);
     }
 }

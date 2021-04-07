@@ -37,6 +37,7 @@ import { ShopItemComponent } from './shops/shop-list/shop-item/shop-item.compone
 import { ShopStartComponent } from './shops/shop-start/shop-start.component';
 import { ShopDetailComponent } from './shops/shop-detail/shop-detail.component';
 import { ShopsResolverService } from './shops/resolvers/shops-resolver.service';
+import { EmployeeService } from './shops/http-services/employee.servise';
 import { EmployeeListComponent } from './shops/employee-list/employee-list.component';
 import { EmployeeItemComponent } from './shops/employee-list/employee-item/employee-item.component';
 import { SupplyListComponent } from './shops/supply-list/supply-list.component';
@@ -93,7 +94,8 @@ import { AvailabilityItemComponent } from './shops/availability-list/availabilit
     ConfirmationDialogService,
     ShopService,
     ShopsStateService,
-    ShopsResolverService
+    ShopsResolverService,
+    EmployeeService
     ],
   bootstrap: [AppComponent],
   entryComponents: [ ConfirmationDialogComponent ]

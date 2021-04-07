@@ -22,8 +22,7 @@ export class ShopListComponent implements OnInit, OnDestroy {
     this.shops = this.shopService.getShops();
     this.subscription = this.shopService.shopsCollectionChanged.subscribe(
         shops => {
-          this.shops = shops
-          console.log(this.shops);
+          this.shops = shops;
         }
       );
   }

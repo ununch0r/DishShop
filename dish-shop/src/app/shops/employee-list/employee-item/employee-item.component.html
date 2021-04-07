@@ -23,7 +23,11 @@
                 <h6 class="text-muted">{{employee.position.name}}</h6>
             </div>
             <div class="d-flex flex-column justity-content-center" *ngIf="employee.position.name ==='Worker'">
-                <button  class="btn btn-success btn-center" style="margin-bottom: 2px;">Promote</button>
+                <button  class="btn btn-success btn-center" 
+                         style="margin-bottom: 2px;"
+                         (click)="onPromote()">
+                         Promote
+                </button>
                 <button class="btn btn-danger btn-center">Fire</button>
             </div>
         </div>

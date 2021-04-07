@@ -26,6 +26,7 @@ namespace DS.Services.Services
             var employeeEntities = await _dishShopContext.Employees
                 .Include(employee => employee.Position)
                 .Include(employee => employee.Shop)
+                .Where(employee => employee.IsFired == false)
                 .AsNoTracking()
                 .ToListAsync();
 
@@ -39,7 +40,7 @@ namespace DS.Services.Services
                 .Include(employee => employee.Position)
                 .Include(employee => employee.Shop)
                 .AsNoTracking()
-                .Where(employee => employee.ShopId == id)
+                .Where(employee => employee.ShopId == id && employee.IsFired == false)
                 .ToListAsync();
 
             var employeeDTOs = _mapper.Map<IEnumerable<EmployeeDTO>>(employeeEntities);
@@ -61,6 +62,20 @@ namespace DS.Services.Services
 
             var employeeDTO = _mapper.Map<EmployeeDTO>(createdEmployeeEntity);
             return employeeDTO;
+        }
+
+        public async Task PromoteEmployeeByIdAsync(int id)
+        {
+            var employeeToBePromoted = await _dishShopContext.Employees
+                .SingleOrDefaultAsync(employee => employee.Id == id);
+
+            var manager = await _dishShopContext.Employees
+                .SingleOrDefaultAsync(employee => employee.Position.Id == 2 && employee.ShopId == employeeToBePromoted.ShopId);
+
+            manager.PositionId = 1;
+            employeeToBePromoted.PositionId = 2;
+
+            await _dishShopContext.SaveChangesAsync();
         }
     }
 }

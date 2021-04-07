@@ -158,6 +158,9 @@ namespace DS.Infrastructure.Context
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.IsFired)
+                    .HasDefaultValue(false);
+
                 entity.HasOne(d => d.Position)
                     .WithMany(p => p.Employees)
                     .HasForeignKey(d => d.PositionId)

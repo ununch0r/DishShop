@@ -19,6 +19,8 @@ namespace DS.Domain.Entities.Entities
         public string PasswordHash { get; set; }
         public int PositionId { get; set; }
         public int ShopId { get; set; }
+        public bool? IsFired { get; set; }
+
 
         public virtual Position Position { get; set; }
         public virtual Shop Shop { get; set; }
