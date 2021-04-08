@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row justify-content-around">
-        <div class="col-lg-6 manager-info rounded">
+        <div class="col-lg-6 manager-info rounded" *ngIf="shop.manager !== null">
             <h2 class="custom-header">Manager info:</h2>
             <div class="card">
                 <ul class="list-group list-group-flush">
@@ -42,8 +42,11 @@
               </ul>
             </div>
             <div class="btn-details-container">
-              <button class="btn btn-success btn-details" (click)="showEmployees()">
+              <button class="btn btn-success btn-details" (click)="showEmployees()" *ngIf="shop.employees.length > 0">
                 Show details
+              </button>
+              <button class="btn btn-success btn-details" (click)="createEmployee()" *ngIf="shop.employees.length === 0">
+                Create employee
               </button>
             </div>
         </div>
@@ -51,7 +54,7 @@
     <div class="row justify-content-around" style="margin-top: 2vh;">
         <div class="col-lg-6 availabilities-info rounded">
           <h2 class="custom-header">Availabilities:</h2>
-          <div class=" scrollable-list">
+          <div class=" scrollable-list" *ngIf="shop.shopsAvailabilities.length > 0">
             <ul class="list-group" *ngFor="let availability of shop.shopsAvailabilities">
               <li class="list-group-item d-flex justify-content-between align-items-center info-item">
                 <strong>{{availability.product.name}}</strong>
@@ -60,9 +63,12 @@
             </ul>
           </div>
           <div class="btn-details-container">
-            <button class="btn btn-success btn-details" (click)="showAvailabilities()">
+            <button class="btn btn-success btn-details" (click)="showAvailabilities()" *ngIf="shop.shopsAvailabilities.length > 0">
               Show details
             </button>
+          </div>
+          <div *ngIf="shop.shopsAvailabilities.length === 0">
+            There aren't any availabilities!
           </div>
         </div>
         <div class="col-lg-5 supply-info rounded">
@@ -77,8 +83,11 @@
               </ul>
             </div>
             <div class="btn-details-container">
-              <button class="btn btn-success btn-details" (click)="showSupplies()">
+              <button class="btn btn-success btn-details" (click)="showSupplies()" *ngIf="shop.supplies.length > 0">
                 Show details
+              </button>
+              <button class="btn btn-success btn-details" (click)="createSupply()" *ngIf="shop.supplies.length === 0">
+                Create supply
               </button>
           </div>
         </div>

@@ -67,6 +67,5 @@ export class EmployeeEditComponent implements OnInit {
   onSubmit(){
     this.employeeService.addEmployee(this.employeeForm.value);
     this.router.navigate(['../'], {relativeTo: this.route})
-    console.log('after submit');
   }
 }

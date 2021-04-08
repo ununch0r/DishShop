@@ -40,6 +40,7 @@ namespace DS.Services.Services
         public async Task<IEnumerable<ProviderDTO>> GetProvidersAsync()
         {
             var providers = await _dishShopContext.Providers
+                .Include(provider => provider.City)
                 .Include(provider => provider.Contracts)
                 .ThenInclude(contract => contract.ContractsContents)
                 .ThenInclude(contractContent => contractContent.Product)

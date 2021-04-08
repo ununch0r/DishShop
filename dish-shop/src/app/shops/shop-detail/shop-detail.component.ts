@@ -69,4 +69,12 @@ export class ShopDetailComponent implements OnInit {
   showAvailabilities(){
     this.router.navigate(['availabilities'], {relativeTo: this.activatedRoute});
   }
+
+  createSupply(){
+    this.router.navigate(['supplies', 'new'], {relativeTo: this.activatedRoute});
+  }
+
+  createEmployee(){
+    this.router.navigate(['employees', 'new'], {relativeTo: this.activatedRoute});
+  }
 }

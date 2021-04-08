@@ -58,7 +58,10 @@ namespace DS.Services.Services
                 var manager = await _dishShopContext.Employees
                     .SingleOrDefaultAsync(employee => employee.Position.Id == 2 && employee.ShopId == createEmployeeDTO.ShopId);
 
-                manager.PositionId = 1;
+                if (manager != null)
+                {
+                    manager.PositionId = 1;
+                }
             }
 
             await _dishShopContext.AddAsync(employeeEntity);

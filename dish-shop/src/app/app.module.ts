@@ -46,6 +46,9 @@ import { AvailabilityListComponent } from './shops/availability-list/availabilit
 import { AvailabilityItemComponent } from './shops/availability-list/availability-item/availability-item.component';
 import { EmployeeEditComponent } from './shops/employee-edit/employee-edit.component';
 import { SupplyService } from './shops/http-services/supply.service'
+import { ProviderService } from './providers/http-services/provider.service'
+import { ProvidersResolverService } from './providers/resolvers/providers-resolver.service'
+import { ProvidersStateService } from './providers/providers-state.service'
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { ShopEditComponent } from './shops/shop-edit/shop-edit.component';
 import { UtilitiesService } from './http-services/utilities.service';
@@ -55,6 +58,7 @@ import { ProviderEditComponent } from './providers/provider-edit/provider-edit.c
 import { ContractListComponent } from './providers/contract-list/contract-list.component';
 import { ContractItemComponent } from './providers/contract-list/contract-item/contract-item.component';
 import { ProviderItemComponent } from './providers/provider-list/provider-item/provider-item.component';
+import { ProvidersStartComponent } from './providers/providers-start/providers-start.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +90,8 @@ import { ProviderItemComponent } from './providers/provider-list/provider-item/p
     ProviderEditComponent,
     ContractListComponent,
     ContractItemComponent,
-    ProviderItemComponent
+    ProviderItemComponent,
+    ProvidersStartComponent
   ],
   imports: [
     AppRoutingModule,
@@ -117,7 +122,10 @@ import { ProviderItemComponent } from './providers/provider-list/provider-item/p
     ShopsResolverService,
     EmployeeService,
     UtilitiesService,
-    SupplyService
+    SupplyService,
+    ProviderService,
+    ProvidersStateService,
+    ProvidersResolverService
     ],
   bootstrap: [AppComponent],
   entryComponents: [ ConfirmationDialogComponent ]

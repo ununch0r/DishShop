@@ -15,6 +15,9 @@ import { SupplyListComponent } from './shops/supply-list/supply-list.component';
 import { AvailabilityListComponent } from './shops/availability-list/availability-list.component';
 import { EmployeeEditComponent } from './shops/employee-edit/employee-edit.component';
 import { ShopEditComponent } from './shops/shop-edit/shop-edit.component';
+import { ProvidersComponent } from './providers/providers.component';
+import { ProvidersResolverService } from './providers/resolvers/providers-resolver.service';
+import { ProvidersStartComponent } from './providers/providers-start/providers-start.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/products', pathMatch: 'full'},
@@ -33,6 +36,9 @@ const appRoutes: Routes = [
         {path: ':id/supplies', component: SupplyListComponent, resolve: [ShopsResolverService]},
         {path: ':id/availabilities', component: AvailabilityListComponent, resolve: [ShopsResolverService]}
     ]},
+    { path: 'providers', component: ProvidersComponent,resolve:[ProvidersResolverService], children:[
+        {path: '', component: ProvidersStartComponent},
+    ]}
 ]
 
 @NgModule({

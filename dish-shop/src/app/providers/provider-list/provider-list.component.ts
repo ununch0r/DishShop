@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Provider } from 'src/app/models/provider.model';
+import { ProvidersStateService } from '../providers-state.service';
 
 @Component({
   selector: 'app-provider-list',
@@ -6,10 +9,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./provider-list.component.css']
 })
 export class ProviderListComponent implements OnInit {
+  providers : Provider[]
+  subscription : Subscription
 
-  constructor() { }
+  constructor(private providerService : ProvidersStateService) { }
 
-  ngOnInit(): void {
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
+  ngOnInit(): void {
+    this.providers = this.providerService.getProviders();
+    this.subscription = this.providerService.providersCollectionChanged.subscribe(
+        providers => {
+          this.providers = providers;
+        }
+      );
+  }
 }
