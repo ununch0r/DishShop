@@ -49,6 +49,12 @@ import { SupplyService } from './shops/http-services/supply.service'
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { ShopEditComponent } from './shops/shop-edit/shop-edit.component';
 import { UtilitiesService } from './http-services/utilities.service';
+import { ProvidersComponent } from './providers/providers.component';
+import { ProviderListComponent } from './providers/provider-list/provider-list.component';
+import { ProviderEditComponent } from './providers/provider-edit/provider-edit.component';
+import { ContractListComponent } from './providers/contract-list/contract-list.component';
+import { ContractItemComponent } from './providers/contract-list/contract-item/contract-item.component';
+import { ProviderItemComponent } from './providers/provider-list/provider-item/provider-item.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +80,13 @@ import { UtilitiesService } from './http-services/utilities.service';
     AvailabilityItemComponent,
     EmployeeEditComponent,
     TruncatePipe,
-    ShopEditComponent
+    ShopEditComponent,
+    ProvidersComponent,
+    ProviderListComponent,
+    ProviderEditComponent,
+    ContractListComponent,
+    ContractItemComponent,
+    ProviderItemComponent
   ],
   imports: [
     AppRoutingModule,
