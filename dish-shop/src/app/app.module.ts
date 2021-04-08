@@ -52,6 +52,7 @@ import { ProvidersStateService } from './providers/providers-state.service'
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { ShopEditComponent } from './shops/shop-edit/shop-edit.component';
 import { UtilitiesService } from './http-services/utilities.service';
+import { ContractService } from './providers/http-services/contract.service';
 import { ProvidersComponent } from './providers/providers.component';
 import { ProviderListComponent } from './providers/provider-list/provider-list.component';
 import { ProviderEditComponent } from './providers/provider-edit/provider-edit.component';
@@ -59,6 +60,7 @@ import { ContractListComponent } from './providers/contract-list/contract-list.c
 import { ContractItemComponent } from './providers/contract-list/contract-item/contract-item.component';
 import { ProviderItemComponent } from './providers/provider-list/provider-item/provider-item.component';
 import { ProvidersStartComponent } from './providers/providers-start/providers-start.component';
+import { ContractEditComponent } from './providers/contract-list/contract-edit/contract-edit.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +93,8 @@ import { ProvidersStartComponent } from './providers/providers-start/providers-s
     ContractListComponent,
     ContractItemComponent,
     ProviderItemComponent,
-    ProvidersStartComponent
+    ProvidersStartComponent,
+    ContractEditComponent
   ],
   imports: [
     AppRoutingModule,
@@ -125,7 +128,8 @@ import { ProvidersStartComponent } from './providers/providers-start/providers-s
     SupplyService,
     ProviderService,
     ProvidersStateService,
-    ProvidersResolverService
+    ProvidersResolverService,
+    ContractService
     ],
   bootstrap: [AppComponent],
   entryComponents: [ ConfirmationDialogComponent ]
