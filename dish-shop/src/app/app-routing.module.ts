@@ -18,6 +18,7 @@ import { ShopEditComponent } from './shops/shop-edit/shop-edit.component';
 import { ProvidersComponent } from './providers/providers.component';
 import { ProvidersResolverService } from './providers/resolvers/providers-resolver.service';
 import { ProvidersStartComponent } from './providers/providers-start/providers-start.component';
+import { ContractListComponent } from './providers/contract-list/contract-list.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/products', pathMatch: 'full'},
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
     ]},
     { path: 'providers', component: ProvidersComponent,resolve:[ProvidersResolverService], children:[
         {path: '', component: ProvidersStartComponent},
+        {path: ':id/contracts', component: ContractListComponent, resolve: [ProvidersResolverService]},
     ]}
 ]
 

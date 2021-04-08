@@ -4,6 +4,7 @@ import { Provider } from '../models/provider.model';
 import { ProviderService } from './http-services/provider.service';
 import {tap} from 'rxjs/operators'
 import { NotificationService } from '../notification.service';
+import { Contract } from '../models/contract.model';
 
 @Injectable()
 export class ProvidersStateService{
@@ -25,6 +26,10 @@ export class ProvidersStateService{
                 this.providersCollectionChanged.next(this.providers.slice());
             }
         ));
+    }
+
+    getContractsByProviderId(id: number) : Contract[]{
+        return this.providers.find(provider => provider.id === id).contracts;
     }
 
     reloadProviders(providers : Provider[]){

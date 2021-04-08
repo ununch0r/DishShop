@@ -1,1 +1,26 @@
-<p>contract-item works!</p>
+<a  routerLinkActive="selected"
+    class="list-group-item clearfix list-group-item-action rounded">
+    <div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <h6 class="font-weight-bold">Id: </h6>
+                <h6 class="text-muted">{{contract.id}}</h6>
+            </div>
+            <div>
+                <h6 class="font-weight-bold">Start date: </h6>
+                <h6 class="text-muted">{{contract.startDate | date:'dd/MM/yyyy'}}</h6>
+            </div>
+            <div>
+                <h6 class="font-weight-bold">End date: </h6>
+                <h6 class="text-muted">{{contract.endDate | date:'dd/MM/yyyy'}}</h6>
+            </div>
+            <div class="d-flex flex-column justity-content-center">
+                <button  class="btn btn-success btn-center" 
+                         style="margin-bottom: 2px;"
+                         (click)="onShowContent()">
+                         Show content
+                </button>
+            </div>
+        </div>
+    </div>
+</a>
