@@ -14,6 +14,7 @@ import { EmployeeListComponent } from './shops/employee-list/employee-list.compo
 import { SupplyListComponent } from './shops/supply-list/supply-list.component';
 import { AvailabilityListComponent } from './shops/availability-list/availability-list.component';
 import { EmployeeEditComponent } from './shops/employee-edit/employee-edit.component';
+import { ShopEditComponent } from './shops/shop-edit/shop-edit.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/products', pathMatch: 'full'},
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
     ]},
     { path: 'shops', component: ShopsComponent,resolve:[ShopsResolverService], children:[
         {path: '', component: ShopStartComponent},
+        {path: 'new', component: ShopEditComponent, resolve: [ShopsResolverService]},
         {path: ':id', component: ShopDetailComponent, resolve: [ShopsResolverService]},
         {path: ':id/employees', component: EmployeeListComponent, resolve: [ShopsResolverService]},
         {path: ':id/employees/new', component: EmployeeEditComponent, resolve: [ShopsResolverService]},

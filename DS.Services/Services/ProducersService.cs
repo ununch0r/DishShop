@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using DS.Infrastructure.Context;
 using DS.Services.DTO.DTOs.ProducerDTOs;
-using DS.Services.DTO.DTOs.ProducerDTOs;
 using DS.Services.Interfaces.Interfaces;
 using Microsoft.EntityFrameworkCore;
 

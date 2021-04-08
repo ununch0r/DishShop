@@ -53,6 +53,14 @@ namespace DS.Services.Services
             var employeeEntity = _mapper.Map<Employee>(createEmployeeDTO);
             employeeEntity.IsFired = false;
 
+            if (createEmployeeDTO.PositionId == 2)
+            {
+                var manager = await _dishShopContext.Employees
+                    .SingleOrDefaultAsync(employee => employee.Position.Id == 2 && employee.ShopId == createEmployeeDTO.ShopId);
+
+                manager.PositionId = 1;
+            }
+
             await _dishShopContext.AddAsync(employeeEntity);
             await _dishShopContext.SaveChangesAsync();
 

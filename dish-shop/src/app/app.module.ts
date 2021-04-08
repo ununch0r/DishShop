@@ -47,6 +47,8 @@ import { AvailabilityItemComponent } from './shops/availability-list/availabilit
 import { EmployeeEditComponent } from './shops/employee-edit/employee-edit.component';
 import { SupplyService } from './shops/http-services/supply.service'
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { ShopEditComponent } from './shops/shop-edit/shop-edit.component';
+import { UtilitiesService } from './http-services/utilities.service';
 
 @NgModule({
   declarations: [
@@ -71,7 +73,8 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     AvailabilityListComponent,
     AvailabilityItemComponent,
     EmployeeEditComponent,
-    TruncatePipe
+    TruncatePipe,
+    ShopEditComponent
   ],
   imports: [
     AppRoutingModule,
@@ -101,6 +104,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     ShopsStateService,
     ShopsResolverService,
     EmployeeService,
+    UtilitiesService,
     SupplyService
     ],
   bootstrap: [AppComponent],

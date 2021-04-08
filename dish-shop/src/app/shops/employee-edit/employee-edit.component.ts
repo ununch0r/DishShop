@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import { Position } from 'src/app/models/position.model';
 import { EmployeeService } from '../http-services/employee.servise';
 import { ShopsStateService } from '../shops-state.service';
@@ -40,7 +41,8 @@ export class EmployeeEditComponent implements OnInit {
     )
 
     this.subscriptions.push(
-      this.employeeService.getAllPositions().subscribe(
+      this.employeeService.getAllPositions()
+      .subscribe(
         positions => this.positions = positions
       )
     );
@@ -65,6 +67,6 @@ export class EmployeeEditComponent implements OnInit {
   onSubmit(){
     this.employeeService.addEmployee(this.employeeForm.value);
     this.router.navigate(['../'], {relativeTo: this.route})
-    this.shopsService.fetchShops();
+    console.log('after submit');
   }
 }
