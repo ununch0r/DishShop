@@ -21,4 +21,8 @@ export class ContractItemComponent implements OnInit {
 
   onShowContent(){
   }
+
+  onCreateSupply(){
+    
+  }
 }

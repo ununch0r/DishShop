@@ -28,7 +28,35 @@
                 </div>
             </div>
             <hr>
-            <div class="row justify-content-end">
+            <div class="row">
+                <div class="col-lg-12" formArrayName="contractsContents">
+                    <div class="row"
+                        *ngFor="let content of contractForm.get('contractsContents')['controls']; let i = index"
+                        [formGroupName]="i"
+                        style="margin-top: 10px;">
+                        <div class="col-lg-5" >
+                            <input 
+                            formControlName = "productId"
+                            type="number" 
+                            class="form-control">
+                        </div>
+                        <div class="col-lg-5" >
+                            <input 
+                            formControlName = "pricePerUnit"
+                            type="number" 
+                            class="form-control">
+                        </div>
+                        <div class="col-lg-2">
+                            <button type="button" style="width: 100%;" class="btn btn-danger" (click)="onDeleteContent(i)">X</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-8">
+                    <button class="btn btn-success" type="button" (click)="onAdd()">Add product</button>
+                </div>
                 <div class="col-lg-2">
                     <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
                 </div>

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { ContractService } from '../../http-services/contract.service';
 import { ProvidersStateService } from '../../providers-state.service';
 
@@ -41,8 +42,22 @@ export class ContractEditComponent implements OnInit {
     this.contractForm = new FormGroup({
       'startDate' : new FormControl(null, [Validators.required]),
       'endDate' : new FormControl(null, [Validators.required]),
-      'providerId' : new FormControl(this.id)
+      'providerId' : new FormControl(this.id),
+      'contractsContents' : new FormArray([])
     });
+  }
+
+  onAdd(){
+    (<FormArray>this.contractForm.get('contractsContents')).push(
+      new FormGroup({
+        'productId': new FormControl(null, [Validators.pattern(/^[1-9]+[0-9]*$/),Validators.required]),
+        'pricePerUnit': new FormControl(null, [Validators.pattern(/^[1-9]+[0-9]*$/),Validators.required])
+      })
+    )
+  }
+
+  onDeleteContent(index : number){
+    (<FormArray>this.contractForm.get('сontractsContents')).removeAt(index);
   }
 
   onCancel(){
@@ -50,6 +65,7 @@ export class ContractEditComponent implements OnInit {
   }
 
   onSubmit(){
+    console.log(this.contractForm.value);
     this.contractsSerive.addContract(this.contractForm.value);
     this.router.navigate(['../'], {relativeTo: this.route})
   }

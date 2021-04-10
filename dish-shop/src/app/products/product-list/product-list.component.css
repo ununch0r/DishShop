@@ -17,6 +17,10 @@
     width: 50px;
 }
 
+app-product-item {
+    direction: ltr;
+}
+
 .product-list{
     padding: 5px;
     direction: rtl;
