@@ -62,6 +62,9 @@ import { ProviderItemComponent } from './providers/provider-list/provider-item/p
 import { ProvidersStartComponent } from './providers/providers-start/providers-start.component';
 import { ContractEditComponent } from './providers/contract-list/contract-edit/contract-edit.component';
 import { ContractDetailComponent } from './providers/contract-detail/contract-detail.component';
+import { SuppliesComponent } from './supplies/supplies.component';
+import { SupplyDetailComponent } from './supplies/supply-detail/supply-detail.component';
+import { SupplyEditComponent } from './supplies/supply-edit/supply-edit.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +99,10 @@ import { ContractDetailComponent } from './providers/contract-detail/contract-de
     ProviderItemComponent,
     ProvidersStartComponent,
     ContractEditComponent,
-    ContractDetailComponent
+    ContractDetailComponent,
+    SuppliesComponent,
+    SupplyDetailComponent,
+    SupplyEditComponent
   ],
   imports: [
     AppRoutingModule,
