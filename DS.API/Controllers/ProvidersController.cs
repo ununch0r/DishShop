@@ -45,5 +45,15 @@ namespace DS.API.Controllers
 
             return Ok(providerViewModels);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetProviderByIdAsync(int id)
+        {
+            var providerDTO = await _providersService.GetProviderByIdAsync(id);
+
+            var providerViewModel = _mapper.Map<ProviderViewModel>(providerDTO);
+
+            return Ok(providerViewModel);
+        }
     }
 }

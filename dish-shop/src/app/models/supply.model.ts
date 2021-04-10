@@ -2,6 +2,7 @@ import { SupplyStatus } from './supply-status.model'
 import { ShopNestedEmployee } from './shop-nested-models/shop-nested-employee.model'
 import { SupplyContent } from './supply-content.model'
 import { Contract } from './contract.model'
+import { Shop } from './shop.model'
 
 export class Supply{
     id : number
@@ -11,5 +12,6 @@ export class Supply{
     totalPrice : number
     employee : ShopNestedEmployee
     contract : Contract
+    shop : Shop
     suppliesContents : SupplyContent[]
 }

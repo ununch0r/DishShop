@@ -2,7 +2,7 @@
     [ngStyle] = "{'background-color' : getBackgroundColor()}"
     class="list-group-item clearfix list-group-item-action rounded">
     <div>
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between" (click)="showDetails()">
             <div>
                 <h6 class="font-weight-bold">ID: </h6>
                 <h6 class="text-muted">{{supply.id}}</h6>

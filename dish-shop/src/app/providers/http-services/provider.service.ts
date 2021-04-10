@@ -21,6 +21,18 @@ export class ProviderService{
         return this.http.get<Provider[]>(this.endpoint, {headers: headers});
     }
 
+    getProviderById(id : number): Observable<Provider>{
+        const endpoint = this.endpoint + '/' + id; 
+
+        const headers = new HttpHeaders()
+        .append('Content-Type', 'application/json')
+        .append('Access-Control-Allow-Headers', 'Content-Type')
+        .append('Access-Control-Allow-Methods', 'GET')
+        .append('Access-Control-Allow-Origin', '*');
+
+        return this.http.get<Provider>(endpoint, {headers: headers});
+    }
+
     createProvider(body) : Observable<Provider>{
         const headers = new HttpHeaders()
         .append('Content-Type', 'application/json')

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { SupplyService } from 'src/app/http-services/supply.service';
 import { Supply } from 'src/app/models/supply.model';
 import { SuppliesStateService } from '../supplies-state-service';
 
@@ -47,5 +48,13 @@ export class SupplyDetailComponent implements OnInit {
     } else if (this.supply.status.name === 'Canceled'){
       return '#FFA390';
     }
+  }
+
+  onCancel(){
+    this.supplyService.cancelSupply(this.supply.id);
+  }
+
+  onReceive(){
+    this.supplyService.receiveSupply(this.supply.id);
   }
 }

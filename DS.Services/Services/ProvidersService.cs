@@ -50,5 +50,19 @@ namespace DS.Services.Services
             var providerDTOs = _mapper.Map<IEnumerable<ProviderDTO>>(providers);
             return providerDTOs;
         }
+
+        public async Task<ProviderDTO> GetProviderByIdAsync(int id)
+        {
+            var provider = await _dishShopContext.Providers
+                .Include(provider => provider.Contracts)
+                .ThenInclude(contract => contract.ContractsContents)
+                .ThenInclude(contractContent => contractContent.Product)
+                .AsNoTracking()
+                .SingleOrDefaultAsync(provider => provider.Id == id);
+
+
+            var providerDTO = _mapper.Map<ProviderDTO>(provider);
+            return providerDTO;
+        }
     }
 }

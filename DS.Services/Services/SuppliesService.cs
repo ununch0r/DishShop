@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DS.Services.DTO.DTOs.SupplyContentDTOs;
 
 namespace DS.Services.Services
 {
@@ -43,6 +44,9 @@ namespace DS.Services.Services
         {
             var supplyEntity = _mapper.Map<Supply>(createSupplyDTO);
             supplyEntity.StatusId = 1;
+            supplyEntity.DateCreated = DateTime.Now;
+            supplyEntity.TotalPrice =
+                await CalculateTotalPriceAsync(supplyEntity.ContractId, createSupplyDTO.SuppliesContents);
 
             await _dishShopContext.AddAsync(supplyEntity);
             await _dishShopContext.SaveChangesAsync();
@@ -62,6 +66,19 @@ namespace DS.Services.Services
             return supplyDTO;
         }
 
+        private async Task<decimal> CalculateTotalPriceAsync(int contractId, IEnumerable<CreateSupplyContentDTO> supplyContent)
+        {
+            var contract = await _dishShopContext.Contracts
+                .Include(contract => contract.ContractsContents)
+                .SingleOrDefaultAsync(contract => contract.Id == contractId);
+
+            var sum = supplyContent.Sum(supplyContentDto => contract.ContractsContents
+                .First(contractContent => contractContent.ProductId == supplyContentDto.ProductId)
+                .PricePerUnit * supplyContentDto.Count);
+
+            return sum;
+        }
+
         public async Task ReceiveSupplyAsync(int id)
         {
             var supplyEntity = await _dishShopContext.Supplies
@@ -77,7 +94,6 @@ namespace DS.Services.Services
             supplyEntity.StatusId = 2;
             supplyEntity.DateReceived = DateTime.Now;
 
-            // add logic (existing values should be aggregated)
             var shopAvailabilities = supplyEntity.SuppliesContents.Select(content => 
                 new ShopsAvailability
                 {
@@ -87,9 +103,28 @@ namespace DS.Services.Services
                 })
                 .ToList();
 
-            await _dishShopContext.AddRangeAsync(shopAvailabilities);
+            await ApplyAvailabilitiesAsync(shopAvailabilities);
 
             await _dishShopContext.SaveChangesAsync();
+        }
+
+        private async Task ApplyAvailabilitiesAsync(IEnumerable<ShopsAvailability> availabilities)
+        {
+            foreach (var availability in availabilities)
+            {
+                var containedAvailability = await _dishShopContext.ShopsAvailabilities.SingleOrDefaultAsync(shopAvailability =>
+                    shopAvailability.ProductId == availability.ProductId &&
+                    shopAvailability.ShopId == availability.ShopId);
+
+                if (containedAvailability != null)
+                {
+                    containedAvailability.Amount += availability.Amount;
+                }
+                else
+                {
+                    await _dishShopContext.ShopsAvailabilities.AddAsync(availability);
+                }
+            }
         }
 
         public async Task CancelSupplyAsync(int id)

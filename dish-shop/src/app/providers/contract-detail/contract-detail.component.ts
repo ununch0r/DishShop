@@ -45,4 +45,7 @@ export class ContractDetailComponent implements OnInit {
     this.router.navigate(['products', productId]);
   }
 
+  onCreateSupply(){
+    this.router.navigate(['supplies','new']);
+  }
 }

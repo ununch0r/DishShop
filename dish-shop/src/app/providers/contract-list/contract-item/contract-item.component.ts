@@ -18,11 +18,4 @@ export class ContractItemComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  onShowContent(){
-  }
-
-  onCreateSupply(){
-    
-  }
 }

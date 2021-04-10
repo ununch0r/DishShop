@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Supply } from 'src/app/models/supply.model';
+import { SuppliesStateService } from 'src/app/supplies/supplies-state-service';
 import { SupplyService } from '../../../http-services/supply.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class SupplyItemComponent implements OnInit {
   @Input() index : number
 
   constructor(
-    private suppliesService: SupplyService,
+    private suppliesService: SuppliesStateService,
     private router : Router,
     private route : ActivatedRoute
   ) { }
@@ -37,5 +38,9 @@ export class SupplyItemComponent implements OnInit {
 
   onReceive(){
     this.suppliesService.receiveSupply(this.supply.id);
+  }
+
+  showDetails(){
+    this.router.navigate(['supplies', this.index]);
   }
 }

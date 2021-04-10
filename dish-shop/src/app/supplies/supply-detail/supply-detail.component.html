@@ -36,6 +36,12 @@
             <span class="list-group-right">{{supply.employee.firstName}} {{supply.employee.lastName}} </span>
           </div>
         </li>
+        <li class="list-group-item">
+          <div class="list-group-item-fixed">
+            <strong class="list-group-left">Shop:  </strong>
+            <span class="list-group-right">{{supply.shop.streetName}}, {{supply.shop.streetIdentifier}} </span>
+          </div>
+        </li>
       </ul>
     </div>
     <div *ngIf="supply.suppliesContents.length > 0">
@@ -43,7 +49,7 @@
       <div class="card text-center">
         <ul class="list-group list-group-flush characteristics">
           <li class="list-group-item"
-            *ngFor="let suppliesContent of product.suppliesContents">
+            *ngFor="let suppliesContent of supply.suppliesContents">
             <div class="list-group-item-fixed">
               <strong class="list-group-left">{{suppliesContent.product.name}}:  </strong>
               <span class="list-group-right">{{suppliesContent.count}}</span>
@@ -52,5 +58,13 @@
         </ul>
       </div>
     </div>
+  </div>
+  <div class="row justify-content-end" *ngIf="supply.status.id ===1">
+    <button class="btn btn-danger mr-1" (click) = "onCancel()">
+      Cancel
+    </button>
+    <button class="btn btn-success mr-3" (click) = "onReceive()">
+      Receive
+    </button>
   </div>
 

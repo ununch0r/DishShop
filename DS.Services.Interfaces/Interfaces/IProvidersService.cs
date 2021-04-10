@@ -8,5 +8,6 @@ namespace DS.Services.Interfaces.Interfaces
     {
         Task<ProviderDTO> CreateProviderAsync(CreateProviderDTO createProviderDTO);
         Task<IEnumerable<ProviderDTO>> GetProvidersAsync();
+        Task<ProviderDTO> GetProviderByIdAsync(int id);
     }
 }

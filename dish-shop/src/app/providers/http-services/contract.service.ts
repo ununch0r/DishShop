@@ -41,4 +41,16 @@ export class ContractService{
             error => this.notifyService.showError(error, "Error occured(")
         )
     }
+
+    getContractById(id : number): Observable<Contract>{
+        const endpoint = this.endpoint + '/' + id; 
+
+        const headers = new HttpHeaders()
+        .append('Content-Type', 'application/json')
+        .append('Access-Control-Allow-Headers', 'Content-Type')
+        .append('Access-Control-Allow-Methods', 'GET')
+        .append('Access-Control-Allow-Origin', '*');
+
+        return this.http.get<Contract>(endpoint, {headers: headers});
+    }
 }
