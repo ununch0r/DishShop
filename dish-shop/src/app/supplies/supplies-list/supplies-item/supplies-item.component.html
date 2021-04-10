@@ -1,0 +1,24 @@
+<a  routerLinkActive="selected"
+    [ngStyle] = "{'background-color' : getBackgroundColor()}"
+    class="list-group-item clearfix list-group-item-action rounded">
+    <div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <h6 class="font-weight-bold">ID: </h6>
+                <h6 class="text-muted">{{supply.id}}</h6>
+            </div>
+            <div>
+                <h6 class="font-weight-bold">Created: </h6>
+                <h6 class="text-muted">{{supply.dateCreated | date:'dd/MM/yyyy'}}</h6>
+            </div>
+            <div *ngIf="supply.status.name === 'Received'">
+                <h6 class="font-weight-bold">Recieved: </h6>
+                <h6 class="text-muted">{{supply.dateReceived | date:'dd/MM/yyyy'}}</h6>
+            </div>
+            <div>
+                <h6 class="font-weight-bold">Total price: </h6>
+                <h6 class="text-muted">{{supply.totalPrice}}</h6>
+            </div>
+        </div>
+    </div>
+</a>

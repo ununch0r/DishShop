@@ -45,9 +45,10 @@ import { SupplyItemComponent } from './shops/supply-list/supply-item/supply-item
 import { AvailabilityListComponent } from './shops/availability-list/availability-list.component';
 import { AvailabilityItemComponent } from './shops/availability-list/availability-item/availability-item.component';
 import { EmployeeEditComponent } from './shops/employee-edit/employee-edit.component';
-import { SupplyService } from './shops/http-services/supply.service'
+import { SupplyService } from './http-services/supply.service'
 import { ProviderService } from './providers/http-services/provider.service'
 import { ProvidersResolverService } from './providers/resolvers/providers-resolver.service'
+import { SuppliesResolverService } from './supplies/resolvers/supplies-resolver.service'
 import { ProvidersStateService } from './providers/providers-state.service'
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { ShopEditComponent } from './shops/shop-edit/shop-edit.component';
@@ -63,8 +64,12 @@ import { ProvidersStartComponent } from './providers/providers-start/providers-s
 import { ContractEditComponent } from './providers/contract-list/contract-edit/contract-edit.component';
 import { ContractDetailComponent } from './providers/contract-detail/contract-detail.component';
 import { SuppliesComponent } from './supplies/supplies.component';
+import { SuppliesStateService } from './supplies/supplies-state-service';
 import { SupplyDetailComponent } from './supplies/supply-detail/supply-detail.component';
 import { SupplyEditComponent } from './supplies/supply-edit/supply-edit.component';
+import { SuppliesListComponent } from './supplies/supplies-list/supplies-list.component';
+import { SuppliesItemComponent } from './supplies/supplies-list/supplies-item/supplies-item.component';
+import { SuppliesStartComponent } from './supplies/supplies-start/supplies-start.component';
 
 @NgModule({
   declarations: [
@@ -102,7 +107,10 @@ import { SupplyEditComponent } from './supplies/supply-edit/supply-edit.componen
     ContractDetailComponent,
     SuppliesComponent,
     SupplyDetailComponent,
-    SupplyEditComponent
+    SupplyEditComponent,
+    SuppliesListComponent,
+    SuppliesItemComponent,
+    SuppliesStartComponent
   ],
   imports: [
     AppRoutingModule,
@@ -137,7 +145,9 @@ import { SupplyEditComponent } from './supplies/supply-edit/supply-edit.componen
     ProviderService,
     ProvidersStateService,
     ProvidersResolverService,
-    ContractService
+    ContractService,
+    SuppliesStateService,
+    SuppliesResolverService
     ],
   bootstrap: [AppComponent],
   entryComponents: [ ConfirmationDialogComponent ]

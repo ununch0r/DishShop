@@ -22,6 +22,11 @@ import { ContractListComponent } from './providers/contract-list/contract-list.c
 import { ProviderEditComponent } from './providers/provider-edit/provider-edit.component';
 import { ContractEditComponent } from './providers/contract-list/contract-edit/contract-edit.component';
 import { ContractDetailComponent } from './providers/contract-detail/contract-detail.component';
+import { SuppliesComponent } from './supplies/supplies.component';
+import { SuppliesStartComponent } from './supplies/supplies-start/supplies-start.component';
+import { SupplyEditComponent } from './supplies/supply-edit/supply-edit.component';
+import { SupplyDetailComponent } from './supplies/supply-detail/supply-detail.component';
+import { SuppliesResolverService } from './supplies/resolvers/supplies-resolver.service';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/products', pathMatch: 'full'},
@@ -46,6 +51,11 @@ const appRoutes: Routes = [
         {path: ':id/contracts', component: ContractListComponent, resolve: [ProvidersResolverService]},
         {path: ':id/contracts/new', component: ContractEditComponent, resolve: [ProvidersResolverService]},
         {path: ':id/contracts/:contractId', component: ContractDetailComponent, resolve: [ProvidersResolverService]}
+    ]},
+    { path: 'supplies', component: SuppliesComponent,resolve:[SuppliesResolverService], children:[
+        {path: '', component: SuppliesStartComponent},
+        {path: 'new', component: SupplyEditComponent, resolve: [SuppliesResolverService]},
+        {path: ':id', component: SupplyDetailComponent, resolve: [SuppliesResolverService]}
     ]}
 ]
 

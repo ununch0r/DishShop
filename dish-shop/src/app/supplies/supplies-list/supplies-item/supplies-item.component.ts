@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SupplyService } from 'src/app/http-services/supply.service';
 import { Supply } from 'src/app/models/supply.model';
-import { SupplyService } from '../../../http-services/supply.service';
 
 @Component({
-  selector: 'app-supply-item',
-  templateUrl: './supply-item.component.html',
-  styleUrls: ['./supply-item.component.css']
+  selector: 'app-supplies-item',
+  templateUrl: './supplies-item.component.html',
+  styleUrls: ['./supplies-item.component.css']
 })
-export class SupplyItemComponent implements OnInit {
+export class SuppliesItemComponent implements OnInit {
   @Input() supply : Supply
   @Input() index : number
 
@@ -29,13 +29,5 @@ export class SupplyItemComponent implements OnInit {
     } else if (this.supply.status.name === 'Canceled'){
       return '#FFA390';
     }
-  }
-
-  onCancel(){
-    this.suppliesService.cancelSupply(this.supply.id);
-  }
-
-  onReceive(){
-    this.suppliesService.receiveSupply(this.supply.id);
   }
 }
