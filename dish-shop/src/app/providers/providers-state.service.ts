@@ -32,6 +32,11 @@ export class ProvidersStateService{
         return this.providers.find(provider => provider.id === id).contracts;
     }
 
+    getContractByProviderIdAndContractId(providerId : number, contractId : number) : Contract{
+        return this.providers.find(provider => provider.id === providerId)
+                   .contracts.find(contract => contract.id === contractId);
+    }
+
     reloadProviders(providers : Provider[]){
         this.providers = providers;
         this.providersCollectionChanged.next(this.providers.slice());

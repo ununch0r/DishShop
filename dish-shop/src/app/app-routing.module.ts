@@ -21,6 +21,7 @@ import { ProvidersStartComponent } from './providers/providers-start/providers-s
 import { ContractListComponent } from './providers/contract-list/contract-list.component';
 import { ProviderEditComponent } from './providers/provider-edit/provider-edit.component';
 import { ContractEditComponent } from './providers/contract-list/contract-edit/contract-edit.component';
+import { ContractDetailComponent } from './providers/contract-detail/contract-detail.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/products', pathMatch: 'full'},
@@ -43,7 +44,8 @@ const appRoutes: Routes = [
         {path: '', component: ProvidersStartComponent},
         {path: 'new', component: ProviderEditComponent, resolve: [ProvidersResolverService]},
         {path: ':id/contracts', component: ContractListComponent, resolve: [ProvidersResolverService]},
-        {path: ':id/contracts/new', component: ContractEditComponent, resolve: [ProvidersResolverService]}
+        {path: ':id/contracts/new', component: ContractEditComponent, resolve: [ProvidersResolverService]},
+        {path: ':id/contracts/:contractId', component: ContractDetailComponent, resolve: [ProvidersResolverService]}
     ]}
 ]
 

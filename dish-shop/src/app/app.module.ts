@@ -61,6 +61,7 @@ import { ContractItemComponent } from './providers/contract-list/contract-item/c
 import { ProviderItemComponent } from './providers/provider-list/provider-item/provider-item.component';
 import { ProvidersStartComponent } from './providers/providers-start/providers-start.component';
 import { ContractEditComponent } from './providers/contract-list/contract-edit/contract-edit.component';
+import { ContractDetailComponent } from './providers/contract-detail/contract-detail.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { ContractEditComponent } from './providers/contract-list/contract-edit/c
     ContractItemComponent,
     ProviderItemComponent,
     ProvidersStartComponent,
-    ContractEditComponent
+    ContractEditComponent,
+    ContractDetailComponent
   ],
   imports: [
     AppRoutingModule,

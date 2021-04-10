@@ -1,0 +1,36 @@
+<div class="card">
+    <div class="card-header card-title">
+        <h1 style="text-align: center;">Contract #{{contract.id}}</h1>
+    </div>
+    <div class="row justify-content-around mb-3 mt-3">
+        <div>
+            <strong>Start date:</strong>
+            <p>{{contract.startDate | date:'dd/MM/yyyy'}}</p>
+        </div>
+        <div>
+          <strong>End date:</strong>
+          <p>{{contract.endDate | date:'dd/MM/yyyy'}}</p>
+        </div>
+    </div>
+    <div *ngIf="contract.contractsContents.length > 0">
+      <h4 class="card-header card-title" style="text-align: center;">Product & Price list: </h4>
+      <div class="card text-center">
+        <ul class="list-group list-group-flush price-list">
+          <li class="list-group-item selectable"
+            *ngFor="let content of contract.contractsContents">
+            <div class="list-group-item-fixed" (click)="onShowProduct(content.product.id)">
+              <strong class="list-group-left">{{content.product.name}}:  </strong>
+              <span class="list-group-right">{{content.pricePerUnit | currency}}</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+</div>
+<div class="row justify-content-center mt-1">
+  <button class="btn btn-success">
+    Create new supply
+  </button>
+</div>
+
+

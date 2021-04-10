@@ -1,0 +1,12 @@
+p, h5, h6, h1{
+    margin: 0px;
+}
+
+.price-list{
+    overflow: auto;
+    max-height: 20vh;
+}
+
+li.selectable:hover{
+    background-color: lightblue;
+}
