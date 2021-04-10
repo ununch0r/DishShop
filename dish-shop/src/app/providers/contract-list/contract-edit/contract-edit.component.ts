@@ -43,7 +43,7 @@ export class ContractEditComponent implements OnInit {
       'startDate' : new FormControl(null, [Validators.required]),
       'endDate' : new FormControl(null, [Validators.required]),
       'providerId' : new FormControl(this.id),
-      'contractsContents' : new FormArray([])
+      'contractsContents' : new FormArray([], [Validators.required])
     });
   }
 
@@ -65,7 +65,6 @@ export class ContractEditComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.contractForm.value);
     this.contractsSerive.addContract(this.contractForm.value);
     this.router.navigate(['../'], {relativeTo: this.route})
   }

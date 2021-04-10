@@ -28,7 +28,12 @@
                     </div>
                 </div>
                 <div class="col-lg-4 align-self-center">
-                    <button class="btn btn-success" type="button" (click)="showContracts()">See contracts</button>
+                    <button class="btn btn-success" 
+                        type="button"
+                        [disabled]="!isContractsAvailable" 
+                        (click)="showContracts()">
+                        See contracts
+                    </button>
                 </div>
             </div>
             <hr>
@@ -39,7 +44,8 @@
                         [formGroupName]="i"
                         style="margin-top: 10px;">
                         <div class="col-lg-5">
-                            <select formControlName="productId" class="form-control">
+                            <select formControlName="productId" 
+                                class="form-control">
                                 <option *ngFor="let product of availableProducts" [ngValue]="product.id">
                                     {{ product.name }}</option>
                             </select>
@@ -49,7 +55,8 @@
                             formControlName = "count"
                             type="number"
                             style="text-align: center;" 
-                            class="form-control">
+                            class="form-control"
+                            >
                         </div>
                         <div class="col-lg-2">
                             <button type="button" style="width: 100%;" class="btn btn-danger" (click)="onDeleteProductContent(i)">X</button>
