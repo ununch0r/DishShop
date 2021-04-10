@@ -60,19 +60,19 @@
                 </div>
             </div>
             <hr>
-            <div class="row">
-                <div class="col-lg-12" formArrayName="productsCharacteristics">
+            <div class="row justify-content-center rounded">
+                <div class="col-lg-11 characteristics" formArrayName="productsCharacteristics">
                     <div class="row"
                         *ngFor="let characteristic of productForm.get('productsCharacteristics')['controls']; let i = index"
                         [formGroupName]="i"
                         style="margin-top: 10px;">
-                        <div class="col-lg-8">
+                        <div class="col-lg-5">
                             <select formControlName="characteristicId" class="form-control">
                                 <option *ngFor="let characteristic of allCharacteristics" [ngValue]="characteristic.id">
                                     {{ characteristic.name }}</option>
                             </select>
                         </div>
-                        <div class="col-lg-2" >
+                        <div class="col-lg-5" >
                             <input 
                             *ngIf="canCharacteristicHoldValue(characteristic)"
                             formControlName = "value"

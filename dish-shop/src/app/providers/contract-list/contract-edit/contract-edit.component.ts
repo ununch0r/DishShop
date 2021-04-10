@@ -57,7 +57,7 @@ export class ContractEditComponent implements OnInit {
   }
 
   onDeleteContent(index : number){
-    (<FormArray>this.contractForm.get('сontractsContents')).removeAt(index);
+    (<FormArray>this.contractForm.get('contractsContents')).removeAt(index);
   }
 
   onCancel(){

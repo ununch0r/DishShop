@@ -28,8 +28,8 @@
                 </div>
             </div>
             <hr>
-            <div class="row">
-                <div class="col-lg-12" formArrayName="contractsContents">
+            <div class="row justify-content-center rounded">
+                <div class="col-lg-11 items-list" formArrayName="contractsContents">
                     <div class="row"
                         *ngFor="let content of contractForm.get('contractsContents')['controls']; let i = index"
                         [formGroupName]="i"
