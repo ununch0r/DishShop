@@ -1,5 +1,5 @@
-<a  routerLinkActive="selected"
-    [ngStyle] = "{'background-color' : getBackgroundColor()}"
+<a  [routerLink]="[index]"
+    routerLinkActive="selected"
     class="list-group-item clearfix list-group-item-action rounded">
     <div>
         <div class="d-flex justify-content-between">
@@ -17,7 +17,7 @@
             </div>
             <div>
                 <h6 class="font-weight-bold">Total price: </h6>
-                <h6 class="text-muted">{{supply.totalPrice}}</h6>
+                <h6 class="text-muted">{{supply.totalPrice | currency}}</h6>
             </div>
         </div>
     </div>

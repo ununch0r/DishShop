@@ -1,1 +1,56 @@
-<p>supply-detail works!</p>
+<div class="card  mb-3">
+    <div class="card-header card-title"
+        [ngStyle] = "{'background-color' : getBackgroundColor()}"
+    >
+        <h1 style="text-align: center;">Supply #{{supply.id}}</h1>
+    </div>
+    <div class="card text-center">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <div class="list-group-item-fixed">
+                <strong class="list-group-left">ContractId:  </strong>
+                <span class="list-group-right">{{supply.contract.id}}</span>
+              </div>
+        </li>
+        <li class="list-group-item">
+            <div class="list-group-item-fixed">
+              <strong class="list-group-left">Status:  </strong>
+              <span class="list-group-right">{{supply.status.name}}</span>
+            </div>
+          </li>
+        <li class="list-group-item">
+          <div class="list-group-item-fixed">
+            <strong class="list-group-left">Creation date:  </strong>
+            <span class="list-group-right">{{supply.dateCreated | date:'dd/MM/yyyy'}}</span>
+          </div>
+        </li>
+        <li class="list-group-item" *ngIf="supply.dateReceived !== null">
+            <div class="list-group-item-fixed">
+              <strong class="list-group-left">Receiving date:  </strong>
+              <span class="list-group-right">{{supply.dateReceived | date:'dd/MM/yyyy'}}</span>
+            </div>
+        </li>
+        <li class="list-group-item">
+          <div class="list-group-item-fixed">
+            <strong class="list-group-left">Creator:  </strong>
+            <span class="list-group-right">{{supply.employee.firstName}} {{supply.employee.lastName}} </span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="supply.suppliesContents.length > 0">
+      <h4 class="card-header card-title" style="text-align: center;">Supply content: </h4>
+      <div class="card text-center">
+        <ul class="list-group list-group-flush characteristics">
+          <li class="list-group-item"
+            *ngFor="let suppliesContent of product.suppliesContents">
+            <div class="list-group-item-fixed">
+              <strong class="list-group-left">{{suppliesContent.product.name}}:  </strong>
+              <span class="list-group-right">{{suppliesContent.count}}</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+

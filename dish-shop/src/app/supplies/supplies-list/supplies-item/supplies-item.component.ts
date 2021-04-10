@@ -21,13 +21,4 @@ export class SuppliesItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getBackgroundColor(){
-    if(this.supply.status.name ==='Received'){
-      return '#92FF94';
-    } else if(this.supply.status.name === 'In progress'){
-      return '#F1FFA2';
-    } else if (this.supply.status.name === 'Canceled'){
-      return '#FFA390';
-    }
-  }
 }
