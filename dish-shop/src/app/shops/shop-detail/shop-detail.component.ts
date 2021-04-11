@@ -71,10 +71,10 @@ export class ShopDetailComponent implements OnInit {
   }
 
   createSupply(){
-    this.router.navigate(['supplies', 'new'], {relativeTo: this.activatedRoute});
+    this.router.navigate(['supplies', 'new']);
   }
 
   createEmployee(){
-    this.router.navigate(['employees', 'new'], {relativeTo: this.activatedRoute});
+    this.router.navigate(['employees', 'new']);
   }
 }

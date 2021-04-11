@@ -1,0 +1,8 @@
+p, h5, h6, h1{
+    margin: 0px;
+}
+
+.supply-content{
+    overflow: auto;
+    max-height: 25vh;
+}
