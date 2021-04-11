@@ -1,0 +1,22 @@
+.save{
+    margin-left: 5px;
+}
+
+.form-custom{
+    border: 1px solid lightgray;
+    padding: 10px;
+    max-height: 80vh;
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched{
+    border: 1px solid red;
+}
+
+h4{
+    padding: 5px;
+    text-align: center;
+    border-radius: 15px;
+    background-color: lightblue;
+}

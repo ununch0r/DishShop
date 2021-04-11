@@ -24,6 +24,7 @@ import { SupplyEditComponent } from './supplies/supply-edit/supply-edit.componen
 import { SupplyDetailComponent } from './supplies/supply-detail/supply-detail.component';
 import { SuppliesResolverService } from './supplies/resolvers/supplies-resolver.service';
 import { StartComponent } from './start/start.component';
+import { UtilitiesComponent } from './utilities/utilities.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/products', pathMatch: 'full'},
@@ -53,7 +54,8 @@ const appRoutes: Routes = [
         {path: '', component: StartComponent},
         {path: 'new', component: SupplyEditComponent, resolve: [SuppliesResolverService]},
         {path: ':id', component: SupplyDetailComponent, resolve: [SuppliesResolverService]}
-    ]}
+    ]},
+    {path: 'utilities', component: UtilitiesComponent}
 ]
 
 @NgModule({
