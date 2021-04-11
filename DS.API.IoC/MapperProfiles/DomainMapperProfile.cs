@@ -12,8 +12,6 @@ using DS.Services.DTO.DTOs.ShopDTOs;
 using DS.Services.DTO.DTOs.SupplyContentDTOs;
 using DS.Services.DTO.DTOs.SupplyDTOs;
 using DS.Services.DTO.DTOs.UtilityDTOs;
-using CreateCharacteristicDTO = DS.Services.DTO.DTOs.CharacteristicDTOs.CreateCharacteristicDTO;
-using CreateCharacteristicViewModel = DS.API.ViewModels.ViewModels.CharacteristicViewModels.CreateCharacteristicViewModel;
 
 namespace DS.API.IoC.MapperProfiles
 {

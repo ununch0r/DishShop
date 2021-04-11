@@ -56,7 +56,7 @@ namespace DS.API.Controllers
             return Ok(countryViewModels);
         }
 
-        [HttpPost("value-type")]
+        [HttpPost("value-types")]
         public async Task<IActionResult> CreateValueTypeAsync(CreateValueTypeViewModel createValueTypeViewModel)
         {
             var valueTypeDto = _mapper.Map<CreateValueTypeDTO>(createValueTypeViewModel);
@@ -66,7 +66,7 @@ namespace DS.API.Controllers
             return Ok();
         }
 
-        [HttpPost("country")]
+        [HttpPost("countries")]
         public async Task<IActionResult> CreateCountryAsync(CreateCountryViewModel createCountryViewModel)
         {
             var createCountryDto = _mapper.Map<CreateCountryDTO>(createCountryViewModel);
@@ -76,7 +76,7 @@ namespace DS.API.Controllers
             return Ok();
         }
 
-        [HttpPost("city")]
+        [HttpPost("cities")]
         public async Task<IActionResult> CreateCityAsync(CreateCityViewModel createCityViewModel)
         {
             var cityDto = _mapper.Map<CreateCityDTO>(createCityViewModel);
@@ -86,7 +86,7 @@ namespace DS.API.Controllers
             return Ok();
         }
 
-        [HttpPost("characteristic")]
+        [HttpPost("characteristics")]
         public async Task<IActionResult> CreateCharacteristicAsync(CreateCharacteristicViewModel createCharacteristicViewModel)
         {
             var characteristicDto = _mapper.Map<CreateCharacteristicDTO>(createCharacteristicViewModel);
@@ -96,7 +96,7 @@ namespace DS.API.Controllers
             return Ok();
         }
 
-        [HttpPost("producer")]
+        [HttpPost("producers")]
         public async Task<IActionResult> CreateProducerAsync(CreateProducerViewModel createProducerViewModel)
         {
             var producerDto = _mapper.Map<CreateProducerDTO>(createProducerViewModel);

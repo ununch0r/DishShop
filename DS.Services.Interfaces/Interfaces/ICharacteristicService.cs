@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using DS.Services.DTO.DTOs.CharacteristicDTOs;
+using DS.Services.DTO.DTOs.UtilityDTOs;
 
 namespace DS.Services.Interfaces.Interfaces
 {

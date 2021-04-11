@@ -1,6 +1,6 @@
 <div class="row mt-5">
     <div class="col-lg-6">
-        <form [formGroup] = "producerForm" (ngSubmit)="onSubmit()" class="form-custom rounded">
+        <form [formGroup] = "producerForm" (ngSubmit)="onProducerSubmit()" class="form-custom rounded">
             <h4>Add producer</h4>
             <div class="row">
                 <div class="col-lg-12">
@@ -36,7 +36,7 @@
         </form>
     </div>
     <div class="col-lg-6">
-        <form [formGroup] = "cityForm" (ngSubmit)="onSubmit()" class="form-custom rounded">
+        <form [formGroup] = "cityForm" (ngSubmit)="onCitySubmit()" class="form-custom rounded">
             <h4>Add city</h4>
             <div class="row">
                 <div class="col-lg-12">
@@ -74,7 +74,7 @@
 </div>
 <div class="row mt-5">
     <div class="col-lg-3">
-        <form [formGroup] = "countryForm" (ngSubmit)="onSubmit()" class="form-custom rounded">
+        <form [formGroup] = "countryForm" (ngSubmit)="onCountrySubmit()" class="form-custom rounded">
             <h4>Add country</h4>
             <div class="row">
                 <div class="col-lg-12">
@@ -99,7 +99,7 @@
         </form>
     </div>
     <div class="col-lg-3">
-        <form [formGroup] = "valueTypeForm" (ngSubmit)="onSubmit()" class="form-custom rounded">
+        <form [formGroup] = "valueTypeForm" (ngSubmit)="onValueTypeSubmit()" class="form-custom rounded">
             <h4>Add value type</h4>
             <div class="row">
                 <div class="col-lg-12">
@@ -124,7 +124,7 @@
         </form>
     </div>
     <div class="col-lg-6">
-        <form [formGroup] = "characteristicForm" (ngSubmit)="onSubmit()" class="form-custom rounded">
+        <form [formGroup] = "characteristicForm" (ngSubmit)="onCharacteristicSubmit()" class="form-custom rounded">
             <h4>Add characteristic</h4>
             <div class="row">
                 <div class="col-lg-12">
