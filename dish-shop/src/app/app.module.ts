@@ -67,6 +67,7 @@ import { SupplyEditComponent } from './supplies/supply-edit/supply-edit.componen
 import { SuppliesListComponent } from './supplies/supplies-list/supplies-list.component';
 import { SuppliesItemComponent } from './supplies/supplies-list/supplies-item/supplies-item.component';
 import { StartComponent } from './start/start.component';
+import { UtilitiesComponent } from './utilities/utilities.component';
 
 @NgModule({
   declarations: [
@@ -104,7 +105,8 @@ import { StartComponent } from './start/start.component';
     SupplyEditComponent,
     SuppliesListComponent,
     SuppliesItemComponent,
-    StartComponent
+    StartComponent,
+    UtilitiesComponent
   ],
   imports: [
     AppRoutingModule,

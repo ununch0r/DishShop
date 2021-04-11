@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-lg-9">
+        <form [formGroup] = "countryForm" (ngSubmit)="onSubmit()" class="form-custom rounded">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row justify-content-between">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="name">Producer name:</label>
+                                <input 
+                                    type="text" 
+                                    id="name"
+                                    class="form-control"
+                                    formControlName="name">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="countryId">Country:</label>
+                            <select
+                                id="countryId" 
+                                formControlName="countryId" 
+                                class="form-control">
+                                <option 
+                                 *ngFor="let country of countries" [ngValue]="country.id">{{ country.name }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-2">
+                    <button type="submit" class="btn btn-success"
+                    style="width: 100%;"
+                    [disabled]="!countryForm.valid">Add</button>
+            </div>
+            </div>
+        </form>
+    </div>
+</div>

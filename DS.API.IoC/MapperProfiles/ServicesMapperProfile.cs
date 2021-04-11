@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using DS.API.ViewModels.ViewModels.CategoryViewModels;
-using DS.API.ViewModels.ViewModels.CharacteristicViewModels;
 using DS.API.ViewModels.ViewModels.ContractContentViewModels;
 using DS.API.ViewModels.ViewModels.ContractViewModels;
 using DS.API.ViewModels.ViewModels.EmployeeViewModels;
@@ -10,6 +9,7 @@ using DS.API.ViewModels.ViewModels.ProviderViewModels;
 using DS.API.ViewModels.ViewModels.ShopViewModels;
 using DS.API.ViewModels.ViewModels.SupplyContentViewModels;
 using DS.API.ViewModels.ViewModels.SupplyViewModels;
+using DS.API.ViewModels.ViewModels.UtilityViewModels;
 using DS.Domain.Entities.Entities;
 using DS.Services.DTO.DTOs.CategoryDTOs;
 using DS.Services.DTO.DTOs.CharacteristicDTOs;
@@ -28,7 +28,10 @@ using DS.Services.DTO.DTOs.ShopDTOs;
 using DS.Services.DTO.DTOs.SupplyContentDTOs;
 using DS.Services.DTO.DTOs.SupplyDTOs;
 using DS.Services.DTO.DTOs.SupplyStatusDTOs;
+using DS.Services.DTO.DTOs.UtilityDTOs;
 using DS.Services.DTO.DTOs.ValueTypeDTOs;
+using CreateCharacteristicDTO = DS.Services.DTO.DTOs.CharacteristicDTOs.CreateCharacteristicDTO;
+using CreateCharacteristicViewModel = DS.API.ViewModels.ViewModels.CharacteristicViewModels.CreateCharacteristicViewModel;
 
 namespace DS.API.IoC.MapperProfiles
 {
@@ -65,6 +68,7 @@ namespace DS.API.IoC.MapperProfiles
 
 
 
+
             CreateMap<CreateCharacteristicViewModel, CreateCharacteristicDTO>();
             CreateMap<CreateCategoryViewModel, CreateCategoryDTO>();
             CreateMap<CreateProductViewModel, CreateProductDTO>();
@@ -76,6 +80,11 @@ namespace DS.API.IoC.MapperProfiles
             CreateMap<CreateEmployeeViewModel, CreateEmployeeDTO>();
             CreateMap<CreateSupplyContentViewModel, CreateSupplyContentDTO>();
             CreateMap<CreateSupplyViewModel, CreateSupplyDTO>();
+            CreateMap<CreateProducerViewModel, CreateProducerDTO>();
+            CreateMap<CreateCityViewModel, CreateCityDTO>();
+            CreateMap<CreateCountryViewModel, CreateCountryDTO>();
+            CreateMap<CreateCharacteristicViewModel, CreateCharacteristicDTO>();
+            CreateMap<CreateValueTypeViewModel, CreateValueTypeDTO>();
         }
     }
 }
