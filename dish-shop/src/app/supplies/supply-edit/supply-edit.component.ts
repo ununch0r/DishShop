@@ -110,7 +110,7 @@ export class SupplyEditComponent implements OnInit {
         valuesSoFar[value] = true;
     }
     return false;
-}
+  }
 
   onAdd(){
     const formGroup = new FormGroup({

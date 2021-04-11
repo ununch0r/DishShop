@@ -10,6 +10,7 @@ import { CharacteristicService } from '../http-services/characteristic.service';
 import { ProducerService } from '../http-services/producer.service';
 import { ProductsStateService } from '../products-state.service';
 import { ConfirmationDialogService } from 'src/app/confirmation-dialog/confirmation-dialog.service';
+import { NotificationService } from 'src/app/notification.service';
 
 @Component({
   selector: 'app-product-edit',
@@ -32,7 +33,8 @@ export class ProductEditComponent implements OnInit, OnDestroy {
     private categoryService : CategoryService,
     private producerService : ProducerService,
     private characteristicService : CharacteristicService,
-    private confirmationDialogService: ConfirmationDialogService
+    private confirmationDialogService: ConfirmationDialogService,
+    private notificationService : NotificationService
     ) { }
 
   ngOnDestroy(): void {
@@ -169,13 +171,40 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 
   onSubmit(){
 
-    if(this.editMode){
-      this.productsService.updateProduct(this.id, this.productForm.value);
+    const isValid = this.validateSelectedProducts();
+    if(isValid){
+      if(this.editMode){
+        this.productsService.updateProduct(this.id, this.productForm.value);
+      }
+      else{
+        this.productsService.addProduct(this.productForm.value);
+      }
+      this.router.navigate(['../'], {relativeTo: this.route})
+    }else{
+      this.notificationService.showError("Your product characteristics contains duplicate items!", "Check your characteristics!");
     }
-    else{
-      this.productsService.addProduct(this.productForm.value);
+  }
+
+  validateSelectedProducts(){
+    const formArray = (<FormArray>this.productForm.get('productsCharacteristics'));
+    const arrayOfProducts = Array<number>();
+    formArray.controls.forEach((element) => {
+      arrayOfProducts.push(element.value.characteristicId);
+    });
+
+    return !this.hasDuplicates(arrayOfProducts);
+  }
+
+  hasDuplicates(array) {
+    var valuesSoFar = Object.create(null);
+    for (var i = 0; i < array.length; ++i) {
+        var value = array[i];
+        if (value in valuesSoFar) {
+            return true;
+        }
+        valuesSoFar[value] = true;
     }
-    this.router.navigate(['../'], {relativeTo: this.route})
+    return false;
   }
 
   onAdd(){
