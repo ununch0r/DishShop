@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
-import { ProductStartComponent } from './products/product-start/product-start.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductsResolverService } from './products/resolvers/products-resolver.service'
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { CharacteristicResolverService } from './products/resolvers/characteristic-resolver.service';
 import { ShopsComponent } from './shops/shops.component';
-import { ShopStartComponent } from './shops/shop-start/shop-start.component';
 import { ShopDetailComponent } from './shops/shop-detail/shop-detail.component';
 import { ShopsResolverService } from './shops/resolvers/shops-resolver.service';
 import { EmployeeListComponent } from './shops/employee-list/employee-list.component';
@@ -17,27 +15,26 @@ import { EmployeeEditComponent } from './shops/employee-edit/employee-edit.compo
 import { ShopEditComponent } from './shops/shop-edit/shop-edit.component';
 import { ProvidersComponent } from './providers/providers.component';
 import { ProvidersResolverService } from './providers/resolvers/providers-resolver.service';
-import { ProvidersStartComponent } from './providers/providers-start/providers-start.component';
 import { ContractListComponent } from './providers/contract-list/contract-list.component';
 import { ProviderEditComponent } from './providers/provider-edit/provider-edit.component';
 import { ContractEditComponent } from './providers/contract-list/contract-edit/contract-edit.component';
 import { ContractDetailComponent } from './providers/contract-detail/contract-detail.component';
 import { SuppliesComponent } from './supplies/supplies.component';
-import { SuppliesStartComponent } from './supplies/supplies-start/supplies-start.component';
 import { SupplyEditComponent } from './supplies/supply-edit/supply-edit.component';
 import { SupplyDetailComponent } from './supplies/supply-detail/supply-detail.component';
 import { SuppliesResolverService } from './supplies/resolvers/supplies-resolver.service';
+import { StartComponent } from './start/start.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/products', pathMatch: 'full'},
     { path: 'products', component: ProductsComponent, children:[
-        {path: '', component: ProductStartComponent},
+        {path: '', component: StartComponent},
         {path: 'new', component: ProductEditComponent, resolve: [ProductsResolverService, CharacteristicResolverService]},
         {path: ':id', component: ProductDetailComponent, resolve: [ProductsResolverService]},
         {path: ':id/edit', component: ProductEditComponent, resolve: [ProductsResolverService, CharacteristicResolverService]}
     ]},
     { path: 'shops', component: ShopsComponent,resolve:[ShopsResolverService], children:[
-        {path: '', component: ShopStartComponent},
+        {path: '', component: StartComponent},
         {path: 'new', component: ShopEditComponent, resolve: [ShopsResolverService]},
         {path: ':id', component: ShopDetailComponent, resolve: [ShopsResolverService]},
         {path: ':id/employees', component: EmployeeListComponent, resolve: [ShopsResolverService]},
@@ -46,14 +43,14 @@ const appRoutes: Routes = [
         {path: ':id/availabilities', component: AvailabilityListComponent, resolve: [ShopsResolverService]}
     ]},
     { path: 'providers', component: ProvidersComponent,resolve:[ProvidersResolverService], children:[
-        {path: '', component: ProvidersStartComponent},
+        {path: '', component: StartComponent},
         {path: 'new', component: ProviderEditComponent, resolve: [ProvidersResolverService]},
         {path: ':id/contracts', component: ContractListComponent, resolve: [ProvidersResolverService]},
         {path: ':id/contracts/new', component: ContractEditComponent, resolve: [ProvidersResolverService]},
         {path: ':id/contracts/:contractId', component: ContractDetailComponent, resolve: [ProvidersResolverService]}
     ]},
     { path: 'supplies', component: SuppliesComponent,resolve:[SuppliesResolverService], children:[
-        {path: '', component: SuppliesStartComponent},
+        {path: '', component: StartComponent},
         {path: 'new', component: SupplyEditComponent, resolve: [SuppliesResolverService]},
         {path: ':id', component: SupplyDetailComponent, resolve: [SuppliesResolverService]}
     ]}

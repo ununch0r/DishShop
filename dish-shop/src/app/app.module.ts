@@ -21,7 +21,6 @@ import { ProducerService  } from './products/http-services/producer.service';
 import { ProductsResolverService  } from './products/resolvers/products-resolver.service';
 import { CharacteristicResolverService  } from './products/resolvers/characteristic-resolver.service';
 import { ProductsStateService  } from './products/products-state.service';
-import { ProductStartComponent } from './products/product-start/product-start.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -34,7 +33,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShopsComponent } from './shops/shops.component';
 import { ShopListComponent } from './shops/shop-list/shop-list.component';
 import { ShopItemComponent } from './shops/shop-list/shop-item/shop-item.component';
-import { ShopStartComponent } from './shops/shop-start/shop-start.component';
 import { ShopDetailComponent } from './shops/shop-detail/shop-detail.component';
 import { ShopsResolverService } from './shops/resolvers/shops-resolver.service';
 import { EmployeeService } from './shops/http-services/employee.servise';
@@ -60,7 +58,6 @@ import { ProviderEditComponent } from './providers/provider-edit/provider-edit.c
 import { ContractListComponent } from './providers/contract-list/contract-list.component';
 import { ContractItemComponent } from './providers/contract-list/contract-item/contract-item.component';
 import { ProviderItemComponent } from './providers/provider-list/provider-item/provider-item.component';
-import { ProvidersStartComponent } from './providers/providers-start/providers-start.component';
 import { ContractEditComponent } from './providers/contract-list/contract-edit/contract-edit.component';
 import { ContractDetailComponent } from './providers/contract-detail/contract-detail.component';
 import { SuppliesComponent } from './supplies/supplies.component';
@@ -69,7 +66,7 @@ import { SupplyDetailComponent } from './supplies/supply-detail/supply-detail.co
 import { SupplyEditComponent } from './supplies/supply-edit/supply-edit.component';
 import { SuppliesListComponent } from './supplies/supplies-list/supplies-list.component';
 import { SuppliesItemComponent } from './supplies/supplies-list/supplies-item/supplies-item.component';
-import { SuppliesStartComponent } from './supplies/supplies-start/supplies-start.component';
+import { StartComponent } from './start/start.component';
 
 @NgModule({
   declarations: [
@@ -80,12 +77,10 @@ import { SuppliesStartComponent } from './supplies/supplies-start/supplies-start
     ProductEditComponent,
     ProductDetailComponent,
     ProductsComponent,
-    ProductStartComponent,
     ConfirmationDialogComponent,
     ShopsComponent,
     ShopListComponent,
     ShopItemComponent,
-    ShopStartComponent,
     ShopDetailComponent,
     EmployeeListComponent,
     EmployeeItemComponent,
@@ -102,7 +97,6 @@ import { SuppliesStartComponent } from './supplies/supplies-start/supplies-start
     ContractListComponent,
     ContractItemComponent,
     ProviderItemComponent,
-    ProvidersStartComponent,
     ContractEditComponent,
     ContractDetailComponent,
     SuppliesComponent,
@@ -110,7 +104,7 @@ import { SuppliesStartComponent } from './supplies/supplies-start/supplies-start
     SupplyEditComponent,
     SuppliesListComponent,
     SuppliesItemComponent,
-    SuppliesStartComponent
+    StartComponent
   ],
   imports: [
     AppRoutingModule,
