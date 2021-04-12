@@ -55,6 +55,8 @@ export class ShopDetailComponent implements OnInit {
       return supply.dateReceived;
     } else if (supply.status.name === 'In progress'){
       return supply.dateCreated;
+    } else if (supply.status.name === 'Canceled'){
+      return supply.dateCanceled;
     }
   }
 
@@ -75,6 +77,6 @@ export class ShopDetailComponent implements OnInit {
   }
 
   createEmployee(){
-    this.router.navigate(['employees', 'new']);
+    this.router.navigate(['employees', 'new'],  {relativeTo: this.activatedRoute});
   }
 }

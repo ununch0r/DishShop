@@ -20,20 +20,23 @@
           </li>
         <li class="list-group-item">
           <div class="list-group-item-fixed">
-            <strong class="list-group-left">Creation date:  </strong>
-            <span class="list-group-right">{{supply.dateCreated | date:'dd/MM/yyyy'}}</span>
+            <strong class="list-group-left">Created by:  </strong>
+            <span class="list-group-right">{{supply.creator.firstName}} {{supply.creator.lastName}}</span>
+            <small class="list-group-right text-muted"> {{supply.dateCreated | date:'dd/MM/yyyy'}}</small>
           </div>
         </li>
-        <li class="list-group-item" *ngIf="supply.dateReceived !== null">
-            <div class="list-group-item-fixed">
-              <strong class="list-group-left">Receiving date:  </strong>
-              <span class="list-group-right">{{supply.dateReceived | date:'dd/MM/yyyy'}}</span>
-            </div>
-        </li>
-        <li class="list-group-item">
+        <li class="list-group-item" *ngIf="supply.dateReceived !== null && supply.dateReceived !== undefined">
           <div class="list-group-item-fixed">
-            <strong class="list-group-left">Creator:  </strong>
-            <span class="list-group-right">{{supply.employee.firstName}} {{supply.employee.lastName}} </span>
+            <strong class="list-group-left">Received by:  </strong>
+            <span class="list-group-right">{{supply.receiver.firstName}} {{supply.receiver.lastName}}</span>
+            <small class="list-group-right text-muted"> {{supply.dateReceived | date:'dd/MM/yyyy'}}</small>
+          </div>
+        </li>
+        <li class="list-group-item" *ngIf="supply.dateCanceled !== null && supply.dateCanceled !== undefined">
+          <div class="list-group-item-fixed">
+            <strong class="list-group-left">Canceled by:  </strong>
+            <span class="list-group-right">{{supply.canceller.firstName}} {{supply.canceller.lastName}}</span>
+            <small class="list-group-right text-muted"> {{supply.dateCanceled | date:'dd/MM/yyyy'}}</small>
           </div>
         </li>
         <li class="list-group-item">

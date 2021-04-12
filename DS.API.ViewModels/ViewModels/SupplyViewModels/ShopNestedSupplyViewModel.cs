@@ -13,9 +13,12 @@ namespace DS.API.ViewModels.ViewModels.SupplyViewModels
         public decimal TotalPrice { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime? DateReceived { get; set; }
+        public DateTime? DateCanceled { get; set; }
 
         public ContractViewModel Contract { get; set; }
-        public EmployeeViewModel Employee { get; set; }
+        public EmployeeViewModel Creator { get; set; }
+        public EmployeeViewModel Receiver { get; set; }
+        public EmployeeViewModel Canceller { get; set; }
         public SupplyStatusViewModel Status { get; set; }
         public IEnumerable<SupplyContentViewModel> SuppliesContents { get; set; }
     }

@@ -50,8 +50,8 @@ export class SupplyEditComponent implements OnInit {
 
   private initForm(){
     this.supplyForm = new FormGroup({
-      'employeeId' : new FormControl(1, [Validators.required]),
-      'shopId' : new FormControl(1, [Validators.required]),
+      'creatorId' : new FormControl(27, [Validators.required]),
+      'shopId' : new FormControl(7, [Validators.required]),
       'contractId' : new FormControl(null, [Validators.required]),
       'suppliesContents' : new FormArray([], [Validators.required])
     });

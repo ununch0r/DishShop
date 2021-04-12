@@ -8,7 +8,9 @@ namespace DS.Domain.Entities.Entities
     {
         public Employee()
         {
-            Supplies = new HashSet<Supply>();
+            SupplyCancellers = new HashSet<Supply>();
+            SupplyCreators = new HashSet<Supply>();
+            SupplyReceivers = new HashSet<Supply>();
         }
 
         public int Id { get; set; }
@@ -21,9 +23,10 @@ namespace DS.Domain.Entities.Entities
         public int ShopId { get; set; }
         public bool? IsFired { get; set; }
 
-
         public virtual Position Position { get; set; }
         public virtual Shop Shop { get; set; }
-        public virtual ICollection<Supply> Supplies { get; set; }
+        public virtual ICollection<Supply> SupplyCancellers { get; set; }
+        public virtual ICollection<Supply> SupplyCreators { get; set; }
+        public virtual ICollection<Supply> SupplyReceivers { get; set; }
     }
 }

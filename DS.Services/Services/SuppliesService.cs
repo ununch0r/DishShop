@@ -29,7 +29,9 @@ namespace DS.Services.Services
                 .Include(supply => supply.Contract)
                 .Include(supply => supply.Shop)
                     .ThenInclude(shop => shop.City)
-                .Include(supply => supply.Employee)
+                .Include(supply => supply.Creator)
+                .Include(supply => supply.Canceller)
+                .Include(supply => supply.Receiver)
                 .Include(supply => supply.Status)
                 .Include(supply => supply.SuppliesContents)
                     .ThenInclude(supplyContent => supplyContent.Product)
@@ -55,7 +57,9 @@ namespace DS.Services.Services
                 .Include(supply => supply.Contract)
                 .Include(supply => supply.Shop)
                     .ThenInclude(shop => shop.City)
-                .Include(supply => supply.Employee)
+                .Include(supply => supply.Creator)
+                .Include(supply => supply.Canceller)
+                .Include(supply => supply.Receiver)
                 .Include(supply => supply.Status)
                 .Include(supply => supply.SuppliesContents)
                     .ThenInclude(supplyContent => supplyContent.Product)
@@ -85,12 +89,13 @@ namespace DS.Services.Services
                 .Include(supply => supply.Contract)
                 .Include(supply => supply.Shop)
                 .ThenInclude(shop => shop.City)
-                .Include(supply => supply.Employee)
+                .Include(supply => supply.Creator)
                 .Include(supply => supply.Status)
                 .Include(supply => supply.SuppliesContents)
                 .SingleOrDefaultAsync(supply => supply.Id == id);
 
             IsSupplyStatusInProgress(supplyEntity);
+            supplyEntity.ReceiverId = 27; //HERE!!!!!!!!!!!!!
             supplyEntity.StatusId = 2;
             supplyEntity.DateReceived = DateTime.Now;
 
@@ -132,6 +137,8 @@ namespace DS.Services.Services
             var supplyToBeCanceled = await _dishShopContext.Supplies
                 .SingleOrDefaultAsync(supply => supply.Id == id);
 
+            supplyToBeCanceled.DateCanceled = DateTime.Now; 
+            supplyToBeCanceled.CancellerId = 27; // HERE!!!!!!!!
             supplyToBeCanceled.StatusId = 3;
 
             await _dishShopContext.SaveChangesAsync();

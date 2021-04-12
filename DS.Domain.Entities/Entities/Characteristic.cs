@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ValueType = DS.Domain.Entities.Entities.ValueType;
 
 #nullable disable
 
@@ -15,7 +15,6 @@ namespace DS.Domain.Entities.Entities
 
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
         public int? ValueTypeId { get; set; }
 
         public virtual ValueType ValueType { get; set; }

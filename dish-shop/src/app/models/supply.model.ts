@@ -8,9 +8,12 @@ export class Supply{
     id : number
     dateCreated : Date
     dateReceived : Date
+    dateCanceled : Date
     status : SupplyStatus
     totalPrice : number
-    employee : ShopNestedEmployee
+    creator : ShopNestedEmployee
+    receiver : ShopNestedEmployee
+    canceller : ShopNestedEmployee
     contract : Contract
     shop : Shop
     suppliesContents : SupplyContent[]

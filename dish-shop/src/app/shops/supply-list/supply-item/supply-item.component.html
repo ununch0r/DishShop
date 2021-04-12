@@ -15,6 +15,10 @@
                 <h6 class="font-weight-bold">Recieved: </h6>
                 <h6 class="text-muted">{{supply.dateReceived | date:'dd/MM/yyyy'}}</h6>
             </div>
+            <div *ngIf="supply.status.name === 'Canceled'">
+                <h6 class="font-weight-bold">Canceled: </h6>
+                <h6 class="text-muted">{{supply.dateCanceled | date:'dd/MM/yyyy'}}</h6>
+            </div>
             <div>
                 <h6 class="font-weight-bold">Total price: </h6>
                 <h6 class="text-muted">{{supply.totalPrice | currency}}</h6>

@@ -59,8 +59,6 @@ namespace DS.Infrastructure.Context
 
             modelBuilder.Entity<Category>(entity =>
             {
-                entity.Property(e => e.Description).HasMaxLength(500);
-
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(100);
@@ -68,8 +66,6 @@ namespace DS.Infrastructure.Context
 
             modelBuilder.Entity<Characteristic>(entity =>
             {
-                entity.Property(e => e.Description).HasMaxLength(500);
-
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(100);
@@ -158,9 +154,6 @@ namespace DS.Infrastructure.Context
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.Property(e => e.IsFired)
-                    .HasDefaultValue(false);
-
                 entity.HasOne(d => d.Position)
                     .WithMany(p => p.Employees)
                     .HasForeignKey(d => d.PositionId)
@@ -183,8 +176,6 @@ namespace DS.Infrastructure.Context
 
             modelBuilder.Entity<Producer>(entity =>
             {
-                entity.Property(e => e.Description).HasMaxLength(500);
-
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(100);
@@ -320,11 +311,20 @@ namespace DS.Infrastructure.Context
 
             modelBuilder.Entity<Supply>(entity =>
             {
-                entity.Property(e => e.DateCreated).HasPrecision(3);
+                entity.Property(e => e.DateCanceled).HasPrecision(3);
+
+                entity.Property(e => e.DateCreated)
+                    .HasPrecision(3)
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.DateReceived).HasPrecision(3);
 
                 entity.Property(e => e.TotalPrice).HasColumnType("money");
+
+                entity.HasOne(d => d.Canceller)
+                    .WithMany(p => p.SupplyCancellers)
+                    .HasForeignKey(d => d.CancellerId)
+                    .HasConstraintName("FK_Supplies_Employees1");
 
                 entity.HasOne(d => d.Contract)
                     .WithMany(p => p.Supplies)
@@ -332,11 +332,16 @@ namespace DS.Infrastructure.Context
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Supplies_Contracts");
 
-                entity.HasOne(d => d.Employee)
-                    .WithMany(p => p.Supplies)
-                    .HasForeignKey(d => d.EmployeeId)
+                entity.HasOne(d => d.Creator)
+                    .WithMany(p => p.SupplyCreators)
+                    .HasForeignKey(d => d.CreatorId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Supplies_Employees");
+
+                entity.HasOne(d => d.Receiver)
+                    .WithMany(p => p.SupplyReceivers)
+                    .HasForeignKey(d => d.ReceiverId)
+                    .HasConstraintName("FK_Supplies_Employees2");
 
                 entity.HasOne(d => d.Shop)
                     .WithMany(p => p.Supplies)
