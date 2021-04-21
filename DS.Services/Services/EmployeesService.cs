@@ -108,5 +108,17 @@ namespace DS.Services.Services
 
             return positionDTOs;
         }
+
+        public async Task<EmployeeDTO> AuthenticateUser(string email, string password)
+        {
+            var user = await _dishShopContext.Employees
+                .Include(user => user.Position)
+                .SingleOrDefaultAsync(employee =>
+                employee.Email == email && employee.PasswordHash == password);
+
+            var userDto = _mapper.Map<EmployeeDTO>(user);
+
+            return userDto;
+        }
     }
 }

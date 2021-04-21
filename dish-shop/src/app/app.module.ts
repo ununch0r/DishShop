@@ -68,6 +68,13 @@ import { SuppliesListComponent } from './supplies/supplies-list/supplies-list.co
 import { SuppliesItemComponent } from './supplies/supplies-list/supplies-item/supplies-item.component';
 import { StartComponent } from './start/start.component';
 import { UtilitiesComponent } from './utilities/utilities.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { environment } from 'src/environments/environment';
+import {ACCESS_TOKEN_KEY} from './http-services/auth.service'
+
+export function tokenGetter(){
+  return localStorage.getItem(ACCESS_TOKEN_KEY)
+}
 
 @NgModule({
   declarations: [
@@ -121,7 +128,13 @@ import { UtilitiesComponent } from './utilities/utilities.component';
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
     }),
-    NgbModule
+    NgbModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter,
+        allowedDomains: ['localhost:44310']
+      }
+    })
   ],
   providers: [
     ProductService,

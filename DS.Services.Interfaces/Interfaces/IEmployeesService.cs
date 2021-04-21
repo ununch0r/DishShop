@@ -13,5 +13,6 @@ namespace DS.Services.Interfaces.Interfaces
         Task PromoteEmployeeByIdAsync(int id);
         Task FireEmployeeByIdAsync(int id);
         Task<IEnumerable<PositionDTO>> GetAllPositionsAsync();
+        Task<EmployeeDTO> AuthenticateUser(string email, string password);
     }
 }

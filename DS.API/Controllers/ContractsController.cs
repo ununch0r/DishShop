@@ -5,6 +5,7 @@ using AutoMapper;
 using DS.API.ViewModels.ViewModels.ContractViewModels;
 using DS.Services.DTO.DTOs.ContractDTOs;
 using DS.Services.Interfaces.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DS.API.Controllers
@@ -37,6 +38,7 @@ namespace DS.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetContractsAsync()
         {
             var catalogContractDTOs = await _contractsService.GetContractsAsync();
