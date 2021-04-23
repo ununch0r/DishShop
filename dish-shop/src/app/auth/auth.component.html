@@ -1,0 +1,18 @@
+<div class="wrapper fadeInDown mt-10">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first" style="padding: 20px;">
+        
+    </div>
+
+    <!-- Login Form -->
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+      <input type="text" id="login" class="fadeIn second" name="login" formControlName="login" placeholder="login">
+      <input type="password" id="password" class="fadeIn third" name="login" formControlName="password" placeholder="password">
+      <input type="submit" class="fadeIn fourth" value="Log In" [disabled]="!myForm.valid"> 
+    </form>
+
+  </div>
+</div>

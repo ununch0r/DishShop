@@ -25,9 +25,13 @@ import { SupplyDetailComponent } from './supplies/supply-detail/supply-detail.co
 import { SuppliesResolverService } from './supplies/resolvers/supplies-resolver.service';
 import { StartComponent } from './start/start.component';
 import { UtilitiesComponent } from './utilities/utilities.component';
+import { HomeComponent } from './home/home.component';
+import { AuthComponent } from './auth/auth.component';
 
 const appRoutes: Routes = [
-    { path: '', redirectTo: '/products', pathMatch: 'full'},
+    { path: '', redirectTo: '/home', pathMatch: 'full'},
+    { path: 'home', component: HomeComponent},
+    { path: 'auth', component: AuthComponent},
     { path: 'products', component: ProductsComponent, children:[
         {path: '', component: StartComponent},
         {path: 'new', component: ProductEditComponent, resolve: [ProductsResolverService, CharacteristicResolverService]},

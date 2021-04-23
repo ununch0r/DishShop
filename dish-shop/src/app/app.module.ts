@@ -69,8 +69,10 @@ import { SuppliesItemComponent } from './supplies/supplies-list/supplies-item/su
 import { StartComponent } from './start/start.component';
 import { UtilitiesComponent } from './utilities/utilities.component';
 import { JwtModule } from '@auth0/angular-jwt';
+import {HomeComponent} from './home/home.component'
+import {AuthComponent} from './auth/auth.component'
 import { environment } from 'src/environments/environment';
-import {ACCESS_TOKEN_KEY} from './http-services/auth.service'
+import {ACCESS_TOKEN_KEY} from './http-services/auth.service';
 
 export function tokenGetter(){
   return localStorage.getItem(ACCESS_TOKEN_KEY)
@@ -113,7 +115,9 @@ export function tokenGetter(){
     SuppliesListComponent,
     SuppliesItemComponent,
     StartComponent,
-    UtilitiesComponent
+    UtilitiesComponent,
+    HomeComponent,
+    AuthComponent
   ],
   imports: [
     AppRoutingModule,
