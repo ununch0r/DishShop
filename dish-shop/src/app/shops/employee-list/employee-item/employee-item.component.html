@@ -22,9 +22,10 @@
                 <h6 class="font-weight-bold">Position: </h6>
                 <h6 class="text-muted">{{employee.position.name}}</h6>
             </div>
-            <div class="d-flex flex-column justity-content-center" *ngIf="employee.position.name ==='Worker'">
+            <div class="d-flex flex-column justity-content-center" *ngIf="isUserSelectedShopManager()">
                 <button  class="btn btn-success btn-center" 
                          style="margin-bottom: 2px;"
+                         *ngIf="userService.isUserAdmin()"
                          (click)="onPromote()">
                          Promote
                 </button>

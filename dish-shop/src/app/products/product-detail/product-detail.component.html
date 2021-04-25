@@ -1,7 +1,7 @@
 <div class="card  mb-3">
     <div class="card-header card-title">
         <h1 style="text-align: center;">#{{product.id}} {{product.name}}</h1>
-        <button mat-fab color="accent" class="edit-btn" (click)="onEdit()">
+        <button mat-fab color="accent" class="edit-btn" *ngIf="userService.isUserAdmin()" (click)="onEdit()">
           <mat-icon>edit</mat-icon>
         </button>
         <span class="badge badge-primary badge-pill price">{{product.price | currency}}</span>

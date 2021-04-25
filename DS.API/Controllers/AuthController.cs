@@ -7,6 +7,7 @@ using AutoMapper;
 using DS.API.Models;
 using DS.API.ViewModels.ViewModels.EmployeeViewModels;
 using DS.Services.Interfaces.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -21,16 +22,19 @@ namespace DS.API.Controllers
         private readonly IEmployeesService _employeesService;
         private readonly IMapper _mapper;
         private readonly IOptions<AuthOptions> _authOptions;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public AuthController(
             IEmployeesService employeesService,
             IMapper mapper, 
-            IOptions<AuthOptions> authOptions
-            )
+            IOptions<AuthOptions> authOptions,
+            IHttpContextAccessor httpContextAccessor
+        )
         {
             _employeesService = employeesService;
             _mapper = mapper;
             _authOptions = authOptions;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [Route("login")]
@@ -46,6 +50,16 @@ namespace DS.API.Controllers
             }
 
             return Unauthorized();
+        }
+
+        [Route("user")]
+        [HttpGet]
+        public async Task<IActionResult> GetCurrentUserAsync()
+        {
+            var userId = int.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var employee = await _employeesService.GetEmployeeByIdAsync(userId);
+            var employeeViewModel = _mapper.Map<EmployeeViewModel>(employee);
+            return Ok(employeeViewModel);
         }
 
         private async Task<EmployeeViewModel> AuthenticateUser(string email, string password)
@@ -66,8 +80,8 @@ namespace DS.API.Controllers
             {
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(JwtRegisteredClaimNames.Name, user.FirstName),
-                new Claim(JwtRegisteredClaimNames.PhoneNumber, user.PhoneNumber),
-                new Claim("role", user.Position.Name)
+                new Claim("role", user.Position.Name),
+                new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString())
             };
 
             var token = new JwtSecurityToken(

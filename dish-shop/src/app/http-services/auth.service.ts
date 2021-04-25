@@ -30,13 +30,13 @@ export class AuthService {
       tap(token => {
         localStorage.setItem(ACCESS_TOKEN_KEY, token.access_token);
       })
-    )
+    );
 
   }
 
   isAuthenticated() : boolean{
     var token = localStorage.getItem(ACCESS_TOKEN_KEY);
-    return token && this.jwtHelper.isTokenExpired(token);
+    return token && !this.jwtHelper.isTokenExpired(token);
   }
 
   logout() : void {

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Employee } from 'src/app/models/employee.model';
 import { Shop } from 'src/app/models/shop.model';
 import { SupplyStatus } from 'src/app/models/supply-status.model';
 import { Supply } from 'src/app/models/supply.model';
+import { UserService } from 'src/app/user.service';
 import { ShopsStateService } from '../shops-state.service';
 
 @Component({
@@ -14,12 +16,14 @@ import { ShopsStateService } from '../shops-state.service';
 export class ShopDetailComponent implements OnInit {
   shop: Shop;
   id : number;
+  user : Employee;
   subscriptions : Subscription = new Subscription();
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private shopsService: ShopsStateService,
-    private router: Router
+    private router: Router,
+    private userService : UserService
     ) { }
 
   ngOnDestroy(): void {
@@ -40,6 +44,12 @@ export class ShopDetailComponent implements OnInit {
         this.shop = this.shopsService.getShop(this.id);
       }
     ));
+
+    this.subscriptions.add(this.userService.employeeSubject.subscribe(
+      user => {
+        this.user = user;
+      }
+    ))
   }
 
   getBadgeClass(supplyStatus : SupplyStatus){
@@ -79,4 +89,9 @@ export class ShopDetailComponent implements OnInit {
   createEmployee(){
     this.router.navigate(['employees', 'new'],  {relativeTo: this.activatedRoute});
   }
+
+  hasAccessToSupplies(){
+    return this.userService.isUserCurrentShopManagerOrAdmin(this.id);
+  }
+
 }

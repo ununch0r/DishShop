@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product.model';
+import { UserService } from 'src/app/user.service';
 import { ProductsStateService } from '../products-state.service';
 
 @Component({
@@ -17,7 +18,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private productService: ProductsStateService,
-    private router: Router
+    private router: Router,
+    public userService : UserService
     ) { }
 
   ngOnDestroy(): void {

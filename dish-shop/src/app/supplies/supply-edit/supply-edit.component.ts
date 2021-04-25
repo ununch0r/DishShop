@@ -8,6 +8,7 @@ import { Product } from 'src/app/models/product.model';
 import { Provider } from 'src/app/models/provider.model';
 import { NotificationService } from 'src/app/notification.service';
 import { ProviderService } from 'src/app/providers/http-services/provider.service';
+import { UserService } from 'src/app/user.service';
 import { SuppliesStateService } from '../supplies-state-service';
 
 @Component({
@@ -32,7 +33,8 @@ export class SupplyEditComponent implements OnInit {
     private suppliesService : SuppliesStateService,
     private router : Router,
     private providerService : ProviderService,
-    private notificationService : NotificationService
+    private notificationService : NotificationService,
+    public userService : UserService
     ) { }
 
   ngOnDestroy(): void {
@@ -50,8 +52,8 @@ export class SupplyEditComponent implements OnInit {
 
   private initForm(){
     this.supplyForm = new FormGroup({
-      'creatorId' : new FormControl(27, [Validators.required]),
-      'shopId' : new FormControl(7, [Validators.required]),
+      'creatorId' : new FormControl(this.userService.currentEmployee.id, [Validators.required]),
+      'shopId' : new FormControl(this.userService.currentEmployee.shop.id, [Validators.required]),
       'contractId' : new FormControl(null, [Validators.required]),
       'suppliesContents' : new FormArray([], [Validators.required])
     });

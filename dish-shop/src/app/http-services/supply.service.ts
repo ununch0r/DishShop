@@ -4,7 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ShopsStateService } from '../shops/shops-state.service';
 import { NotificationService } from '../notification.service';
 import { Supply } from '../models/supply.model';
-import { SuppliesStateService } from '../supplies/supplies-state-service';
 
 @Injectable()
 export class SupplyService{

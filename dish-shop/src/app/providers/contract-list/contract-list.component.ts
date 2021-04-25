@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Contract } from 'src/app/models/contract.model';
+import { UserService } from 'src/app/user.service';
 import { ProvidersStateService } from '../providers-state.service';
 
 @Component({
@@ -17,7 +18,8 @@ export class ContractListComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private providersService: ProvidersStateService,
-    private router: Router
+    private router: Router,
+    public userService : UserService
     ) { }
 
   ngOnDestroy(): void {

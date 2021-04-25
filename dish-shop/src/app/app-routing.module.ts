@@ -27,39 +27,41 @@ import { StartComponent } from './start/start.component';
 import { UtilitiesComponent } from './utilities/utilities.component';
 import { HomeComponent } from './home/home.component';
 import { AuthComponent } from './auth/auth.component';
+import {AuthGuardService as AuthGuard} from './auth/auth-guard.service'
+import { UserResolverService } from './shared/user-resolver.service' 
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full'},
-    { path: 'home', component: HomeComponent},
+    { path: 'home', component: HomeComponent, resolve:[UserResolverService]},
     { path: 'auth', component: AuthComponent},
-    { path: 'products', component: ProductsComponent, children:[
+    { path: 'products', component: ProductsComponent, canActivate: [AuthGuard], resolve:[UserResolverService],  children:[
         {path: '', component: StartComponent},
         {path: 'new', component: ProductEditComponent, resolve: [ProductsResolverService, CharacteristicResolverService]},
-        {path: ':id', component: ProductDetailComponent, resolve: [ProductsResolverService]},
+        {path: ':id', component: ProductDetailComponent, resolve: [ProductsResolverService,UserResolverService]},
         {path: ':id/edit', component: ProductEditComponent, resolve: [ProductsResolverService, CharacteristicResolverService]}
     ]},
-    { path: 'shops', component: ShopsComponent,resolve:[ShopsResolverService], children:[
+    { path: 'shops', component: ShopsComponent,resolve:[ShopsResolverService,UserResolverService], canActivate: [AuthGuard], children:[
         {path: '', component: StartComponent},
         {path: 'new', component: ShopEditComponent, resolve: [ShopsResolverService]},
-        {path: ':id', component: ShopDetailComponent, resolve: [ShopsResolverService]},
-        {path: ':id/employees', component: EmployeeListComponent, resolve: [ShopsResolverService]},
+        {path: ':id', component: ShopDetailComponent, resolve: [ShopsResolverService,UserResolverService]},
+        {path: ':id/employees', component: EmployeeListComponent, resolve: [ShopsResolverService, UserResolverService]},
         {path: ':id/employees/new', component: EmployeeEditComponent, resolve: [ShopsResolverService]},
         {path: ':id/supplies', component: SupplyListComponent, resolve: [ShopsResolverService]},
         {path: ':id/availabilities', component: AvailabilityListComponent, resolve: [ShopsResolverService]}
     ]},
-    { path: 'providers', component: ProvidersComponent,resolve:[ProvidersResolverService], children:[
+    { path: 'providers', component: ProvidersComponent,resolve:[ProvidersResolverService,UserResolverService], canActivate: [AuthGuard], children:[
         {path: '', component: StartComponent},
         {path: 'new', component: ProviderEditComponent, resolve: [ProvidersResolverService]},
-        {path: ':id/contracts', component: ContractListComponent, resolve: [ProvidersResolverService]},
+        {path: ':id/contracts', component: ContractListComponent, resolve: [ProvidersResolverService,UserResolverService]},
         {path: ':id/contracts/new', component: ContractEditComponent, resolve: [ProvidersResolverService]},
         {path: ':id/contracts/:contractId', component: ContractDetailComponent, resolve: [ProvidersResolverService]}
     ]},
-    { path: 'supplies', component: SuppliesComponent,resolve:[SuppliesResolverService], children:[
+    { path: 'supplies', component: SuppliesComponent,resolve:[SuppliesResolverService,UserResolverService], canActivate: [AuthGuard], children:[
         {path: '', component: StartComponent},
-        {path: 'new', component: SupplyEditComponent, resolve: [SuppliesResolverService]},
+        {path: 'new', component: SupplyEditComponent, resolve: [SuppliesResolverService,UserResolverService]},
         {path: ':id', component: SupplyDetailComponent, resolve: [SuppliesResolverService]}
     ]},
-    {path: 'utilities', component: UtilitiesComponent}
+    {path: 'utilities', component: UtilitiesComponent, canActivate: [AuthGuard]}
 ]
 
 @NgModule({

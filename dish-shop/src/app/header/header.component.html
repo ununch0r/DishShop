@@ -1,10 +1,12 @@
 <div class="sticky-container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="navbar-header">
-            <a class="navbar-brand">DishShop</a>
+            <a class="navbar-brand" style="cursor: pointer;"
+            [routerLink] = "['']"
+            >DishShop</a>
         </div>
         
-        <div class="collapse navbar-collapse">
+        <div *ngIf="authService.isAuthenticated()" class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item"
                     routerLinkActive="active">
@@ -23,6 +25,7 @@
                     </a>
                 </li>
                 <li class="nav-item"
+                    *ngIf="userService.isUserManagerOrAdmin()"
                     routerLinkActive="active">
                     <a style="cursor: pointer;" 
                         class="nav-link"
@@ -31,6 +34,7 @@
                     </a>
                 </li>
                 <li class="nav-item"
+                    *ngIf="userService.isUserManagerOrAdmin()"
                     routerLinkActive="active">
                     <a style="cursor: pointer;" 
                         class="nav-link"
@@ -39,6 +43,7 @@
                     </a>
                 </li>
                 <li class="nav-item"
+                *ngIf="userService.isUserAdmin()"
                     routerLinkActive="active">
                     <a style="cursor: pointer;" 
                         class="nav-link"
@@ -47,6 +52,12 @@
                     </a>
                 </li>
             </ul>
+
+            <a style="cursor: pointer; color: black;" 
+                class="nav-link"
+                (click)="logout()">
+                Logout
+            </a>
         </div>
     </nav>
 </div>

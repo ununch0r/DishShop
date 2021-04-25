@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Provider } from 'src/app/models/provider.model';
+import { UserService } from 'src/app/user.service';
 import { ProvidersStateService } from '../providers-state.service';
 
 @Component({
@@ -12,7 +13,9 @@ export class ProviderListComponent implements OnInit {
   providers : Provider[]
   subscription : Subscription
 
-  constructor(private providerService : ProvidersStateService) { }
+  constructor(private providerService : ProvidersStateService,
+    public userService : UserService
+    ) { }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

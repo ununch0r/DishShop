@@ -71,7 +71,7 @@
             There aren't any availabilities!
           </div>
         </div>
-        <div class="col-lg-5 supply-info rounded">
+        <div class="col-lg-5 supply-info rounded" *ngIf="hasAccessToSupplies()">
             <h2 class="custom-header">Supplies:</h2>
             <div class="scrollable-list">
               <ul class="list-group" *ngFor="let supply of shop.supplies">

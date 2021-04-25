@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Shop } from 'src/app/models/shop.model';
+import { UserService } from 'src/app/user.service';
 import { ShopsStateService } from '../shops-state.service';
 
 @Component({
@@ -12,7 +13,11 @@ export class ShopListComponent implements OnInit, OnDestroy {
   shops : Shop[]
   subscription : Subscription
 
-  constructor(private shopService : ShopsStateService) { }
+  constructor(
+    private shopService : ShopsStateService,
+    public userService : UserService
+    )
+     { }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

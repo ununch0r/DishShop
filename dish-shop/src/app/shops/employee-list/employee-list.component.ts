@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ShopNestedEmployee } from 'src/app/models/shop-nested-models/shop-nested-employee.model';
+import { UserService } from 'src/app/user.service';
 import { ShopsStateService } from '../shops-state.service';
 
 @Component({
@@ -17,7 +18,8 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private shopsService: ShopsStateService,
-    private router: Router
+    private router: Router,
+    public userService : UserService
     ) { }
 
   ngOnDestroy(): void {

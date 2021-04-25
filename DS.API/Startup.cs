@@ -27,6 +27,8 @@ namespace DS.API
             services.AddCors();
             services.AddControllers();
 
+            services.AddHttpContextAccessor();
+
             var authOptions = Configuration.GetSection("Auth").Get<AuthOptions>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
                 options =>
