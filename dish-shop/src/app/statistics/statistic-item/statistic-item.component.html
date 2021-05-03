@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-lg-12 header-container">
+        <div class="d-flex justify-content-around align-items-center header rounded">
+            <H4 class="align-self-center header-align">
+                Shop #{{shop.id}}</H4>
+                <h4>City: {{shop.city.name}}</h4>
+                <h4>Street: {{shop.streetName}}, {{shop.streetIdentifier}}</h4>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-11">
+        <div class="d-flex justify-content-left align-items-center header rounded">
+                <h4 style="margin-left: 20px;">Supplies</h4>
+        </div>
+        <app-supply-statistic 
+            *ngFor="let supply of shop.supplies; let i = index"
+            [supply] = "supply"
+            [index] = "supply.id">
+        </app-supply-statistic>
+    </div>
+</div>
+<div class="row mt-1 mb-3">
+    <div class="col-lg-11">
+        <div class="d-flex justify-content-left align-items-center header rounded">
+                <h4 style="margin-left: 20px;">Availabilities</h4>
+        </div>
+        <app-availability-statistic 
+            *ngFor="let availability of shop.shopsAvailabilities; let i = index"
+            [availability] = "availability">
+        </app-availability-statistic>
+    </div>
+</div>

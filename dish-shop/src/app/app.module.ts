@@ -73,6 +73,10 @@ import {HomeComponent} from './home/home.component'
 import {AuthComponent} from './auth/auth.component'
 import { environment } from 'src/environments/environment';
 import {ACCESS_TOKEN_KEY} from './http-services/auth.service';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { StatisticItemComponent } from './statistics/statistic-item/statistic-item.component';
+import { SupplyStatisticComponent } from './statistics/statistic-item/supply-statistic/supply-statistic.component';
+import { AvailabilityStatisticComponent } from './statistics/statistic-item/availability-statistic/availability-statistic.component';
 
 export function tokenGetter(){
   return localStorage.getItem(ACCESS_TOKEN_KEY)
@@ -117,7 +121,11 @@ export function tokenGetter(){
     StartComponent,
     UtilitiesComponent,
     HomeComponent,
-    AuthComponent
+    AuthComponent,
+    StatisticsComponent,
+    StatisticItemComponent,
+    SupplyStatisticComponent,
+    AvailabilityStatisticComponent
   ],
   imports: [
     AppRoutingModule,

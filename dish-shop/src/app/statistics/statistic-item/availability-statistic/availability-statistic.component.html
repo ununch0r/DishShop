@@ -1,0 +1,22 @@
+<a>
+    <div class="stat-container">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h6 class="font-weight-bold">Product ID: </h6>
+                <h6 class="text-muted">{{availability.product.id}}</h6>
+            </div>
+            <div>
+                <h6 class="font-weight-bold">Product name: </h6>
+                <h6 class="text-muted">{{availability.product.name}}</h6>
+            </div>
+            <div>
+                <h6 class="font-weight-bold">Price: </h6>
+                <h6 class="text-muted">{{availability.product.price | currency}}</h6>
+            </div>
+            <div>
+                <h6 class="font-weight-bold">In stock: </h6>
+                <h6 class="text-muted">{{availability.amount}}</h6>
+            </div>
+        </div>
+    </div>
+</a>

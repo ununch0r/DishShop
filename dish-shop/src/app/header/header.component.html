@@ -51,6 +51,15 @@
                         Utilities
                     </a>
                 </li>
+                <li class="nav-item"
+                *ngIf="userService.isUserAdmin()"
+                    routerLinkActive="active">
+                    <a style="cursor: pointer;" 
+                        class="nav-link"
+                        routerLink="/statistics">
+                        Statistics
+                    </a>
+                </li>
             </ul>
 
             <a style="cursor: pointer; color: black;" 

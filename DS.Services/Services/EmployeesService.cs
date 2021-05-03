@@ -140,7 +140,7 @@ namespace DS.Services.Services
             var user = await _dishShopContext.Employees
                 .Include(user => user.Position)
                 .SingleOrDefaultAsync(employee =>
-                employee.Email == email && employee.PasswordHash == GetHashedPassword(password));
+                employee.Email == email && employee.PasswordHash == GetHashedPassword(password) && !employee.IsFired.Value);
 
             var userDto = _mapper.Map<EmployeeDTO>(user);
 

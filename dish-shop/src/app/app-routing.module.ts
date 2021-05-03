@@ -29,6 +29,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthComponent } from './auth/auth.component';
 import {AuthGuardService as AuthGuard} from './auth/auth-guard.service'
 import { UserResolverService } from './shared/user-resolver.service' 
+import { StatisticsComponent } from './statistics/statistics.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -61,7 +62,8 @@ const appRoutes: Routes = [
         {path: 'new', component: SupplyEditComponent, resolve: [SuppliesResolverService,UserResolverService]},
         {path: ':id', component: SupplyDetailComponent, resolve: [SuppliesResolverService]}
     ]},
-    {path: 'utilities', component: UtilitiesComponent, canActivate: [AuthGuard]}
+    {path: 'utilities', component: UtilitiesComponent, canActivate: [AuthGuard]},
+    {path: 'statistics', component: StatisticsComponent ,resolve:[ShopsResolverService,UserResolverService], canActivate: [AuthGuard]}
 ]
 
 @NgModule({

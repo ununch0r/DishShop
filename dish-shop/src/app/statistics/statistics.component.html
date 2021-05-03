@@ -1,0 +1,9 @@
+<div class="row">
+    <div class="col-lg-12 shop-list">
+        <app-statistic-item
+            *ngFor="let shop of shops; let i = index"
+            [shop] = "shop"
+            [index] = "shop.id">
+        </app-statistic-item>
+    </div>
+</div>
